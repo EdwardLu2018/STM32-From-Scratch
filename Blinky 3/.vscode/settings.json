@@ -1,0 +1,7 @@
+{
+    "git.ignoreLimitWarning": true,
+    "files.associations": {
+        "stm32f103.h": "c",
+        "main.h": "c"
+    }
+}
