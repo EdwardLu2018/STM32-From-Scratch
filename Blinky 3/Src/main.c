@@ -6,6 +6,7 @@ int main (void) {
     if (REG(RCC_CR) & (1<<17))
         REG(RCC_CFGR) |= (1<<0);
     REG(RCC_APB2ENR) |= (1<<4)|(1<<2)|(1<<3);
+
     REG(GPIOC_MODERH) &= (0<<22)|(0<<23);
     REG(GPIOC_MODERH) |= (1<<20);
 
