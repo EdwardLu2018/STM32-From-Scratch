@@ -19,13 +19,13 @@ void gpio_init(void) {
 }
 
 void led_toggle(gpio_t *gpio, unsigned int led) {
-    // gpio_c->odr ^= LED_MASK(led);
+    gpio->odr ^= LED_MASK(led);
 }
 
 void led_on(gpio_t *gpio, unsigned int led) {
-    gpio->bsrr = LED_MASK(led+16U);
+    gpio->odr |= LED_MASK(led);
 }
 
 void led_off(gpio_t *gpio, unsigned int led) {
-    gpio->bsrr = LED_MASK(led);
+    gpio->odr &= ~LED_MASK(led);
 }

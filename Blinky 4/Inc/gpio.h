@@ -9,7 +9,7 @@
 #define MODE_OUTPUT_2 0x2
 #define MODE_OUTPUT_50 0x3
 
-#define LED_MASK(pin) (1<<pin)
+#define LED_MASK(pin) (1<<(pin))
 #define PC13 13U
 #define LED_BIT 0U
 
