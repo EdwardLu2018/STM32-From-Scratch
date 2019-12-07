@@ -4,7 +4,7 @@
 #include "stm32f103.h"
 #include <stdint.h>
 
-// timer (pg 404)
+// timer (pg 404) - 72 MHz
 typedef struct timer_t {
     uint64_t volatile cr[2]; // 0x0 to 0x4 - control register (low/high)
     uint64_t volatile smcr; // 0x8 - slave mode control register

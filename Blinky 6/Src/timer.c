@@ -25,12 +25,17 @@ void enable_chan(uint8_t channel, uint8_t load) {
 
 void tim2_enable_all_chan(void) {
     for (uint8_t i = 0; i <= 4U; i++)
-        enable_timer(i, 2U);
+        enable_chan(i, 2U);
 }
 
 void tim2_init(void) {
-    tim2->arr = 3U;
-    tim2->psc = 36U; // (72 / 36) = 2 MHz; (2 / 4) = 500 kHz
-    tim2_enable_all_chan();
+    // enable counter //
     tim2->cr[0] = 1U;
+
+    // set prescalar //
+    // the counter clock frequency CK_CNT is equal to fCK_PSC / (PSC[15:0] + 1)
+    tim2->arr = 3U;
+    tim2->psc = 35U; // (72 / (35+1)) = 2 MHz; (2 / (3+1)) = 500 kHz (250 kHz toggle)
+
+    tim2_enable_all_chan();
 }
