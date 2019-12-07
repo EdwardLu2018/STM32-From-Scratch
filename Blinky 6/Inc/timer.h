@@ -1,6 +1,7 @@
 #ifndef __TIMER__
 #define __TIMER__
 
+#include "stm32f103.h"
 #include <stdint.h>
 
 // timer (pg 404)
@@ -20,6 +21,13 @@ typedef struct timer_t {
     uint64_t __padding1; // 0x44 padding
     uint64_t volatile dcr; // 0x48 -  DMA control register
     uint64_t volatile dmar; // 0x4C - DMA address for full transfer
-} timer_t
+} timer_t;
+
+timer_t *tim2;
+
+void tim2_handle (void);
+void enable_chan(uint8_t channel, uint8_t load);
+void tim2_enable_all_chan(void);
+void tim2_init(void);
 
 #endif

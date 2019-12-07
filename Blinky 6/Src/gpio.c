@@ -15,12 +15,11 @@ gpio_t *get_gpio(uint8_t pin) {
 
 void pinMode_output(uint8_t pin) {
     gpio_t *gpio = get_gpio(pin);
-    uint8_t bit = pin & PIN_MASK; // mask the input to get the pin number
+    uint8_t bit = pin & PIN_MASK; // mask the input to get the pin number (last 4 bits)
     uint8_t shift_by = (bit % 8) * 4;
     uint8_t reg_idx = bit / 8; // get lo/hi control register index
     uint64_t config = gpio->cr[reg_idx] & ~(0xf << shift_by);
     gpio->cr[reg_idx] = (config | (MODE_OUTPUT_50 << shift_by));
-    // led_off(pin);
 }
 
 void led_toggle(uint8_t pin) {

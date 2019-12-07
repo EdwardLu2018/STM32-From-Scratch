@@ -6,5 +6,7 @@
         "rcc.h": "c",
         "gpio.h": "c",
         "delay.h": "c",
+        "timer.h": "c",
+        "stdint.h": "c"
     }
 }
