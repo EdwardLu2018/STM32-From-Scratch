@@ -1,5 +1,6 @@
 #include "timer.h"
 #include "gpio.h"
+#include "nvic.h"
 
 timer_t *tim2 = (timer_t *)(TIM2_BASE);
 
@@ -39,7 +40,5 @@ void tim2_init(void) {
 
     enable_chan(0, 2U);
 
-    struct nvic *np = NVIC_BASE;
-
-	np->iser[28/32] = 1 << (28%32);
+    nvic_enable(TIM_IRQ_POS);
 }

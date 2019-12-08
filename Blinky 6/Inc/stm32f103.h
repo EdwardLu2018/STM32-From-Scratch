@@ -15,4 +15,6 @@
 #define TIM3_BASE 0x40000400U
 #define TIM4_BASE 0x40000800U
 
+#define NVIC_BASE 0xE000E100U
+
 #endif
