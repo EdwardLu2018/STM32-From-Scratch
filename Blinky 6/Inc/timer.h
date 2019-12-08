@@ -3,6 +3,8 @@
 
 #include "stm32f103.h"
 
+#define CLK_HZ 72000000U // 72 Mhz clock
+
 // Timers (pg 404) - 72 MHz
 typedef struct timer_t {
     unsigned volatile long cr[2]; // 0x0 to 0x4 - control register (low/high)
@@ -22,17 +24,18 @@ typedef struct timer_t {
     unsigned volatile long dmar; // 0x4C - DMA address for full transfer
 } timer_t;
 
-#define NVIC_BASE	((struct nvic *) 0xe000e100)
-struct nvic {
-	volatile unsigned long iser[3];	/* 00 */
-	volatile unsigned long icer[3];	/* 0c */
-	/* ... */
-};
-
 timer_t *tim2;
 
 void tim2_handle(void);
 void enable_chan(unsigned char channel, unsigned char load);
 void tim2_init(void);
+
+#define NVIC_BASE	((struct nvic *) 0xe000e100)
+
+struct nvic {
+	volatile unsigned long iser[3];	/* 00 */
+	volatile unsigned long icer[3];	/* 0c */
+	/* ... */
+};
 
 #endif

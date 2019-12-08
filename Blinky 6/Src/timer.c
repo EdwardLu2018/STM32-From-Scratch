@@ -4,7 +4,7 @@
 timer_t *tim2 = (timer_t *)(TIM2_BASE);
 
 void tim2_handle(void) {
-    tim2->sr = 0U; // restart interrupt
+    tim2->sr = 0U; // reset interrupt
     led_toggle(PA0);
 }
 
@@ -29,10 +29,11 @@ void tim2_init(void) {
     // enable counter //
     tim2->cr[0] = 1U;
 
-    // set prescalar //
+    // set prescalar (ms) //
     // the counter clock frequency CK_CNT is equal to fCK_PSC / (PSC[15:0] + 1)
-    tim2->psc = 9000U - 1U; // (72 MHz / (9000)) = 8 kHz ; (8 kHz / 4) = 2 kHz
-    tim2->arr = 1000U - 1U; // (2 / 1000) = 2 Hz -> 1 Hz (1 sec) toggle
+    // 72000000 / 72000 = 1000 ms (1 sec)
+    tim2->psc = CLK_HZ / 1000 - 1U; // a prescaler value of psc will increment cnt every psc+1 clock cycles.
+    tim2->arr = 1000U; // "period" of timer - updates every time cnt reaches arr
 
     tim2->dier = 1U;
 
