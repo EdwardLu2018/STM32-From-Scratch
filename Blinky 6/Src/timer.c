@@ -1,9 +1,17 @@
 #include "timer.h"
+#include "gpio.h"
 
 timer_t *tim2 = (timer_t *)(TIM2_BASE);
+// int counter = 0;
 
-void tim2_handle (void) {
+void tim2_handle(void) {
     tim2->sr = 0U; // restart interrupt
+    led_on(PC13);
+    // counter++;
+    // if (counter % 50 == 0) {
+    //     led_toggle(PC13);
+    //     counter = 0;
+    // }
 }
 
 void enable_chan(uint8_t channel, uint8_t load) {
@@ -20,11 +28,11 @@ void enable_chan(uint8_t channel, uint8_t load) {
     shift_by = (channel % 2) * 8;
     uint8_t mr_idx = channel / 2;
     config = tim2->ccmr[mr_idx] & ~(0xff << shift_by);
-    tim2->ccmr[mr_idx] = (config | (0x30 << shift_by));
+    tim2->ccmr[mr_idx] |= (config | (0x30 << shift_by));
 }
 
 void tim2_enable_all_chan(void) {
-    for (uint8_t i = 0; i <= 4U; i++)
+    for (uint8_t i = 0; i < 4U; i++)
         enable_chan(i, 2U);
 }
 

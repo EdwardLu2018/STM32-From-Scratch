@@ -25,7 +25,7 @@ typedef struct timer_t {
 
 timer_t *tim2;
 
-void tim2_handle (void);
+void tim2_handle(void);
 void enable_chan(uint8_t channel, uint8_t load);
 void tim2_enable_all_chan(void);
 void tim2_init(void);
