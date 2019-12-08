@@ -5,19 +5,16 @@
 
 int main(void) {
     rcc_init();
-    pinMode_output(PC13);
-    led_on(PC13); // turns off pin 13
-    pinMode_output(PA0);
+    pinMode_output(PC13); // on board LED
+    led_off(PC13);
+    pinMode_output(PA0); // external LED
     pinMode_output(PA15); // tim2
     tim2_init();
 
     while(1) {
-        // led_toggle(PA0);
-        // delay(100000U);
-
-        led_on(PC13); // off
+        led_on(PC13);
         delay(1000000U);
-        led_off(PC13); // on
+        led_off(PC13);
         delay(1000000U);
     }
 }

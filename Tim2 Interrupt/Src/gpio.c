@@ -29,10 +29,12 @@ void led_toggle(unsigned char pin) {
 
 void led_on(unsigned char pin) {
     gpio_t *gpio = get_gpio(pin);
-    gpio->odr |= LED_MASK(pin & PIN_MASK);
+    if (pin == PC13) gpio->odr &= ~LED_MASK(pin & PIN_MASK);
+    else gpio->odr |= LED_MASK(pin & PIN_MASK);
 }
 
 void led_off(unsigned char pin) {
     gpio_t *gpio = get_gpio(pin);
-    gpio->odr &= ~LED_MASK(pin & PIN_MASK);
+    if (pin == PC13) gpio->odr |= LED_MASK(pin & PIN_MASK);
+    else gpio->odr &= ~LED_MASK(pin & PIN_MASK);
 }
