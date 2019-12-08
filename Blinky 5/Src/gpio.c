@@ -20,7 +20,6 @@ void pinMode_output(unsigned char pin) {
     unsigned char reg_idx = bit / 8; // get lo/hi control register index
     unsigned long config = gpio->cr[reg_idx] & ~(0xf << shift_by);
     gpio->cr[reg_idx] = (config | (MODE_OUTPUT_50 << shift_by));
-    // led_on(pin);
 }
 
 void led_toggle(unsigned char pin) {

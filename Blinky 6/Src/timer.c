@@ -2,23 +2,17 @@
 #include "gpio.h"
 
 timer_t *tim2 = (timer_t *)(TIM2_BASE);
-// int counter = 0;
 
 void tim2_handle(void) {
     tim2->sr = 0U; // restart interrupt
-    led_on(PC13);
-    // counter++;
-    // if (counter % 50 == 0) {
-    //     led_toggle(PC13);
-    //     counter = 0;
-    // }
+    led_toggle(PA0);
 }
 
-void enable_chan(uint8_t channel, uint8_t load) {
+void enable_chan(unsigned char channel, unsigned char load) {
     tim2->ccr[channel] = load;
 
-    uint8_t shift_by;
-    uint64_t config;
+    unsigned char shift_by;
+    unsigned long config;
 
     shift_by = channel * 4;
     config = tim2->ccer & ~(0xf << shift_by);
@@ -26,14 +20,9 @@ void enable_chan(uint8_t channel, uint8_t load) {
 
     // output compare mode //
     shift_by = (channel % 2) * 8;
-    uint8_t mr_idx = channel / 2;
+    unsigned char mr_idx = channel / 2;
     config = tim2->ccmr[mr_idx] & ~(0xff << shift_by);
-    tim2->ccmr[mr_idx] |= (config | (0x30 << shift_by));
-}
-
-void tim2_enable_all_chan(void) {
-    for (uint8_t i = 0; i < 4U; i++)
-        enable_chan(i, 2U);
+    tim2->ccmr[mr_idx] = (config | (0x30 << shift_by));
 }
 
 void tim2_init(void) {
@@ -42,8 +31,14 @@ void tim2_init(void) {
 
     // set prescalar //
     // the counter clock frequency CK_CNT is equal to fCK_PSC / (PSC[15:0] + 1)
-    tim2->arr = 3U;
-    tim2->psc = 35U; // (72 / (35+1)) = 2 MHz; (2 / (3+1)) = 500 kHz (250 kHz toggle)
+    tim2->psc = 9000U - 1U; // (72 MHz / (9000)) = 8 kHz ; (8 kHz / 4) = 2 kHz
+    tim2->arr = 1000U - 1U; // (2 / 1000) = 2 Hz -> 1 Hz (1 sec) toggle
 
-    tim2_enable_all_chan();
+    tim2->dier = 1U;
+
+    enable_chan(0, 2U);
+
+    struct nvic *np = NVIC_BASE;
+
+	np->iser[28/32] = 1 << (28%32);
 }
