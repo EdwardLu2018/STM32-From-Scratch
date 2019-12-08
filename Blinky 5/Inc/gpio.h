@@ -2,7 +2,6 @@
 #define __GPIO__
 
 #include "stm32f103.h"
-#include <stdint.h>
 
 // Output bit modes //
 #define MODE_INPUT 0x0
@@ -15,12 +14,12 @@
 
 // general purpose input/output (page 171) //
 typedef struct gpio_t {
-    uint64_t volatile cr[2]; // 0x0 to 0x4 - port configuration register (low/high)
-    uint64_t volatile idr; // 0x8 - input data register
-    uint64_t volatile odr; // 0xC - output data register
-    uint64_t volatile bsrr; // 0x10 - bit set/reset register
-    uint64_t volatile brr; // 0x14 - bit reset register
-    uint64_t volatile lckr; // 0x18 - port configuration lock register
+    unsigned volatile long cr[2]; // 0x0 to 0x4 - port configuration register (low/high)
+    unsigned volatile long idr; // 0x8 - input data register
+    unsigned volatile long odr; // 0xC - output data register
+    unsigned volatile long bsrr; // 0x10 - bit set/reset register
+    unsigned volatile long brr; // 0x14 - bit reset register
+    unsigned volatile long lckr; // 0x18 - port configuration lock register
 } gpio_t;
 
 gpio_t *gpio_a;
@@ -39,10 +38,10 @@ typedef enum pin_t {
     PC8, PC9, PC10, PC11, PC12, PC13, PC14, PC15
 } pin_t;
 
-gpio_t *get_gpio(uint8_t pin);
-void pinMode_output(uint8_t pin);
-void led_toggle(uint8_t pin);
-void led_on(uint8_t pin);
-void led_off(uint8_t pin);
+gpio_t *get_gpio(unsigned char pin);
+void pinMode_output(unsigned char pin);
+void led_toggle(unsigned char pin);
+void led_on(unsigned char pin);
+void led_off(unsigned char pin);
 
 #endif
