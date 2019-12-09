@@ -48,8 +48,8 @@
 .word   none        // 26 TIM1_TRG_COM
 .word   none        // 27 TIM1_CC
 .word   tim2_handle // 28 TIM2
-.word   none        // 29 TIM3
-.word   none        // 30 TIM4
+.word   tim3_handle // 29 TIM3
+.word   tim4_handle // 30 TIM4
 .word   none        // 31 I2C1_EV
 .word   none        // 32 I2C1_ER
 .word   none        // 33 I2C2_EV

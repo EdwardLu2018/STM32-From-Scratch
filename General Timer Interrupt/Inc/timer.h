@@ -7,6 +7,11 @@
 
 #define TIM_IRQ_POS 28
 
+#define CHAN1   0
+#define CHAN2   1
+#define CHAN3   2
+#define CHAN4   3
+
 // Timers (pg 404) - 72 MHz
 typedef struct timer_t {
     unsigned volatile long cr[2]; // 0x0 to 0x4 - control register (low/high)
@@ -27,9 +32,15 @@ typedef struct timer_t {
 } timer_t;
 
 timer_t *tim2;
+timer_t *tim3;
+timer_t *tim4;
 
+timer_t *get_timer(unsigned char timer);
+unsigned long get_cnt(unsigned char timer);
 void tim2_handle(void);
-void enable_chan(unsigned char channel, unsigned char load);
-void tim2_init(void);
+void tim3_handle(void);
+void tim4_handle(void);
+void enable_chan(unsigned char timer, unsigned char channel, unsigned char load);
+void timer_init(unsigned char timer, unsigned long prescaler, unsigned long period);
 
 #endif

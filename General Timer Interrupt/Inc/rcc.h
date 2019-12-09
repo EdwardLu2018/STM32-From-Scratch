@@ -8,6 +8,8 @@
 #define GPIOC_EN (1<<4)
 
 #define TIM2_EN (1<<0)
+#define TIM3_EN (1<<1)
+#define TIM4_EN (1<<2)
 
 // Reset and clock control (page 99) //
 typedef struct rcc_t {

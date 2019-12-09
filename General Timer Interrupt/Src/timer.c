@@ -3,42 +3,78 @@
 #include "nvic.h"
 
 timer_t *tim2 = (timer_t *)(TIM2_BASE);
+timer_t *tim3 = (timer_t *)(TIM3_BASE);
+timer_t *tim4 = (timer_t *)(TIM4_BASE);
+
+timer_t *get_timer(unsigned char timer) {
+    switch (timer) {
+    case 2:
+        return tim2;
+    case 3:
+        return tim3;
+    case 4:
+        return tim4;
+    default:
+        return tim2;
+    }
+}
 
 void tim2_handle(void) {
     tim2->sr = 0U; // reset interrupt
     led_toggle(PA0);
 }
 
-void enable_chan(unsigned char channel, unsigned char load) {
-    tim2->ccr[channel] = load;
+void tim3_handle(void) {
+    tim3->sr = 0U; // reset interrupt
+    led_toggle(PA0);
+}
+
+void tim4_handle(void) {
+    tim4->sr = 0U; // reset interrupt
+    led_toggle(PA0);
+}
+
+unsigned long get_cnt(unsigned char timer) {
+    timer_t *tim = get_timer(timer);
+    return tim->cnt;
+}
+
+void enable_chan(unsigned char timer, unsigned char channel, unsigned char load) {
+    timer_t *tim = get_timer(timer);
+    tim->ccr[channel] = load;
 
     unsigned char shift_by;
     unsigned long config;
 
     shift_by = channel * 4;
-    config = tim2->ccer & ~(0xf << shift_by);
-    tim2->ccer = (config | (1 << shift_by)); // enable output
+    config = tim->ccer & ~(0xf << shift_by);
+    tim->ccer = (config | (1 << shift_by)); // enable output
 
     // output compare mode //
     shift_by = (channel % 2) * 8;
     unsigned char mr_idx = channel / 2;
-    config = tim2->ccmr[mr_idx] & ~(0xff << shift_by);
-    tim2->ccmr[mr_idx] = (config | (0x30 << shift_by));
+    config = tim->ccmr[mr_idx] & ~(0xff << shift_by);
+    tim->ccmr[mr_idx] = (config | (0x30 << shift_by));
 }
 
-void tim2_init(void) {
+void timer_init(unsigned char timer, unsigned long prescaler, unsigned long period) {
+    timer_t *tim = get_timer(timer);
+
     // enable counter //
-    tim2->cr[0] = 1U;
+    tim->cr[0] = 1U;
 
     // set prescalar (ms) //
     // the counter clock frequency CK_CNT is equal to fCK_PSC / (PSC[15:0] + 1)
     // 72000000 / 72000 = 1000 ms (1 sec)
-    tim2->psc = CLK_HZ / 1000 - 1U; // a prescaler value of psc will increment cnt every psc+1 clock cycles.
-    tim2->arr = 1000U; // "period" of timer - updates every time cnt reaches arr
+    tim->psc = CLK_HZ / prescaler - 1U; // a prescaler value of psc will increment cnt every psc+1 clock cycles.
+    tim->arr = period; // "period" of timer - updates every time cnt reaches arr
 
-    tim2->dier = 1U;
+    tim->dier = 1U;
 
-    enable_chan(0, 2U);
+    enable_chan(timer, CHAN1, 2U);
+    enable_chan(timer, CHAN2, 2U);
+    enable_chan(timer, CHAN3, 2U);
+    enable_chan(timer, CHAN4, 2U);
 
-    nvic_enable(TIM_IRQ_POS);
+    nvic_enable(TIM_IRQ_POS + (timer-2));
 }

@@ -8,8 +8,7 @@ int main(void) {
     pinMode_output(PC13); // on board LED
     led_off(PC13);
     pinMode_output(PA0); // external LED
-    pinMode_output(PA15); // tim2
-    tim2_init();
+    timer_init(4, 1000U, 1000U);
 
     while(1) {
         led_on(PC13);
