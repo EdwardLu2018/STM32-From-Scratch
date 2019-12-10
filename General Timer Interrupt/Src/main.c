@@ -6,7 +6,6 @@
 int main(void) {
     rcc_init();
     pinMode_output(PC13); // on board LED
-    led_off(PC13);
     pinMode_output(PA0); // external LED
     timer_init(4, 1000U, 1000U);
 
