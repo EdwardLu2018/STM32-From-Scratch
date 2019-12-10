@@ -25,7 +25,7 @@ typedef struct timer_t {
     unsigned volatile long psc; // 0x28 - prescaler
     unsigned volatile long arr; // 0x2C - auto-reload register
     unsigned long __padding0; // 0x30 padding
-    unsigned volatile long ccr[4]; // 0x34 to 0x40 - counter
+    unsigned volatile long ccr[4]; // 0x34 to 0x40 - capture/compare register
     unsigned long __padding1; // 0x44 padding
     unsigned volatile long dcr; // 0x48 -  DMA control register
     unsigned volatile long dmar; // 0x4C - DMA address for full transfer

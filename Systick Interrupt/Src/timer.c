@@ -34,7 +34,7 @@ void tim4_handle(void) {
     led_toggle(PA0);
 }
 
-unsigned long get_cnt(unsigned char timer) {
+unsigned long get_timer_cnt(unsigned char timer) {
     timer_t *tim = get_timer(timer);
     return tim->cnt;
 }
@@ -60,12 +60,9 @@ void enable_chan(unsigned char timer, unsigned char channel, unsigned char load)
 void timer_init(unsigned char timer, unsigned long prescaler, unsigned long period) {
     timer_t *tim = get_timer(timer);
 
-    // enable counter //
-    tim->cr[0] = 1U;
-
     // set prescalar (ms) //
     // the counter clock frequency CK_CNT is equal to fCK_PSC / (PSC[15:0] + 1)
-    tim->psc = CLK_HZ / prescaler - 1U; // a prescaler value of psc will increment cnt every psc+1 clock cycles.
+    tim->psc = prescaler; // PCLK2 / prescaler - 1U; // a prescaler value of psc will increment cnt every psc+1 clock cycles.
     tim->arr = period; // "period" of timer - updates every time cnt reaches arr
 
     tim->dier = 1U;
@@ -76,4 +73,7 @@ void timer_init(unsigned char timer, unsigned long prescaler, unsigned long peri
     enable_chan(timer, CHAN4, 2U);
 
     nvic_enable(TIM_IRQ_POS + (timer-2));
+
+    // enable counter //
+    tim->cr[0] = 1U;
 }

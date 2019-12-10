@@ -17,6 +17,6 @@
 
 #define NVIC_BASE       0xE000E100U
 
-#define SYSTICK_BASE    0xE000ED00U
+#define SYSTICK_BASE    0xE000E010U
 
 #endif

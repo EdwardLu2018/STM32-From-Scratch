@@ -20,5 +20,6 @@ systick_t *systick;
 
 void systick_handle(void);
 void systick_init(unsigned long reload_val);
+unsigned long millis(void);
 
 #endif

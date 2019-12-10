@@ -3,7 +3,8 @@
 
 #include "stm32f103.h"
 
-#define CLK_HZ  72000000U // 72 Mhz clock
+#define PCLK1  36000000U // 36 Mhz clock
+#define PCLK2  72000000U // 72 Mhz clock
 
 #define TIM_IRQ_POS 28
 
@@ -25,7 +26,7 @@ typedef struct timer_t {
     unsigned volatile long psc; // 0x28 - prescaler
     unsigned volatile long arr; // 0x2C - auto-reload register
     unsigned long __padding0; // 0x30 padding
-    unsigned volatile long ccr[4]; // 0x34 to 0x40 - counter
+    unsigned volatile long ccr[4]; // 0x34 to 0x40 - capture/compare register
     unsigned long __padding1; // 0x44 padding
     unsigned volatile long dcr; // 0x48 -  DMA control register
     unsigned volatile long dmar; // 0x4C - DMA address for full transfer
@@ -36,7 +37,7 @@ timer_t *tim3;
 timer_t *tim4;
 
 timer_t *get_timer(unsigned char timer);
-unsigned long get_cnt(unsigned char timer);
+unsigned long get_timer_cnt(unsigned char timer);
 void tim2_handle(void);
 void tim3_handle(void);
 void tim4_handle(void);
