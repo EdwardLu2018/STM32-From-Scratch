@@ -1,4 +1,4 @@
-/* blink.lds
+/* blink.ld
  *
  * Memory layout on an STM32F103:
  *
