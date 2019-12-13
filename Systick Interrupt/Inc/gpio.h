@@ -3,11 +3,31 @@
 
 #include "stm32f103.h"
 
-// Output bit modes //
-#define MODE_INPUT      0x0
-#define MODE_OUTPUT_10  0x1
-#define MODE_OUTPUT_2   0x2
-#define MODE_OUTPUT_50  0x3
+// // Output bit modes //
+// #define MODE_INPUT      0 // input mode
+// #define MODE_OUTPUT_10  1 // max speed 10 MHz
+// #define MODE_OUTPUT_2   2 // max speed 2 MHz
+// #define MODE_OUTPUT_50  3 // max speed 50 MHz
+
+// // Port configuration bits (output) //
+// #define GP_OUT_PUSH_PULL    (0<<2)
+// #define GP_OUT_OPEN_DRAIN   (1<<2)
+// #define ALT_OUT_PUSH_PULL   (2<<2)
+// #define ALT_OUT_OPEN_DRAIN  (3<<2)
+
+// // Port configuration bits (input) //
+// #define INPUT_ANALOG        (0<<2)
+// #define INPUT_FLOATING_PT   (1<<2)
+// #define INPUT_PULL_UP_DOWN  (2<<2)
+
+// Output bit modes and configuration bits //
+typedef enum mode_config_t {
+    INPUT_ANALOG=0, INPUT_FLOATING_PT=4, INPUT_PULL_UP_DOWN=8,
+    OUT_GP_PUSH_PULL_10=1, OUT_GP_PUSH_PULL_2=2, OUT_GP_PUSH_PULL_50=3,
+    OUT_GP_OPEN_DRAIN_10=5, OUT_GP_OPEN_DRAIN_2=6, OUT_GP_OPEN_DRAIN_50=7,
+    OUT_ALT_PUSH_PULL_10=9, OUT_ALT_PUSH_PULL_2=10, OUT_ALT_PUSH_PULL_50=11,
+    OUT_ALT_OPEN_DRAIN_10=13, OUT_ALT_OPEN_DRAIN_2=14, OUT_ALT_OPEN_DRAIN_50=15
+} mode_config_t;
 
 #define LED_MASK(pin)   (1<<(pin))
 #define PIN_MASK        0x0f
@@ -39,7 +59,7 @@ typedef enum pin_t {
 } pin_t;
 
 gpio_t *get_gpio(unsigned char pin);
-void pinMode_output(unsigned char pin);
+void pin_mode(unsigned char pin, unsigned char mode);
 void led_toggle(unsigned char pin);
 void led_on(unsigned char pin);
 void led_off(unsigned char pin);

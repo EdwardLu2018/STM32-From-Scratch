@@ -13,13 +13,13 @@ gpio_t *get_gpio(unsigned char pin) {
     }
 }
 
-void pinMode_output(unsigned char pin) {
+void pin_mode(unsigned char pin, unsigned char mode) {
     gpio_t *gpio = get_gpio(pin);
     unsigned char bit = pin & PIN_MASK; // mask the input to get the pin number
     unsigned char shift_by = (bit % 8) * 4;
     unsigned char reg_idx = bit / 8; // get lo/hi control register index
     unsigned long config = gpio->cr[reg_idx] & ~(0xf << shift_by);
-    gpio->cr[reg_idx] = (config | (MODE_OUTPUT_50 << shift_by));
+    gpio->cr[reg_idx] = (config | (mode << shift_by));
 }
 
 void led_toggle(unsigned char pin) {
