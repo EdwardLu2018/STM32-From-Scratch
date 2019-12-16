@@ -7,8 +7,7 @@ int main(void) {
     rcc_init();
     pinMode_output(PC13); // on board LED
     led_off(PC13);
-    pinMode_output(PA0); // external LED
-    pinMode_output(PA15); // tim2
+    pinMode_output(PA2); // external LED
     tim2_init();
 
     while(1) {

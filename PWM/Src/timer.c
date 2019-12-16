@@ -26,7 +26,7 @@ void tim2_handle(void) {
 
 void tim3_handle(void) {
     tim3->sr = 0U; // reset interrupt
-    // led_toggle(PC13);
+    led_toggle(PA7);
 }
 
 void tim4_handle(void) {
@@ -61,9 +61,10 @@ void timer_init(unsigned char timer, unsigned long prescaler, unsigned long peri
     timer_t *tim = get_timer(timer);
 
     // set prescalar (ms) //
-    // the counter clock frequency CK_CNT is equal to fCK_PSC / (PSC[15:0] + 1)
-    tim->psc = prescaler; // PCLK2 / prescaler - 1U; // a prescaler value of psc will increment cnt every psc+1 clock cycles.
-    tim->arr = period; // "period" of timer - updates every time cnt reaches arr
+    // PWM Frequency = fCK_PSC / (PSC*ARR)
+    // PWM Duty = CCMRx / ARR
+    tim->psc = prescaler - 1U; // PCLK2 / prescaler - 1U; // a prescaler value of psc will increment cnt every psc+1 clock cycles.
+    tim->arr = period - 1U; // "period" of timer - updates every time cnt reaches arr
 
     tim->dier = 1U;
 

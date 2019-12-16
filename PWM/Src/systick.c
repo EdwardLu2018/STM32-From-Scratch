@@ -8,10 +8,10 @@ void systick_handle(void) {
 }
 
 void systick_init(unsigned long reload_val) {
-    systick->reload = reload_val*10U - 1U;
+    systick->reload = reload_val - 1U;
     systick->val = 0U;
     cnt = 0;
-    systick->ctrl = (AHB_EN | TICKINT_EN | TICK_EN);
+    systick->ctrl = (TICKINT_EN | TICK_EN);
 }
 
 unsigned long millis(void) {

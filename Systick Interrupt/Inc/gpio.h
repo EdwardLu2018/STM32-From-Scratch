@@ -9,17 +9,6 @@
 // #define MODE_OUTPUT_2   2 // max speed 2 MHz
 // #define MODE_OUTPUT_50  3 // max speed 50 MHz
 
-// // Port configuration bits (output) //
-// #define GP_OUT_PUSH_PULL    (0<<2)
-// #define GP_OUT_OPEN_DRAIN   (1<<2)
-// #define ALT_OUT_PUSH_PULL   (2<<2)
-// #define ALT_OUT_OPEN_DRAIN  (3<<2)
-
-// // Port configuration bits (input) //
-// #define INPUT_ANALOG        (0<<2)
-// #define INPUT_FLOATING_PT   (1<<2)
-// #define INPUT_PULL_UP_DOWN  (2<<2)
-
 // Output bit modes and configuration bits //
 typedef enum gpio_mode_config_t {
     INPUT_ANALOG=0, INPUT_FLOATING_PT=4, INPUT_PULL_UP_DOWN=8,

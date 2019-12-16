@@ -8,8 +8,7 @@
 #define TICK_EN     (1<<0)
 
 // systick timer //
-typedef struct systick_t
-{
+typedef struct systick_t {
     unsigned volatile long ctrl; // 0x0 - control and status register
     unsigned volatile long reload; // 0x4 - reload value register
     unsigned volatile long val; // 0x8 - current value register
