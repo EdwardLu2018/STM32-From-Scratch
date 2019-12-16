@@ -11,7 +11,7 @@ int main(void) {
 
     pin_mode(PC13, OUT_GP_PUSH_PULL_50);
 
-    timer_init(TIM2, 1000U, 255U);
+    timer_init(TIM2, 100U, 255U);
     pin_mode(PA2, OUT_ALT_PUSH_PULL_50);
 
     timer_init(TIM3, 1000U, 1000U);
