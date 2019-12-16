@@ -11,6 +11,8 @@
 #define TIM3_EN     (1<<1)
 #define TIM4_EN     (1<<2)
 
+#define AHB_DIV_8   (10 << 4)
+
 // Reset and clock control (page 99 Reference Manual) //
 typedef struct rcc_t {
     unsigned volatile long cr; // 0x0 - control register

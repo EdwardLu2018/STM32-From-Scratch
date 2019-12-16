@@ -62,7 +62,7 @@ void timer_init(unsigned char timer, unsigned long prescaler, unsigned long peri
 
     // set prescalar (ms) //
     // the counter clock frequency CK_CNT is equal to fCK_PSC / (PSC[15:0] + 1)
-    tim->psc = prescaler * 8U - 1U; // PCLK2 / prescaler - 1U; // a prescaler value of psc will increment cnt every psc+1 clock cycles.
+    tim->psc = prescaler - 1U; // PCLK2 / prescaler - 1U; // a prescaler value of psc will increment cnt every psc+1 clock cycles.
     tim->arr = period - 1U; // "period" of timer - updates every time cnt reaches arr
 
     tim->dier = 1U;

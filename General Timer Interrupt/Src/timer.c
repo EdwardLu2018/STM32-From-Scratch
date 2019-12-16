@@ -21,17 +21,17 @@ timer_t *get_timer(unsigned char timer) {
 
 void tim2_handle(void) {
     tim2->sr = 0U; // reset interrupt
-    led_toggle(PA0);
+    led_toggle(PA2);
 }
 
 void tim3_handle(void) {
     tim3->sr = 0U; // reset interrupt
-    led_toggle(PA0);
+    led_toggle(PA2);
 }
 
 void tim4_handle(void) {
     tim4->sr = 0U; // reset interrupt
-    led_toggle(PA0);
+    led_toggle(PA2);
 }
 
 unsigned long get_cnt(unsigned char timer) {
@@ -66,8 +66,8 @@ void timer_init(unsigned char timer, unsigned long prescaler, unsigned long peri
     // set prescalar (ms) //
     // the counter clock frequency CK_CNT is equal to fCK_PSC / (PSC[15:0] + 1)
     // 72000000 / 72000 = 1000 ms (1 sec)
-    tim->psc = CLK_HZ / prescaler - 1U; // a prescaler value of psc will increment cnt every psc+1 clock cycles.
-    tim->arr = period; // "period" of timer - updates every time cnt reaches arr
+    tim->psc = prescaler - 1U; // a prescaler value of psc will increment cnt every psc+1 clock cycles.
+    tim->arr = period - 1U; // "period" of timer - updates every time cnt reaches arr
 
     tim->dier = 1U;
 

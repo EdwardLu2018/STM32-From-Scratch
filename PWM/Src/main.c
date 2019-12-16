@@ -14,7 +14,7 @@ int main(void) {
     timer_init(TIM2, 1000U, 255U);
     pin_mode(PA2, OUT_ALT_PUSH_PULL_50);
 
-    timer_init(TIM3, 8000U, 1000U);
+    timer_init(TIM3, 1000U, 1000U);
     pin_mode(PA7, OUT_GP_PUSH_PULL_50);
 
     systick_init(1000U); // initialize systick at 1Hz
