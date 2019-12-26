@@ -35,7 +35,7 @@ Disassembly of section .data:
   36:	0800      	lsrs	r0, r0, #32
   38:	0151      	lsls	r1, r2, #5
   3a:	0800      	lsrs	r0, r0, #32
-  3c:	04a9      	lsls	r1, r5, #18
+  3c:	04b1      	lsls	r1, r6, #18
   3e:	0800      	lsrs	r0, r0, #32
   40:	0151      	lsls	r1, r2, #5
   42:	0800      	lsrs	r0, r0, #32
@@ -174,7 +174,7 @@ Disassembly of section .data:
  14c:	0151      	lsls	r1, r2, #5
  14e:	0800      	lsrs	r0, r0, #32
  150:	e7fe      	b.n	0x150
- 152:	f000 fa0f 	bl	0x574
+ 152:	f000 fa23 	bl	0x59c
  156:	e7fe      	b.n	0x156
  158:	b480      	push	{r7}
  15a:	b083      	sub	sp, #12
@@ -204,11 +204,11 @@ Disassembly of section .data:
  18a:	46bd      	mov	sp, r7
  18c:	bc80      	pop	{r7}
  18e:	4770      	bx	lr
- 190:	061c      	lsls	r4, r3, #24
+ 190:	0648      	lsls	r0, r1, #25
  192:	0800      	lsrs	r0, r0, #32
- 194:	0620      	lsls	r0, r4, #24
+ 194:	064c      	lsls	r4, r1, #25
  196:	0800      	lsrs	r0, r0, #32
- 198:	0624      	lsls	r4, r4, #24
+ 198:	0650      	lsls	r0, r2, #25
  19a:	0800      	lsrs	r0, r0, #32
  19c:	b480      	push	{r7}
  19e:	af00      	add	r7, sp, #0
@@ -220,7 +220,7 @@ Disassembly of section .data:
  1aa:	46bd      	mov	sp, r7
  1ac:	bc80      	pop	{r7}
  1ae:	4770      	bx	lr
- 1b0:	061c      	lsls	r4, r3, #24
+ 1b0:	0648      	lsls	r0, r1, #25
  1b2:	0800      	lsrs	r0, r0, #32
  1b4:	b580      	push	{r7, lr}
  1b6:	af00      	add	r7, sp, #0
@@ -229,11 +229,11 @@ Disassembly of section .data:
  1bc:	2200      	movs	r2, #0
  1be:	611a      	str	r2, [r3, #16]
  1c0:	2007      	movs	r0, #7
- 1c2:	f000 f905 	bl	0x3d0
+ 1c2:	f000 f909 	bl	0x3d8
  1c6:	bf00      	nop
  1c8:	bd80      	pop	{r7, pc}
  1ca:	bf00      	nop
- 1cc:	0620      	lsls	r0, r4, #24
+ 1cc:	064c      	lsls	r4, r1, #25
  1ce:	0800      	lsrs	r0, r0, #32
  1d0:	b480      	push	{r7}
  1d2:	af00      	add	r7, sp, #0
@@ -245,7 +245,7 @@ Disassembly of section .data:
  1de:	46bd      	mov	sp, r7
  1e0:	bc80      	pop	{r7}
  1e2:	4770      	bx	lr
- 1e4:	0624      	lsls	r4, r4, #24
+ 1e4:	0650      	lsls	r0, r2, #25
  1e6:	0800      	lsrs	r0, r0, #32
  1e8:	b580      	push	{r7, lr}
  1ea:	b084      	sub	sp, #16
@@ -345,410 +345,427 @@ Disassembly of section .data:
  2b8:	4618      	mov	r0, r3
  2ba:	f7ff ff4d 	bl	0x158
  2be:	6178      	str	r0, [r7, #20]
- 2c0:	68bb      	ldr	r3, [r7, #8]
- 2c2:	1e5a      	subs	r2, r3, #1
- 2c4:	697b      	ldr	r3, [r7, #20]
- 2c6:	629a      	str	r2, [r3, #40]	; 0x28
- 2c8:	687b      	ldr	r3, [r7, #4]
- 2ca:	1e5a      	subs	r2, r3, #1
- 2cc:	697b      	ldr	r3, [r7, #20]
- 2ce:	62da      	str	r2, [r3, #44]	; 0x2c
+ 2c0:	4a0c      	ldr	r2, [pc, #48]	; (0x2f4)
+ 2c2:	68bb      	ldr	r3, [r7, #8]
+ 2c4:	fbb2 f2f3 	udiv	r2, r2, r3
+ 2c8:	697b      	ldr	r3, [r7, #20]
+ 2ca:	629a      	str	r2, [r3, #40]	; 0x28
+ 2cc:	687b      	ldr	r3, [r7, #4]
+ 2ce:	1e5a      	subs	r2, r3, #1
  2d0:	697b      	ldr	r3, [r7, #20]
- 2d2:	2201      	movs	r2, #1
- 2d4:	60da      	str	r2, [r3, #12]
- 2d6:	7bfb      	ldrb	r3, [r7, #15]
- 2d8:	331a      	adds	r3, #26
- 2da:	b2db      	uxtb	r3, r3
- 2dc:	4618      	mov	r0, r3
- 2de:	f000 f807 	bl	0x2f0
- 2e2:	697b      	ldr	r3, [r7, #20]
- 2e4:	2201      	movs	r2, #1
- 2e6:	601a      	str	r2, [r3, #0]
- 2e8:	bf00      	nop
- 2ea:	3718      	adds	r7, #24
- 2ec:	46bd      	mov	sp, r7
- 2ee:	bd80      	pop	{r7, pc}
- 2f0:	b480      	push	{r7}
- 2f2:	b085      	sub	sp, #20
- 2f4:	af00      	add	r7, sp, #0
- 2f6:	4603      	mov	r3, r0
- 2f8:	71fb      	strb	r3, [r7, #7]
- 2fa:	79fb      	ldrb	r3, [r7, #7]
- 2fc:	095b      	lsrs	r3, r3, #5
- 2fe:	73fb      	strb	r3, [r7, #15]
- 300:	79fb      	ldrb	r3, [r7, #7]
- 302:	f003 031f 	and.w	r3, r3, #31
- 306:	73bb      	strb	r3, [r7, #14]
- 308:	7bbb      	ldrb	r3, [r7, #14]
- 30a:	2201      	movs	r2, #1
- 30c:	fa02 f103 	lsl.w	r1, r2, r3
- 310:	4b04      	ldr	r3, [pc, #16]	; (0x324)
- 312:	681b      	ldr	r3, [r3, #0]
- 314:	7bfa      	ldrb	r2, [r7, #15]
- 316:	f843 1022 	str.w	r1, [r3, r2, lsl #2]
- 31a:	bf00      	nop
- 31c:	3714      	adds	r7, #20
- 31e:	46bd      	mov	sp, r7
- 320:	bc80      	pop	{r7}
- 322:	4770      	bx	lr
- 324:	0628      	lsls	r0, r5, #24
- 326:	0800      	lsrs	r0, r0, #32
- 328:	b480      	push	{r7}
- 32a:	b083      	sub	sp, #12
- 32c:	af00      	add	r7, sp, #0
- 32e:	4603      	mov	r3, r0
- 330:	71fb      	strb	r3, [r7, #7]
- 332:	79fb      	ldrb	r3, [r7, #7]
- 334:	091b      	lsrs	r3, r3, #4
- 336:	b2db      	uxtb	r3, r3
- 338:	2b00      	cmp	r3, #0
- 33a:	d002      	beq.n	0x342
- 33c:	2b01      	cmp	r3, #1
- 33e:	d003      	beq.n	0x348
- 340:	e005      	b.n	0x34e
- 342:	4b06      	ldr	r3, [pc, #24]	; (0x35c)
- 344:	681b      	ldr	r3, [r3, #0]
- 346:	e004      	b.n	0x352
- 348:	4b05      	ldr	r3, [pc, #20]	; (0x360)
- 34a:	681b      	ldr	r3, [r3, #0]
- 34c:	e001      	b.n	0x352
- 34e:	4b05      	ldr	r3, [pc, #20]	; (0x364)
- 350:	681b      	ldr	r3, [r3, #0]
- 352:	4618      	mov	r0, r3
- 354:	370c      	adds	r7, #12
- 356:	46bd      	mov	sp, r7
- 358:	bc80      	pop	{r7}
- 35a:	4770      	bx	lr
- 35c:	062c      	lsls	r4, r5, #24
- 35e:	0800      	lsrs	r0, r0, #32
- 360:	0630      	lsls	r0, r6, #24
- 362:	0800      	lsrs	r0, r0, #32
- 364:	0634      	lsls	r4, r6, #24
+ 2d2:	62da      	str	r2, [r3, #44]	; 0x2c
+ 2d4:	697b      	ldr	r3, [r7, #20]
+ 2d6:	2201      	movs	r2, #1
+ 2d8:	60da      	str	r2, [r3, #12]
+ 2da:	7bfb      	ldrb	r3, [r7, #15]
+ 2dc:	331a      	adds	r3, #26
+ 2de:	b2db      	uxtb	r3, r3
+ 2e0:	4618      	mov	r0, r3
+ 2e2:	f000 f809 	bl	0x2f8
+ 2e6:	697b      	ldr	r3, [r7, #20]
+ 2e8:	2201      	movs	r2, #1
+ 2ea:	601a      	str	r2, [r3, #0]
+ 2ec:	bf00      	nop
+ 2ee:	3718      	adds	r7, #24
+ 2f0:	46bd      	mov	sp, r7
+ 2f2:	bd80      	pop	{r7, pc}
+ 2f4:	1200      	asrs	r0, r0, #8
+ 2f6:	007a      	lsls	r2, r7, #1
+ 2f8:	b480      	push	{r7}
+ 2fa:	b085      	sub	sp, #20
+ 2fc:	af00      	add	r7, sp, #0
+ 2fe:	4603      	mov	r3, r0
+ 300:	71fb      	strb	r3, [r7, #7]
+ 302:	79fb      	ldrb	r3, [r7, #7]
+ 304:	095b      	lsrs	r3, r3, #5
+ 306:	73fb      	strb	r3, [r7, #15]
+ 308:	79fb      	ldrb	r3, [r7, #7]
+ 30a:	f003 031f 	and.w	r3, r3, #31
+ 30e:	73bb      	strb	r3, [r7, #14]
+ 310:	7bbb      	ldrb	r3, [r7, #14]
+ 312:	2201      	movs	r2, #1
+ 314:	fa02 f103 	lsl.w	r1, r2, r3
+ 318:	4b04      	ldr	r3, [pc, #16]	; (0x32c)
+ 31a:	681b      	ldr	r3, [r3, #0]
+ 31c:	7bfa      	ldrb	r2, [r7, #15]
+ 31e:	f843 1022 	str.w	r1, [r3, r2, lsl #2]
+ 322:	bf00      	nop
+ 324:	3714      	adds	r7, #20
+ 326:	46bd      	mov	sp, r7
+ 328:	bc80      	pop	{r7}
+ 32a:	4770      	bx	lr
+ 32c:	0654      	lsls	r4, r2, #25
+ 32e:	0800      	lsrs	r0, r0, #32
+ 330:	b480      	push	{r7}
+ 332:	b083      	sub	sp, #12
+ 334:	af00      	add	r7, sp, #0
+ 336:	4603      	mov	r3, r0
+ 338:	71fb      	strb	r3, [r7, #7]
+ 33a:	79fb      	ldrb	r3, [r7, #7]
+ 33c:	091b      	lsrs	r3, r3, #4
+ 33e:	b2db      	uxtb	r3, r3
+ 340:	2b00      	cmp	r3, #0
+ 342:	d002      	beq.n	0x34a
+ 344:	2b01      	cmp	r3, #1
+ 346:	d003      	beq.n	0x350
+ 348:	e005      	b.n	0x356
+ 34a:	4b06      	ldr	r3, [pc, #24]	; (0x364)
+ 34c:	681b      	ldr	r3, [r3, #0]
+ 34e:	e004      	b.n	0x35a
+ 350:	4b05      	ldr	r3, [pc, #20]	; (0x368)
+ 352:	681b      	ldr	r3, [r3, #0]
+ 354:	e001      	b.n	0x35a
+ 356:	4b05      	ldr	r3, [pc, #20]	; (0x36c)
+ 358:	681b      	ldr	r3, [r3, #0]
+ 35a:	4618      	mov	r0, r3
+ 35c:	370c      	adds	r7, #12
+ 35e:	46bd      	mov	sp, r7
+ 360:	bc80      	pop	{r7}
+ 362:	4770      	bx	lr
+ 364:	0658      	lsls	r0, r3, #25
  366:	0800      	lsrs	r0, r0, #32
- 368:	b580      	push	{r7, lr}
- 36a:	b086      	sub	sp, #24
- 36c:	af00      	add	r7, sp, #0
- 36e:	4603      	mov	r3, r0
- 370:	460a      	mov	r2, r1
- 372:	71fb      	strb	r3, [r7, #7]
- 374:	4613      	mov	r3, r2
- 376:	71bb      	strb	r3, [r7, #6]
- 378:	79fb      	ldrb	r3, [r7, #7]
- 37a:	4618      	mov	r0, r3
- 37c:	f7ff ffd4 	bl	0x328
- 380:	6178      	str	r0, [r7, #20]
- 382:	79fb      	ldrb	r3, [r7, #7]
- 384:	f003 030f 	and.w	r3, r3, #15
- 388:	74fb      	strb	r3, [r7, #19]
- 38a:	7cfb      	ldrb	r3, [r7, #19]
- 38c:	f003 0307 	and.w	r3, r3, #7
- 390:	b2db      	uxtb	r3, r3
- 392:	009b      	lsls	r3, r3, #2
- 394:	74bb      	strb	r3, [r7, #18]
- 396:	7cfb      	ldrb	r3, [r7, #19]
- 398:	08db      	lsrs	r3, r3, #3
- 39a:	747b      	strb	r3, [r7, #17]
- 39c:	7c7a      	ldrb	r2, [r7, #17]
- 39e:	697b      	ldr	r3, [r7, #20]
- 3a0:	f853 3022 	ldr.w	r3, [r3, r2, lsl #2]
- 3a4:	7cba      	ldrb	r2, [r7, #18]
- 3a6:	210f      	movs	r1, #15
- 3a8:	fa01 f202 	lsl.w	r2, r1, r2
- 3ac:	43d2      	mvns	r2, r2
- 3ae:	4013      	ands	r3, r2
- 3b0:	60fb      	str	r3, [r7, #12]
- 3b2:	79ba      	ldrb	r2, [r7, #6]
- 3b4:	7cbb      	ldrb	r3, [r7, #18]
- 3b6:	fa02 f303 	lsl.w	r3, r2, r3
- 3ba:	4619      	mov	r1, r3
- 3bc:	7c7a      	ldrb	r2, [r7, #17]
- 3be:	68fb      	ldr	r3, [r7, #12]
- 3c0:	4319      	orrs	r1, r3
- 3c2:	697b      	ldr	r3, [r7, #20]
- 3c4:	f843 1022 	str.w	r1, [r3, r2, lsl #2]
- 3c8:	bf00      	nop
- 3ca:	3718      	adds	r7, #24
- 3cc:	46bd      	mov	sp, r7
- 3ce:	bd80      	pop	{r7, pc}
- 3d0:	b580      	push	{r7, lr}
- 3d2:	b084      	sub	sp, #16
- 3d4:	af00      	add	r7, sp, #0
- 3d6:	4603      	mov	r3, r0
- 3d8:	71fb      	strb	r3, [r7, #7]
- 3da:	79fb      	ldrb	r3, [r7, #7]
- 3dc:	4618      	mov	r0, r3
- 3de:	f7ff ffa3 	bl	0x328
- 3e2:	60f8      	str	r0, [r7, #12]
- 3e4:	68fb      	ldr	r3, [r7, #12]
- 3e6:	68db      	ldr	r3, [r3, #12]
- 3e8:	79fa      	ldrb	r2, [r7, #7]
- 3ea:	f002 020f 	and.w	r2, r2, #15
- 3ee:	2101      	movs	r1, #1
- 3f0:	fa01 f202 	lsl.w	r2, r1, r2
- 3f4:	405a      	eors	r2, r3
- 3f6:	68fb      	ldr	r3, [r7, #12]
- 3f8:	60da      	str	r2, [r3, #12]
- 3fa:	bf00      	nop
- 3fc:	3710      	adds	r7, #16
- 3fe:	46bd      	mov	sp, r7
- 400:	bd80      	pop	{r7, pc}
- 402:	b580      	push	{r7, lr}
- 404:	b084      	sub	sp, #16
- 406:	af00      	add	r7, sp, #0
- 408:	4603      	mov	r3, r0
- 40a:	71fb      	strb	r3, [r7, #7]
- 40c:	79fb      	ldrb	r3, [r7, #7]
- 40e:	4618      	mov	r0, r3
- 410:	f7ff ff8a 	bl	0x328
- 414:	60f8      	str	r0, [r7, #12]
- 416:	79fb      	ldrb	r3, [r7, #7]
- 418:	2b2d      	cmp	r3, #45	; 0x2d
- 41a:	d10c      	bne.n	0x436
- 41c:	68fb      	ldr	r3, [r7, #12]
- 41e:	68db      	ldr	r3, [r3, #12]
- 420:	79fa      	ldrb	r2, [r7, #7]
- 422:	f002 020f 	and.w	r2, r2, #15
- 426:	2101      	movs	r1, #1
- 428:	fa01 f202 	lsl.w	r2, r1, r2
- 42c:	43d2      	mvns	r2, r2
- 42e:	401a      	ands	r2, r3
- 430:	68fb      	ldr	r3, [r7, #12]
- 432:	60da      	str	r2, [r3, #12]
- 434:	e00a      	b.n	0x44c
- 436:	68fb      	ldr	r3, [r7, #12]
- 438:	68db      	ldr	r3, [r3, #12]
- 43a:	79fa      	ldrb	r2, [r7, #7]
- 43c:	f002 020f 	and.w	r2, r2, #15
- 440:	2101      	movs	r1, #1
- 442:	fa01 f202 	lsl.w	r2, r1, r2
- 446:	431a      	orrs	r2, r3
- 448:	68fb      	ldr	r3, [r7, #12]
- 44a:	60da      	str	r2, [r3, #12]
- 44c:	bf00      	nop
- 44e:	3710      	adds	r7, #16
- 450:	46bd      	mov	sp, r7
- 452:	bd80      	pop	{r7, pc}
- 454:	b580      	push	{r7, lr}
- 456:	b084      	sub	sp, #16
- 458:	af00      	add	r7, sp, #0
- 45a:	4603      	mov	r3, r0
- 45c:	71fb      	strb	r3, [r7, #7]
- 45e:	79fb      	ldrb	r3, [r7, #7]
- 460:	4618      	mov	r0, r3
- 462:	f7ff ff61 	bl	0x328
- 466:	60f8      	str	r0, [r7, #12]
- 468:	79fb      	ldrb	r3, [r7, #7]
- 46a:	2b2d      	cmp	r3, #45	; 0x2d
- 46c:	d10b      	bne.n	0x486
- 46e:	68fb      	ldr	r3, [r7, #12]
- 470:	68db      	ldr	r3, [r3, #12]
- 472:	79fa      	ldrb	r2, [r7, #7]
- 474:	f002 020f 	and.w	r2, r2, #15
- 478:	2101      	movs	r1, #1
- 47a:	fa01 f202 	lsl.w	r2, r1, r2
- 47e:	431a      	orrs	r2, r3
- 480:	68fb      	ldr	r3, [r7, #12]
- 482:	60da      	str	r2, [r3, #12]
- 484:	e00b      	b.n	0x49e
- 486:	68fb      	ldr	r3, [r7, #12]
- 488:	68db      	ldr	r3, [r3, #12]
- 48a:	79fa      	ldrb	r2, [r7, #7]
- 48c:	f002 020f 	and.w	r2, r2, #15
- 490:	2101      	movs	r1, #1
- 492:	fa01 f202 	lsl.w	r2, r1, r2
- 496:	43d2      	mvns	r2, r2
- 498:	401a      	ands	r2, r3
- 49a:	68fb      	ldr	r3, [r7, #12]
- 49c:	60da      	str	r2, [r3, #12]
- 49e:	bf00      	nop
- 4a0:	3710      	adds	r7, #16
- 4a2:	46bd      	mov	sp, r7
- 4a4:	bd80      	pop	{r7, pc}
+ 368:	065c      	lsls	r4, r3, #25
+ 36a:	0800      	lsrs	r0, r0, #32
+ 36c:	0660      	lsls	r0, r4, #25
+ 36e:	0800      	lsrs	r0, r0, #32
+ 370:	b580      	push	{r7, lr}
+ 372:	b086      	sub	sp, #24
+ 374:	af00      	add	r7, sp, #0
+ 376:	4603      	mov	r3, r0
+ 378:	460a      	mov	r2, r1
+ 37a:	71fb      	strb	r3, [r7, #7]
+ 37c:	4613      	mov	r3, r2
+ 37e:	71bb      	strb	r3, [r7, #6]
+ 380:	79fb      	ldrb	r3, [r7, #7]
+ 382:	4618      	mov	r0, r3
+ 384:	f7ff ffd4 	bl	0x330
+ 388:	6178      	str	r0, [r7, #20]
+ 38a:	79fb      	ldrb	r3, [r7, #7]
+ 38c:	f003 030f 	and.w	r3, r3, #15
+ 390:	74fb      	strb	r3, [r7, #19]
+ 392:	7cfb      	ldrb	r3, [r7, #19]
+ 394:	f003 0307 	and.w	r3, r3, #7
+ 398:	b2db      	uxtb	r3, r3
+ 39a:	009b      	lsls	r3, r3, #2
+ 39c:	74bb      	strb	r3, [r7, #18]
+ 39e:	7cfb      	ldrb	r3, [r7, #19]
+ 3a0:	08db      	lsrs	r3, r3, #3
+ 3a2:	747b      	strb	r3, [r7, #17]
+ 3a4:	7c7a      	ldrb	r2, [r7, #17]
+ 3a6:	697b      	ldr	r3, [r7, #20]
+ 3a8:	f853 3022 	ldr.w	r3, [r3, r2, lsl #2]
+ 3ac:	7cba      	ldrb	r2, [r7, #18]
+ 3ae:	210f      	movs	r1, #15
+ 3b0:	fa01 f202 	lsl.w	r2, r1, r2
+ 3b4:	43d2      	mvns	r2, r2
+ 3b6:	4013      	ands	r3, r2
+ 3b8:	60fb      	str	r3, [r7, #12]
+ 3ba:	79ba      	ldrb	r2, [r7, #6]
+ 3bc:	7cbb      	ldrb	r3, [r7, #18]
+ 3be:	fa02 f303 	lsl.w	r3, r2, r3
+ 3c2:	4619      	mov	r1, r3
+ 3c4:	7c7a      	ldrb	r2, [r7, #17]
+ 3c6:	68fb      	ldr	r3, [r7, #12]
+ 3c8:	4319      	orrs	r1, r3
+ 3ca:	697b      	ldr	r3, [r7, #20]
+ 3cc:	f843 1022 	str.w	r1, [r3, r2, lsl #2]
+ 3d0:	bf00      	nop
+ 3d2:	3718      	adds	r7, #24
+ 3d4:	46bd      	mov	sp, r7
+ 3d6:	bd80      	pop	{r7, pc}
+ 3d8:	b580      	push	{r7, lr}
+ 3da:	b084      	sub	sp, #16
+ 3dc:	af00      	add	r7, sp, #0
+ 3de:	4603      	mov	r3, r0
+ 3e0:	71fb      	strb	r3, [r7, #7]
+ 3e2:	79fb      	ldrb	r3, [r7, #7]
+ 3e4:	4618      	mov	r0, r3
+ 3e6:	f7ff ffa3 	bl	0x330
+ 3ea:	60f8      	str	r0, [r7, #12]
+ 3ec:	68fb      	ldr	r3, [r7, #12]
+ 3ee:	68db      	ldr	r3, [r3, #12]
+ 3f0:	79fa      	ldrb	r2, [r7, #7]
+ 3f2:	f002 020f 	and.w	r2, r2, #15
+ 3f6:	2101      	movs	r1, #1
+ 3f8:	fa01 f202 	lsl.w	r2, r1, r2
+ 3fc:	405a      	eors	r2, r3
+ 3fe:	68fb      	ldr	r3, [r7, #12]
+ 400:	60da      	str	r2, [r3, #12]
+ 402:	bf00      	nop
+ 404:	3710      	adds	r7, #16
+ 406:	46bd      	mov	sp, r7
+ 408:	bd80      	pop	{r7, pc}
+ 40a:	b580      	push	{r7, lr}
+ 40c:	b084      	sub	sp, #16
+ 40e:	af00      	add	r7, sp, #0
+ 410:	4603      	mov	r3, r0
+ 412:	71fb      	strb	r3, [r7, #7]
+ 414:	79fb      	ldrb	r3, [r7, #7]
+ 416:	4618      	mov	r0, r3
+ 418:	f7ff ff8a 	bl	0x330
+ 41c:	60f8      	str	r0, [r7, #12]
+ 41e:	79fb      	ldrb	r3, [r7, #7]
+ 420:	2b2d      	cmp	r3, #45	; 0x2d
+ 422:	d10c      	bne.n	0x43e
+ 424:	68fb      	ldr	r3, [r7, #12]
+ 426:	68db      	ldr	r3, [r3, #12]
+ 428:	79fa      	ldrb	r2, [r7, #7]
+ 42a:	f002 020f 	and.w	r2, r2, #15
+ 42e:	2101      	movs	r1, #1
+ 430:	fa01 f202 	lsl.w	r2, r1, r2
+ 434:	43d2      	mvns	r2, r2
+ 436:	401a      	ands	r2, r3
+ 438:	68fb      	ldr	r3, [r7, #12]
+ 43a:	60da      	str	r2, [r3, #12]
+ 43c:	e00a      	b.n	0x454
+ 43e:	68fb      	ldr	r3, [r7, #12]
+ 440:	68db      	ldr	r3, [r3, #12]
+ 442:	79fa      	ldrb	r2, [r7, #7]
+ 444:	f002 020f 	and.w	r2, r2, #15
+ 448:	2101      	movs	r1, #1
+ 44a:	fa01 f202 	lsl.w	r2, r1, r2
+ 44e:	431a      	orrs	r2, r3
+ 450:	68fb      	ldr	r3, [r7, #12]
+ 452:	60da      	str	r2, [r3, #12]
+ 454:	bf00      	nop
+ 456:	3710      	adds	r7, #16
+ 458:	46bd      	mov	sp, r7
+ 45a:	bd80      	pop	{r7, pc}
+ 45c:	b580      	push	{r7, lr}
+ 45e:	b084      	sub	sp, #16
+ 460:	af00      	add	r7, sp, #0
+ 462:	4603      	mov	r3, r0
+ 464:	71fb      	strb	r3, [r7, #7]
+ 466:	79fb      	ldrb	r3, [r7, #7]
+ 468:	4618      	mov	r0, r3
+ 46a:	f7ff ff61 	bl	0x330
+ 46e:	60f8      	str	r0, [r7, #12]
+ 470:	79fb      	ldrb	r3, [r7, #7]
+ 472:	2b2d      	cmp	r3, #45	; 0x2d
+ 474:	d10b      	bne.n	0x48e
+ 476:	68fb      	ldr	r3, [r7, #12]
+ 478:	68db      	ldr	r3, [r3, #12]
+ 47a:	79fa      	ldrb	r2, [r7, #7]
+ 47c:	f002 020f 	and.w	r2, r2, #15
+ 480:	2101      	movs	r1, #1
+ 482:	fa01 f202 	lsl.w	r2, r1, r2
+ 486:	431a      	orrs	r2, r3
+ 488:	68fb      	ldr	r3, [r7, #12]
+ 48a:	60da      	str	r2, [r3, #12]
+ 48c:	e00b      	b.n	0x4a6
+ 48e:	68fb      	ldr	r3, [r7, #12]
+ 490:	68db      	ldr	r3, [r3, #12]
+ 492:	79fa      	ldrb	r2, [r7, #7]
+ 494:	f002 020f 	and.w	r2, r2, #15
+ 498:	2101      	movs	r1, #1
+ 49a:	fa01 f202 	lsl.w	r2, r1, r2
+ 49e:	43d2      	mvns	r2, r2
+ 4a0:	401a      	ands	r2, r3
+ 4a2:	68fb      	ldr	r3, [r7, #12]
+ 4a4:	60da      	str	r2, [r3, #12]
  4a6:	bf00      	nop
- 4a8:	b480      	push	{r7}
- 4aa:	af00      	add	r7, sp, #0
- 4ac:	4b04      	ldr	r3, [pc, #16]	; (0x4c0)
- 4ae:	681b      	ldr	r3, [r3, #0]
- 4b0:	3301      	adds	r3, #1
- 4b2:	4a03      	ldr	r2, [pc, #12]	; (0x4c0)
- 4b4:	6013      	str	r3, [r2, #0]
- 4b6:	bf00      	nop
- 4b8:	46bd      	mov	sp, r7
- 4ba:	bc80      	pop	{r7}
- 4bc:	4770      	bx	lr
+ 4a8:	3710      	adds	r7, #16
+ 4aa:	46bd      	mov	sp, r7
+ 4ac:	bd80      	pop	{r7, pc}
+ 4ae:	bf00      	nop
+ 4b0:	b480      	push	{r7}
+ 4b2:	af00      	add	r7, sp, #0
+ 4b4:	4b04      	ldr	r3, [pc, #16]	; (0x4c8)
+ 4b6:	681b      	ldr	r3, [r3, #0]
+ 4b8:	3301      	adds	r3, #1
+ 4ba:	4a03      	ldr	r2, [pc, #12]	; (0x4c8)
+ 4bc:	6013      	str	r3, [r2, #0]
  4be:	bf00      	nop
- 4c0:	0000      	movs	r0, r0
- 4c2:	2000      	movs	r0, #0
- 4c4:	b480      	push	{r7}
- 4c6:	b083      	sub	sp, #12
- 4c8:	af00      	add	r7, sp, #0
- 4ca:	6078      	str	r0, [r7, #4]
- 4cc:	4b0a      	ldr	r3, [pc, #40]	; (0x4f8)
- 4ce:	681b      	ldr	r3, [r3, #0]
- 4d0:	687a      	ldr	r2, [r7, #4]
- 4d2:	3a01      	subs	r2, #1
- 4d4:	605a      	str	r2, [r3, #4]
- 4d6:	4b08      	ldr	r3, [pc, #32]	; (0x4f8)
- 4d8:	681b      	ldr	r3, [r3, #0]
- 4da:	2200      	movs	r2, #0
- 4dc:	609a      	str	r2, [r3, #8]
- 4de:	4b07      	ldr	r3, [pc, #28]	; (0x4fc)
- 4e0:	2200      	movs	r2, #0
- 4e2:	601a      	str	r2, [r3, #0]
- 4e4:	4b04      	ldr	r3, [pc, #16]	; (0x4f8)
- 4e6:	681b      	ldr	r3, [r3, #0]
- 4e8:	2203      	movs	r2, #3
+ 4c0:	46bd      	mov	sp, r7
+ 4c2:	bc80      	pop	{r7}
+ 4c4:	4770      	bx	lr
+ 4c6:	bf00      	nop
+ 4c8:	0000      	movs	r0, r0
+ 4ca:	2000      	movs	r0, #0
+ 4cc:	b480      	push	{r7}
+ 4ce:	b083      	sub	sp, #12
+ 4d0:	af00      	add	r7, sp, #0
+ 4d2:	6078      	str	r0, [r7, #4]
+ 4d4:	4b0a      	ldr	r3, [pc, #40]	; (0x500)
+ 4d6:	681b      	ldr	r3, [r3, #0]
+ 4d8:	687a      	ldr	r2, [r7, #4]
+ 4da:	3a01      	subs	r2, #1
+ 4dc:	605a      	str	r2, [r3, #4]
+ 4de:	4b08      	ldr	r3, [pc, #32]	; (0x500)
+ 4e0:	681b      	ldr	r3, [r3, #0]
+ 4e2:	2200      	movs	r2, #0
+ 4e4:	609a      	str	r2, [r3, #8]
+ 4e6:	4b07      	ldr	r3, [pc, #28]	; (0x504)
+ 4e8:	2200      	movs	r2, #0
  4ea:	601a      	str	r2, [r3, #0]
- 4ec:	bf00      	nop
- 4ee:	370c      	adds	r7, #12
- 4f0:	46bd      	mov	sp, r7
- 4f2:	bc80      	pop	{r7}
- 4f4:	4770      	bx	lr
- 4f6:	bf00      	nop
- 4f8:	0638      	lsls	r0, r7, #24
- 4fa:	0800      	lsrs	r0, r0, #32
- 4fc:	0000      	movs	r0, r0
- 4fe:	2000      	movs	r0, #0
- 500:	b480      	push	{r7}
- 502:	af00      	add	r7, sp, #0
- 504:	4b02      	ldr	r3, [pc, #8]	; (0x510)
- 506:	681b      	ldr	r3, [r3, #0]
- 508:	4618      	mov	r0, r3
- 50a:	46bd      	mov	sp, r7
- 50c:	bc80      	pop	{r7}
- 50e:	4770      	bx	lr
- 510:	0000      	movs	r0, r0
- 512:	2000      	movs	r0, #0
- 514:	b480      	push	{r7}
- 516:	b085      	sub	sp, #20
- 518:	af00      	add	r7, sp, #0
- 51a:	6078      	str	r0, [r7, #4]
- 51c:	2300      	movs	r3, #0
- 51e:	60fb      	str	r3, [r7, #12]
- 520:	e002      	b.n	0x528
- 522:	68fb      	ldr	r3, [r7, #12]
- 524:	3301      	adds	r3, #1
+ 4ec:	4b04      	ldr	r3, [pc, #16]	; (0x500)
+ 4ee:	681b      	ldr	r3, [r3, #0]
+ 4f0:	2203      	movs	r2, #3
+ 4f2:	601a      	str	r2, [r3, #0]
+ 4f4:	bf00      	nop
+ 4f6:	370c      	adds	r7, #12
+ 4f8:	46bd      	mov	sp, r7
+ 4fa:	bc80      	pop	{r7}
+ 4fc:	4770      	bx	lr
+ 4fe:	bf00      	nop
+ 500:	0664      	lsls	r4, r4, #25
+ 502:	0800      	lsrs	r0, r0, #32
+ 504:	0000      	movs	r0, r0
+ 506:	2000      	movs	r0, #0
+ 508:	b480      	push	{r7}
+ 50a:	af00      	add	r7, sp, #0
+ 50c:	4b02      	ldr	r3, [pc, #8]	; (0x518)
+ 50e:	681b      	ldr	r3, [r3, #0]
+ 510:	4618      	mov	r0, r3
+ 512:	46bd      	mov	sp, r7
+ 514:	bc80      	pop	{r7}
+ 516:	4770      	bx	lr
+ 518:	0000      	movs	r0, r0
+ 51a:	2000      	movs	r0, #0
+ 51c:	b480      	push	{r7}
+ 51e:	b085      	sub	sp, #20
+ 520:	af00      	add	r7, sp, #0
+ 522:	6078      	str	r0, [r7, #4]
+ 524:	2300      	movs	r3, #0
  526:	60fb      	str	r3, [r7, #12]
- 528:	68fa      	ldr	r2, [r7, #12]
- 52a:	687b      	ldr	r3, [r7, #4]
- 52c:	429a      	cmp	r2, r3
- 52e:	d3f8      	bcc.n	0x522
- 530:	bf00      	nop
- 532:	3714      	adds	r7, #20
- 534:	46bd      	mov	sp, r7
- 536:	bc80      	pop	{r7}
- 538:	4770      	bx	lr
- 53a:	0000      	movs	r0, r0
- 53c:	b480      	push	{r7}
- 53e:	af00      	add	r7, sp, #0
- 540:	4b0b      	ldr	r3, [pc, #44]	; (0x570)
- 542:	681b      	ldr	r3, [r3, #0]
- 544:	69da      	ldr	r2, [r3, #28]
- 546:	4b0a      	ldr	r3, [pc, #40]	; (0x570)
- 548:	681b      	ldr	r3, [r3, #0]
- 54a:	f042 0207 	orr.w	r2, r2, #7
- 54e:	61da      	str	r2, [r3, #28]
- 550:	4b07      	ldr	r3, [pc, #28]	; (0x570)
- 552:	681b      	ldr	r3, [r3, #0]
- 554:	699a      	ldr	r2, [r3, #24]
- 556:	4b06      	ldr	r3, [pc, #24]	; (0x570)
- 558:	681b      	ldr	r3, [r3, #0]
- 55a:	f042 021c 	orr.w	r2, r2, #28
- 55e:	619a      	str	r2, [r3, #24]
- 560:	4b03      	ldr	r3, [pc, #12]	; (0x570)
- 562:	681b      	ldr	r3, [r3, #0]
- 564:	22a0      	movs	r2, #160	; 0xa0
- 566:	605a      	str	r2, [r3, #4]
- 568:	bf00      	nop
- 56a:	46bd      	mov	sp, r7
- 56c:	bc80      	pop	{r7}
- 56e:	4770      	bx	lr
- 570:	063c      	lsls	r4, r7, #24
- 572:	0800      	lsrs	r0, r0, #32
- 574:	b580      	push	{r7, lr}
- 576:	b084      	sub	sp, #16
- 578:	af00      	add	r7, sp, #0
- 57a:	f7ff ffdf 	bl	0x53c
- 57e:	2103      	movs	r1, #3
- 580:	202d      	movs	r0, #45	; 0x2d
- 582:	f7ff fef1 	bl	0x368
- 586:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
- 58a:	f44f 717a 	mov.w	r1, #1000	; 0x3e8
- 58e:	2003      	movs	r0, #3
- 590:	f7ff fe8a 	bl	0x2a8
- 594:	2103      	movs	r1, #3
- 596:	2007      	movs	r0, #7
- 598:	f7ff fee6 	bl	0x368
- 59c:	22ff      	movs	r2, #255	; 0xff
- 59e:	2164      	movs	r1, #100	; 0x64
- 5a0:	2002      	movs	r0, #2
- 5a2:	f7ff fe81 	bl	0x2a8
- 5a6:	210b      	movs	r1, #11
- 5a8:	2002      	movs	r0, #2
- 5aa:	f7ff fedd 	bl	0x368
- 5ae:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
- 5b2:	f7ff ff87 	bl	0x4c4
- 5b6:	2300      	movs	r3, #0
- 5b8:	73fb      	strb	r3, [r7, #15]
- 5ba:	f7ff ffa1 	bl	0x500
- 5be:	60b8      	str	r0, [r7, #8]
- 5c0:	2301      	movs	r3, #1
- 5c2:	71fb      	strb	r3, [r7, #7]
- 5c4:	f7ff ff9c 	bl	0x500
- 5c8:	4602      	mov	r2, r0
- 5ca:	68bb      	ldr	r3, [r7, #8]
- 5cc:	1ad3      	subs	r3, r2, r3
- 5ce:	2b64      	cmp	r3, #100	; 0x64
- 5d0:	d9f8      	bls.n	0x5c4
- 5d2:	202d      	movs	r0, #45	; 0x2d
- 5d4:	f7ff fefc 	bl	0x3d0
- 5d8:	f7ff ff92 	bl	0x500
- 5dc:	60b8      	str	r0, [r7, #8]
- 5de:	79fb      	ldrb	r3, [r7, #7]
- 5e0:	2b00      	cmp	r3, #0
- 5e2:	d003      	beq.n	0x5ec
- 5e4:	7bfb      	ldrb	r3, [r7, #15]
- 5e6:	330a      	adds	r3, #10
- 5e8:	73fb      	strb	r3, [r7, #15]
- 5ea:	e002      	b.n	0x5f2
- 5ec:	7bfb      	ldrb	r3, [r7, #15]
- 5ee:	3b0a      	subs	r3, #10
- 5f0:	73fb      	strb	r3, [r7, #15]
- 5f2:	7bfb      	ldrb	r3, [r7, #15]
- 5f4:	2bfa      	cmp	r3, #250	; 0xfa
- 5f6:	d002      	beq.n	0x5fe
- 5f8:	7bfb      	ldrb	r3, [r7, #15]
- 5fa:	2b00      	cmp	r3, #0
- 5fc:	d106      	bne.n	0x60c
- 5fe:	79fb      	ldrb	r3, [r7, #7]
- 600:	2b00      	cmp	r3, #0
- 602:	bf0c      	ite	eq
- 604:	2301      	moveq	r3, #1
- 606:	2300      	movne	r3, #0
- 608:	b2db      	uxtb	r3, r3
- 60a:	71fb      	strb	r3, [r7, #7]
- 60c:	7bfb      	ldrb	r3, [r7, #15]
- 60e:	2202      	movs	r2, #2
- 610:	2168      	movs	r1, #104	; 0x68
- 612:	2002      	movs	r0, #2
- 614:	f7ff fdf8 	bl	0x208
- 618:	e7d4      	b.n	0x5c4
- 61a:	0000      	movs	r0, r0
- 61c:	0000      	movs	r0, r0
- 61e:	4000      	ands	r0, r0
- 620:	0400      	lsls	r0, r0, #16
- 622:	4000      	ands	r0, r0
- 624:	0800      	lsrs	r0, r0, #32
- 626:	4000      	ands	r0, r0
- 628:	e100      	b.n	0x82c
- 62a:	e000      	b.n	0x62e
- 62c:	0800      	lsrs	r0, r0, #32
- 62e:	4001      	ands	r1, r0
- 630:	0c00      	lsrs	r0, r0, #16
- 632:	4001      	ands	r1, r0
- 634:	1000      	asrs	r0, r0, #32
- 636:	4001      	ands	r1, r0
- 638:	e010      	b.n	0x65c
- 63a:	e000      	b.n	0x63e
- 63c:	1000      	asrs	r0, r0, #32
- 63e:	4002      	ands	r2, r0
+ 528:	e002      	b.n	0x530
+ 52a:	68fb      	ldr	r3, [r7, #12]
+ 52c:	3301      	adds	r3, #1
+ 52e:	60fb      	str	r3, [r7, #12]
+ 530:	68fa      	ldr	r2, [r7, #12]
+ 532:	687b      	ldr	r3, [r7, #4]
+ 534:	429a      	cmp	r2, r3
+ 536:	d3f8      	bcc.n	0x52a
+ 538:	bf00      	nop
+ 53a:	3714      	adds	r7, #20
+ 53c:	46bd      	mov	sp, r7
+ 53e:	bc80      	pop	{r7}
+ 540:	4770      	bx	lr
+ 542:	b580      	push	{r7, lr}
+ 544:	b084      	sub	sp, #16
+ 546:	af00      	add	r7, sp, #0
+ 548:	6078      	str	r0, [r7, #4]
+ 54a:	f7ff ffdd 	bl	0x508
+ 54e:	60f8      	str	r0, [r7, #12]
+ 550:	bf00      	nop
+ 552:	f7ff ffd9 	bl	0x508
+ 556:	4602      	mov	r2, r0
+ 558:	68fb      	ldr	r3, [r7, #12]
+ 55a:	1ad2      	subs	r2, r2, r3
+ 55c:	687b      	ldr	r3, [r7, #4]
+ 55e:	429a      	cmp	r2, r3
+ 560:	d3f7      	bcc.n	0x552
+ 562:	bf00      	nop
+ 564:	3710      	adds	r7, #16
+ 566:	46bd      	mov	sp, r7
+ 568:	bd80      	pop	{r7, pc}
+ 56a:	0000      	movs	r0, r0
+ 56c:	b480      	push	{r7}
+ 56e:	af00      	add	r7, sp, #0
+ 570:	4b09      	ldr	r3, [pc, #36]	; (0x598)
+ 572:	681b      	ldr	r3, [r3, #0]
+ 574:	69da      	ldr	r2, [r3, #28]
+ 576:	4b08      	ldr	r3, [pc, #32]	; (0x598)
+ 578:	681b      	ldr	r3, [r3, #0]
+ 57a:	f042 0207 	orr.w	r2, r2, #7
+ 57e:	61da      	str	r2, [r3, #28]
+ 580:	4b05      	ldr	r3, [pc, #20]	; (0x598)
+ 582:	681b      	ldr	r3, [r3, #0]
+ 584:	699a      	ldr	r2, [r3, #24]
+ 586:	4b04      	ldr	r3, [pc, #16]	; (0x598)
+ 588:	681b      	ldr	r3, [r3, #0]
+ 58a:	f042 021c 	orr.w	r2, r2, #28
+ 58e:	619a      	str	r2, [r3, #24]
+ 590:	bf00      	nop
+ 592:	46bd      	mov	sp, r7
+ 594:	bc80      	pop	{r7}
+ 596:	4770      	bx	lr
+ 598:	0668      	lsls	r0, r5, #25
+ 59a:	0800      	lsrs	r0, r0, #32
+ 59c:	b580      	push	{r7, lr}
+ 59e:	b084      	sub	sp, #16
+ 5a0:	af00      	add	r7, sp, #0
+ 5a2:	f7ff ffe3 	bl	0x56c
+ 5a6:	2103      	movs	r1, #3
+ 5a8:	202d      	movs	r0, #45	; 0x2d
+ 5aa:	f7ff fee1 	bl	0x370
+ 5ae:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
+ 5b2:	f44f 717a 	mov.w	r1, #1000	; 0x3e8
+ 5b6:	2003      	movs	r0, #3
+ 5b8:	f7ff fe76 	bl	0x2a8
+ 5bc:	2103      	movs	r1, #3
+ 5be:	2007      	movs	r0, #7
+ 5c0:	f7ff fed6 	bl	0x370
+ 5c4:	22ff      	movs	r2, #255	; 0xff
+ 5c6:	f242 7110 	movw	r1, #10000	; 0x2710
+ 5ca:	2002      	movs	r0, #2
+ 5cc:	f7ff fe6c 	bl	0x2a8
+ 5d0:	210b      	movs	r1, #11
+ 5d2:	2002      	movs	r0, #2
+ 5d4:	f7ff fecc 	bl	0x370
+ 5d8:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
+ 5dc:	f7ff ff76 	bl	0x4cc
+ 5e0:	2300      	movs	r3, #0
+ 5e2:	73fb      	strb	r3, [r7, #15]
+ 5e4:	f7ff ff90 	bl	0x508
+ 5e8:	60b8      	str	r0, [r7, #8]
+ 5ea:	2301      	movs	r3, #1
+ 5ec:	71fb      	strb	r3, [r7, #7]
+ 5ee:	f7ff ff8b 	bl	0x508
+ 5f2:	4602      	mov	r2, r0
+ 5f4:	68bb      	ldr	r3, [r7, #8]
+ 5f6:	1ad3      	subs	r3, r2, r3
+ 5f8:	f5b3 7f7a 	cmp.w	r3, #1000	; 0x3e8
+ 5fc:	d9f7      	bls.n	0x5ee
+ 5fe:	202d      	movs	r0, #45	; 0x2d
+ 600:	f7ff feea 	bl	0x3d8
+ 604:	f7ff ff80 	bl	0x508
+ 608:	60b8      	str	r0, [r7, #8]
+ 60a:	79fb      	ldrb	r3, [r7, #7]
+ 60c:	2b00      	cmp	r3, #0
+ 60e:	d003      	beq.n	0x618
+ 610:	7bfb      	ldrb	r3, [r7, #15]
+ 612:	330a      	adds	r3, #10
+ 614:	73fb      	strb	r3, [r7, #15]
+ 616:	e002      	b.n	0x61e
+ 618:	7bfb      	ldrb	r3, [r7, #15]
+ 61a:	3b0a      	subs	r3, #10
+ 61c:	73fb      	strb	r3, [r7, #15]
+ 61e:	7bfb      	ldrb	r3, [r7, #15]
+ 620:	2bfa      	cmp	r3, #250	; 0xfa
+ 622:	d002      	beq.n	0x62a
+ 624:	7bfb      	ldrb	r3, [r7, #15]
+ 626:	2b00      	cmp	r3, #0
+ 628:	d106      	bne.n	0x638
+ 62a:	79fb      	ldrb	r3, [r7, #7]
+ 62c:	2b00      	cmp	r3, #0
+ 62e:	bf0c      	ite	eq
+ 630:	2301      	moveq	r3, #1
+ 632:	2300      	movne	r3, #0
+ 634:	b2db      	uxtb	r3, r3
+ 636:	71fb      	strb	r3, [r7, #7]
+ 638:	7bfb      	ldrb	r3, [r7, #15]
+ 63a:	2202      	movs	r2, #2
+ 63c:	2168      	movs	r1, #104	; 0x68
+ 63e:	2002      	movs	r0, #2
+ 640:	f7ff fde2 	bl	0x208
+ 644:	e7d3      	b.n	0x5ee
+ 646:	0000      	movs	r0, r0
+ 648:	0000      	movs	r0, r0
+ 64a:	4000      	ands	r0, r0
+ 64c:	0400      	lsls	r0, r0, #16
+ 64e:	4000      	ands	r0, r0
+ 650:	0800      	lsrs	r0, r0, #32
+ 652:	4000      	ands	r0, r0
+ 654:	e100      	b.n	0x858
+ 656:	e000      	b.n	0x65a
+ 658:	0800      	lsrs	r0, r0, #32
+ 65a:	4001      	ands	r1, r0
+ 65c:	0c00      	lsrs	r0, r0, #16
+ 65e:	4001      	ands	r1, r0
+ 660:	1000      	asrs	r0, r0, #32
+ 662:	4001      	ands	r1, r0
+ 664:	e010      	b.n	0x688
+ 666:	e000      	b.n	0x66a
+ 668:	1000      	asrs	r0, r0, #32
+ 66a:	4002      	ands	r2, r0

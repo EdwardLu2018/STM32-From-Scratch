@@ -3,9 +3,9 @@
 
 #include "stm32f103.h"
 
-#define HSI_MHZ 8000000U  // 8 MHz clock
-#define PCLK1   36000000U // 36 MHz clock
-#define PCLK2   72000000U // 72 MHz clock
+#define HSI_MHZ 8000000U  // 8 Mhz clock
+#define PCLK1   36000000U // 36 Mhz clock
+#define PCLK2   72000000U // 72 Mhz clock
 
 #define TIM_IRQ_START_POS 28
 
@@ -18,9 +18,12 @@
 #define TIM2    2
 #define TIM3    3
 #define TIM4    4
+#define TIM5    5
+#define TIM6    6
+#define TIM7    7
 
 //  Output compare modes (pg 414) //
-typedef enum output_compare_mode_t {
+typedef enum {
     // OC1REF toggles when TIMx_CNT=TIMx_CCR1
     TOGGLE = (3 << 4),
     // enables timer PWM mode and corresponding preload register
@@ -32,7 +35,7 @@ typedef enum output_compare_mode_t {
 #define PWM     ((6 << 4)|(1<<3)) // enables timer PWM mode and corresponding preload register
 
 // Timers (pg 404 Reference Manual) - 72 MHz
-typedef struct timer_t {
+typedef struct {
     unsigned volatile long cr[2]; // 0x0 to 0x4 - control register (low/high)
     unsigned volatile long smcr; // 0x8 - slave mode control register
     unsigned volatile long dier; // 0xC - DMA/Interrupt enable register
@@ -56,9 +59,6 @@ timer_t *tim4;
 
 timer_t *get_timer(unsigned char timer);
 unsigned long get_timer_cnt(unsigned char timer);
-void tim2_handle(void);
-void tim3_handle(void);
-void tim4_handle(void);
 void enable_chan(unsigned char timer, unsigned char mode, unsigned char channel, unsigned long load);
 void timer_init(unsigned char timer, unsigned long prescaler, unsigned long period);
 

@@ -5,6 +5,9 @@
 timer_t *tim2 = (timer_t *)(TIM2_BASE);
 timer_t *tim3 = (timer_t *)(TIM3_BASE);
 timer_t *tim4 = (timer_t *)(TIM4_BASE);
+timer_t *tim5 = (timer_t *)(TIM5_BASE);
+timer_t *tim6 = (timer_t *)(TIM6_BASE);
+timer_t *tim7 = (timer_t *)(TIM7_BASE);
 
 timer_t *get_timer(unsigned char timer) {
     switch (timer) {
@@ -14,6 +17,12 @@ timer_t *get_timer(unsigned char timer) {
         return tim3;
     case TIM4:
         return tim4;
+    case TIM5:
+        return tim5;
+    case TIM6:
+        return tim6;
+    case TIM7:
+        return tim7;
     default:
         return tim2;
     }
@@ -21,7 +30,6 @@ timer_t *get_timer(unsigned char timer) {
 
 void tim2_handle(void) {
     tim2->sr = 0U; // reset interrupt
-    // led_toggle(PA8);
 }
 
 void tim3_handle(void) {
@@ -31,7 +39,18 @@ void tim3_handle(void) {
 
 void tim4_handle(void) {
     tim4->sr = 0U; // reset interrupt
-    // led_toggle(PA0);
+}
+
+void tim5_handle(void) {
+    tim5->sr = 0U; // reset interrupt
+}
+
+void tim6_handle(void) {
+    tim6->sr = 0U; // reset interrupt
+}
+
+void tim7_handle(void) {
+    tim7->sr = 0U; // reset interrupt
 }
 
 unsigned long get_timer_cnt(unsigned char timer) {

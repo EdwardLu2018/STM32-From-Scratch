@@ -1,0 +1,13 @@
+{
+    "git.ignoreLimitWarning": true,
+    "files.associations": {
+        "stm32f103.h": "c",
+        "main.h": "c",
+        "rcc.h": "c",
+        "gpio.h": "c",
+        "delay.h": "c",
+        "timer.h": "c",
+        "nvic.h": "c",
+        "systick.h": "c"
+    }
+}
