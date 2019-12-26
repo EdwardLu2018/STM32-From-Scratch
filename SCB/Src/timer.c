@@ -9,7 +9,7 @@ timer_t *tim5 = (timer_t *)(TIM5_BASE);
 timer_t *tim6 = (timer_t *)(TIM6_BASE);
 timer_t *tim7 = (timer_t *)(TIM7_BASE);
 
-timer_t *get_timer(unsigned char timer) {
+timer_t *get_timer(uint8_t timer) {
     switch (timer) {
     case TIM2:
         return tim2;
@@ -53,17 +53,17 @@ void tim7_handle(void) {
     tim7->sr = 0U; // reset interrupt
 }
 
-unsigned long get_timer_cnt(unsigned char timer) {
+uint32_t get_timer_cnt(uint8_t timer) {
     timer_t *tim = get_timer(timer);
     return tim->cnt;
 }
 
-void enable_chan(unsigned char timer, unsigned char mode, unsigned char channel, unsigned long load) {
+void enable_chan(uint8_t timer, uint8_t mode, uint8_t channel, uint32_t load) {
     timer_t *tim = get_timer(timer);
     tim->ccr[channel] = load;
 
-    unsigned char shift_by;
-    unsigned long config;
+    uint8_t shift_by;
+    uint32_t config;
 
     shift_by = channel * 4;
     config = tim->ccer & ~(0xf << shift_by);
@@ -71,12 +71,12 @@ void enable_chan(unsigned char timer, unsigned char mode, unsigned char channel,
 
     // output compare mode //
     shift_by = (channel % 2) * 8;
-    unsigned char mr_idx = channel / 2;
+    uint8_t mr_idx = channel / 2;
     config = tim->ccmr[mr_idx] & ~(0xff << shift_by);
     tim->ccmr[mr_idx] = (config | (mode << shift_by));
 }
 
-void timer_init(unsigned char timer, unsigned long prescaler, unsigned long period) {
+void timer_init(uint8_t timer, uint32_t prescaler, uint32_t period) {
     timer_t *tim = get_timer(timer);
 
     // set prescalar (ms) //

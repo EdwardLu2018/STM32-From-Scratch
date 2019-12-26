@@ -1,6 +1,10 @@
 #ifndef __STM32f103__
 #define __STM32f103__
 
+#include <stdint.h>
+
+#define __IO volatile
+
 // Base Addresses For Peripherals (pg 34 Reference Manual) //
 #define RCC_BASE        0x40021000U
 

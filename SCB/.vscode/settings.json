@@ -8,6 +8,7 @@
         "delay.h": "c",
         "timer.h": "c",
         "nvic.h": "c",
-        "systick.h": "c"
+        "systick.h": "c",
+        "stdint.h": "c"
     }
 }

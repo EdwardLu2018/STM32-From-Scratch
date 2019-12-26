@@ -11,11 +11,11 @@ Disassembly of section .data:
    6:	0800      	lsrs	r0, r0, #32
    8:	0151      	lsls	r1, r2, #5
    a:	0800      	lsrs	r0, r0, #32
-   c:	0661      	lsls	r1, r4, #25
+   c:	06a1      	lsls	r1, r4, #26
    e:	0800      	lsrs	r0, r0, #32
-  10:	066d      	lsls	r5, r5, #25
+  10:	06ad      	lsls	r5, r5, #26
   12:	0800      	lsrs	r0, r0, #32
-  14:	0679      	lsls	r1, r7, #25
+  14:	06b9      	lsls	r1, r7, #26
   16:	0800      	lsrs	r0, r0, #32
   18:	0151      	lsls	r1, r2, #5
   1a:	0800      	lsrs	r0, r0, #32
@@ -174,7 +174,7 @@ Disassembly of section .data:
  14c:	0151      	lsls	r1, r2, #5
  14e:	0800      	lsrs	r0, r0, #32
  150:	e7fe      	b.n	0x150
- 152:	f000 fa97 	bl	0x684
+ 152:	f000 fab7 	bl	0x6c4
  156:	e7fe      	b.n	0x156
  158:	b480      	push	{r7}
  15a:	b083      	sub	sp, #12
@@ -225,17 +225,17 @@ Disassembly of section .data:
  1b6:	bc80      	pop	{r7}
  1b8:	4770      	bx	lr
  1ba:	bf00      	nop
- 1bc:	06c4      	lsls	r4, r0, #27
+ 1bc:	0708      	lsls	r0, r1, #28
  1be:	0800      	lsrs	r0, r0, #32
- 1c0:	06c8      	lsls	r0, r1, #27
+ 1c0:	070c      	lsls	r4, r1, #28
  1c2:	0800      	lsrs	r0, r0, #32
- 1c4:	06cc      	lsls	r4, r1, #27
+ 1c4:	0710      	lsls	r0, r2, #28
  1c6:	0800      	lsrs	r0, r0, #32
- 1c8:	06d0      	lsls	r0, r2, #27
+ 1c8:	0714      	lsls	r4, r2, #28
  1ca:	0800      	lsrs	r0, r0, #32
- 1cc:	06d4      	lsls	r4, r2, #27
+ 1cc:	0718      	lsls	r0, r3, #28
  1ce:	0800      	lsrs	r0, r0, #32
- 1d0:	06d8      	lsls	r0, r3, #27
+ 1d0:	071c      	lsls	r4, r3, #28
  1d2:	0800      	lsrs	r0, r0, #32
  1d4:	b480      	push	{r7}
  1d6:	af00      	add	r7, sp, #0
@@ -247,7 +247,7 @@ Disassembly of section .data:
  1e2:	46bd      	mov	sp, r7
  1e4:	bc80      	pop	{r7}
  1e6:	4770      	bx	lr
- 1e8:	06c4      	lsls	r4, r0, #27
+ 1e8:	0708      	lsls	r0, r1, #28
  1ea:	0800      	lsrs	r0, r0, #32
  1ec:	b580      	push	{r7, lr}
  1ee:	af00      	add	r7, sp, #0
@@ -260,7 +260,7 @@ Disassembly of section .data:
  1fe:	bf00      	nop
  200:	bd80      	pop	{r7, pc}
  202:	bf00      	nop
- 204:	06c8      	lsls	r0, r1, #27
+ 204:	070c      	lsls	r4, r1, #28
  206:	0800      	lsrs	r0, r0, #32
  208:	b480      	push	{r7}
  20a:	af00      	add	r7, sp, #0
@@ -272,7 +272,7 @@ Disassembly of section .data:
  216:	46bd      	mov	sp, r7
  218:	bc80      	pop	{r7}
  21a:	4770      	bx	lr
- 21c:	06cc      	lsls	r4, r1, #27
+ 21c:	0710      	lsls	r0, r2, #28
  21e:	0800      	lsrs	r0, r0, #32
  220:	b480      	push	{r7}
  222:	af00      	add	r7, sp, #0
@@ -284,7 +284,7 @@ Disassembly of section .data:
  22e:	46bd      	mov	sp, r7
  230:	bc80      	pop	{r7}
  232:	4770      	bx	lr
- 234:	06d0      	lsls	r0, r2, #27
+ 234:	0714      	lsls	r4, r2, #28
  236:	0800      	lsrs	r0, r0, #32
  238:	b480      	push	{r7}
  23a:	af00      	add	r7, sp, #0
@@ -296,7 +296,7 @@ Disassembly of section .data:
  246:	46bd      	mov	sp, r7
  248:	bc80      	pop	{r7}
  24a:	4770      	bx	lr
- 24c:	06d4      	lsls	r4, r2, #27
+ 24c:	0718      	lsls	r0, r3, #28
  24e:	0800      	lsrs	r0, r0, #32
  250:	b480      	push	{r7}
  252:	af00      	add	r7, sp, #0
@@ -308,7 +308,7 @@ Disassembly of section .data:
  25e:	46bd      	mov	sp, r7
  260:	bc80      	pop	{r7}
  262:	4770      	bx	lr
- 264:	06d8      	lsls	r0, r3, #27
+ 264:	071c      	lsls	r4, r3, #28
  266:	0800      	lsrs	r0, r0, #32
  268:	b580      	push	{r7, lr}
  26a:	b084      	sub	sp, #16
@@ -457,7 +457,7 @@ Disassembly of section .data:
  3a6:	46bd      	mov	sp, r7
  3a8:	bc80      	pop	{r7}
  3aa:	4770      	bx	lr
- 3ac:	06dc      	lsls	r4, r3, #27
+ 3ac:	0720      	lsls	r0, r4, #28
  3ae:	0800      	lsrs	r0, r0, #32
  3b0:	b480      	push	{r7}
  3b2:	b083      	sub	sp, #12
@@ -485,11 +485,11 @@ Disassembly of section .data:
  3de:	46bd      	mov	sp, r7
  3e0:	bc80      	pop	{r7}
  3e2:	4770      	bx	lr
- 3e4:	06e0      	lsls	r0, r4, #27
+ 3e4:	0724      	lsls	r4, r4, #28
  3e6:	0800      	lsrs	r0, r0, #32
- 3e8:	06e4      	lsls	r4, r4, #27
+ 3e8:	0728      	lsls	r0, r5, #28
  3ea:	0800      	lsrs	r0, r0, #32
- 3ec:	06e8      	lsls	r0, r5, #27
+ 3ec:	072c      	lsls	r4, r5, #28
  3ee:	0800      	lsrs	r0, r0, #32
  3f0:	b580      	push	{r7, lr}
  3f2:	b086      	sub	sp, #24
@@ -671,7 +671,7 @@ Disassembly of section .data:
  57a:	bc80      	pop	{r7}
  57c:	4770      	bx	lr
  57e:	bf00      	nop
- 580:	06ec      	lsls	r4, r5, #27
+ 580:	0730      	lsls	r0, r6, #28
  582:	0800      	lsrs	r0, r0, #32
  584:	0000      	movs	r0, r0
  586:	2000      	movs	r0, #0
@@ -685,157 +685,170 @@ Disassembly of section .data:
  596:	4770      	bx	lr
  598:	0000      	movs	r0, r0
  59a:	2000      	movs	r0, #0
- 59c:	b480      	push	{r7}
- 59e:	b085      	sub	sp, #20
+ 59c:	b490      	push	{r4, r7}
+ 59e:	b084      	sub	sp, #16
  5a0:	af00      	add	r7, sp, #0
- 5a2:	6078      	str	r0, [r7, #4]
- 5a4:	2300      	movs	r3, #0
- 5a6:	60fb      	str	r3, [r7, #12]
- 5a8:	e002      	b.n	0x5b0
- 5aa:	68fb      	ldr	r3, [r7, #12]
- 5ac:	3301      	adds	r3, #1
- 5ae:	60fb      	str	r3, [r7, #12]
- 5b0:	68fa      	ldr	r2, [r7, #12]
- 5b2:	687b      	ldr	r3, [r7, #4]
- 5b4:	429a      	cmp	r2, r3
- 5b6:	d3f8      	bcc.n	0x5aa
- 5b8:	bf00      	nop
- 5ba:	3714      	adds	r7, #20
- 5bc:	46bd      	mov	sp, r7
- 5be:	bc80      	pop	{r7}
- 5c0:	4770      	bx	lr
- 5c2:	b580      	push	{r7, lr}
- 5c4:	b084      	sub	sp, #16
- 5c6:	af00      	add	r7, sp, #0
- 5c8:	6078      	str	r0, [r7, #4]
- 5ca:	f7ff ffdd 	bl	0x588
- 5ce:	60f8      	str	r0, [r7, #12]
- 5d0:	bf00      	nop
- 5d2:	f7ff ffd9 	bl	0x588
- 5d6:	4602      	mov	r2, r0
- 5d8:	68fb      	ldr	r3, [r7, #12]
- 5da:	1ad2      	subs	r2, r2, r3
- 5dc:	687b      	ldr	r3, [r7, #4]
- 5de:	429a      	cmp	r2, r3
- 5e0:	d3f7      	bcc.n	0x5d2
- 5e2:	bf00      	nop
- 5e4:	3710      	adds	r7, #16
- 5e6:	46bd      	mov	sp, r7
- 5e8:	bd80      	pop	{r7, pc}
- 5ea:	0000      	movs	r0, r0
- 5ec:	b480      	push	{r7}
- 5ee:	af00      	add	r7, sp, #0
- 5f0:	4b05      	ldr	r3, [pc, #20]	; (0x608)
- 5f2:	681b      	ldr	r3, [r3, #0]
- 5f4:	2207      	movs	r2, #7
- 5f6:	61da      	str	r2, [r3, #28]
- 5f8:	4b03      	ldr	r3, [pc, #12]	; (0x608)
- 5fa:	681b      	ldr	r3, [r3, #0]
- 5fc:	221c      	movs	r2, #28
- 5fe:	619a      	str	r2, [r3, #24]
- 600:	bf00      	nop
- 602:	46bd      	mov	sp, r7
- 604:	bc80      	pop	{r7}
- 606:	4770      	bx	lr
- 608:	06f0      	lsls	r0, r6, #27
- 60a:	0800      	lsrs	r0, r0, #32
- 60c:	b580      	push	{r7, lr}
- 60e:	b082      	sub	sp, #8
- 610:	af00      	add	r7, sp, #0
- 612:	2103      	movs	r1, #3
- 614:	202d      	movs	r0, #45	; 0x2d
- 616:	f7ff feeb 	bl	0x3f0
- 61a:	2300      	movs	r3, #0
- 61c:	607b      	str	r3, [r7, #4]
- 61e:	e008      	b.n	0x632
- 620:	202d      	movs	r0, #45	; 0x2d
- 622:	f7ff ff19 	bl	0x458
- 626:	2064      	movs	r0, #100	; 0x64
- 628:	f7ff ffcb 	bl	0x5c2
- 62c:	687b      	ldr	r3, [r7, #4]
- 62e:	3301      	adds	r3, #1
- 630:	607b      	str	r3, [r7, #4]
- 632:	687b      	ldr	r3, [r7, #4]
- 634:	2b02      	cmp	r3, #2
- 636:	ddf3      	ble.n	0x620
- 638:	4b07      	ldr	r3, [pc, #28]	; (0x658)
- 63a:	681b      	ldr	r3, [r3, #0]
- 63c:	4a07      	ldr	r2, [pc, #28]	; (0x65c)
- 63e:	60da      	str	r2, [r3, #12]
- 640:	4b05      	ldr	r3, [pc, #20]	; (0x658)
- 642:	681b      	ldr	r3, [r3, #0]
- 644:	68da      	ldr	r2, [r3, #12]
- 646:	4b04      	ldr	r3, [pc, #16]	; (0x658)
- 648:	681b      	ldr	r3, [r3, #0]
- 64a:	f042 0204 	orr.w	r2, r2, #4
- 64e:	60da      	str	r2, [r3, #12]
- 650:	bf00      	nop
- 652:	3708      	adds	r7, #8
- 654:	46bd      	mov	sp, r7
- 656:	bd80      	pop	{r7, pc}
- 658:	06f4      	lsls	r4, r6, #27
- 65a:	0800      	lsrs	r0, r0, #32
- 65c:	0000      	movs	r0, r0
- 65e:	05fa      	lsls	r2, r7, #23
- 660:	b580      	push	{r7, lr}
- 662:	af00      	add	r7, sp, #0
- 664:	f7ff ffd2 	bl	0x60c
- 668:	bf00      	nop
- 66a:	bd80      	pop	{r7, pc}
- 66c:	b580      	push	{r7, lr}
- 66e:	af00      	add	r7, sp, #0
- 670:	f7ff ffcc 	bl	0x60c
- 674:	bf00      	nop
- 676:	bd80      	pop	{r7, pc}
- 678:	b580      	push	{r7, lr}
- 67a:	af00      	add	r7, sp, #0
- 67c:	f7ff ffc6 	bl	0x60c
- 680:	bf00      	nop
- 682:	bd80      	pop	{r7, pc}
- 684:	b580      	push	{r7, lr}
- 686:	af00      	add	r7, sp, #0
- 688:	f7ff ffb0 	bl	0x5ec
- 68c:	2103      	movs	r1, #3
- 68e:	202d      	movs	r0, #45	; 0x2d
- 690:	f7ff feae 	bl	0x3f0
- 694:	2103      	movs	r1, #3
- 696:	2007      	movs	r0, #7
- 698:	f7ff feaa 	bl	0x3f0
- 69c:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
- 6a0:	f44f 717a 	mov.w	r1, #1000	; 0x3e8
- 6a4:	2003      	movs	r0, #3
- 6a6:	f7ff fe3f 	bl	0x328
- 6aa:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
- 6ae:	f7ff ff4d 	bl	0x54c
- 6b2:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
- 6b6:	f7ff ff84 	bl	0x5c2
- 6ba:	202d      	movs	r0, #45	; 0x2d
- 6bc:	f7ff fecc 	bl	0x458
- 6c0:	e7f7      	b.n	0x6b2
- 6c2:	0000      	movs	r0, r0
- 6c4:	0000      	movs	r0, r0
- 6c6:	4000      	ands	r0, r0
- 6c8:	0400      	lsls	r0, r0, #16
- 6ca:	4000      	ands	r0, r0
- 6cc:	0800      	lsrs	r0, r0, #32
- 6ce:	4000      	ands	r0, r0
- 6d0:	0c00      	lsrs	r0, r0, #16
- 6d2:	4000      	ands	r0, r0
- 6d4:	1000      	asrs	r0, r0, #32
- 6d6:	4000      	ands	r0, r0
- 6d8:	1400      	asrs	r0, r0, #16
- 6da:	4000      	ands	r0, r0
- 6dc:	e100      	b.n	0x8e0
- 6de:	e000      	b.n	0x6e2
- 6e0:	0800      	lsrs	r0, r0, #32
- 6e2:	4001      	ands	r1, r0
- 6e4:	0c00      	lsrs	r0, r0, #16
- 6e6:	4001      	ands	r1, r0
- 6e8:	1000      	asrs	r0, r0, #32
- 6ea:	4001      	ands	r1, r0
- 6ec:	e010      	b.n	0x710
- 6ee:	e000      	b.n	0x6f2
- 6f0:	1000      	asrs	r0, r0, #32
- 6f2:	4002      	ands	r2, r0
- 6f4:	e008      	b.n	0x708
- 6f6:	e000      	b.n	0x6fa
+ 5a2:	e9c7 0100 	strd	r0, r1, [r7]
+ 5a6:	f04f 0300 	mov.w	r3, #0
+ 5aa:	f04f 0400 	mov.w	r4, #0
+ 5ae:	e9c7 3402 	strd	r3, r4, [r7, #8]
+ 5b2:	e006      	b.n	0x5c2
+ 5b4:	e9d7 1202 	ldrd	r1, r2, [r7, #8]
+ 5b8:	1c4b      	adds	r3, r1, #1
+ 5ba:	f142 0400 	adc.w	r4, r2, #0
+ 5be:	e9c7 3402 	strd	r3, r4, [r7, #8]
+ 5c2:	e9d7 1202 	ldrd	r1, r2, [r7, #8]
+ 5c6:	e9d7 3400 	ldrd	r3, r4, [r7]
+ 5ca:	42a2      	cmp	r2, r4
+ 5cc:	bf08      	it	eq
+ 5ce:	4299      	cmpeq	r1, r3
+ 5d0:	d3f0      	bcc.n	0x5b4
+ 5d2:	bf00      	nop
+ 5d4:	3710      	adds	r7, #16
+ 5d6:	46bd      	mov	sp, r7
+ 5d8:	bc90      	pop	{r4, r7}
+ 5da:	4770      	bx	lr
+ 5dc:	e92d 4890 	stmdb	sp!, {r4, r7, fp, lr}
+ 5e0:	b084      	sub	sp, #16
+ 5e2:	af00      	add	r7, sp, #0
+ 5e4:	e9c7 0100 	strd	r0, r1, [r7]
+ 5e8:	f7ff ffce 	bl	0x588
+ 5ec:	4603      	mov	r3, r0
+ 5ee:	f04f 0400 	mov.w	r4, #0
+ 5f2:	e9c7 3402 	strd	r3, r4, [r7, #8]
+ 5f6:	bf00      	nop
+ 5f8:	f7ff ffc6 	bl	0x588
+ 5fc:	4603      	mov	r3, r0
+ 5fe:	469b      	mov	fp, r3
+ 600:	f04f 0c00 	mov.w	ip, #0
+ 604:	e9d7 3402 	ldrd	r3, r4, [r7, #8]
+ 608:	4659      	mov	r1, fp
+ 60a:	4662      	mov	r2, ip
+ 60c:	1ac9      	subs	r1, r1, r3
+ 60e:	eb62 0204 	sbc.w	r2, r2, r4
+ 612:	e9d7 3400 	ldrd	r3, r4, [r7]
+ 616:	42a2      	cmp	r2, r4
+ 618:	bf08      	it	eq
+ 61a:	4299      	cmpeq	r1, r3
+ 61c:	d3ec      	bcc.n	0x5f8
+ 61e:	bf00      	nop
+ 620:	3710      	adds	r7, #16
+ 622:	46bd      	mov	sp, r7
+ 624:	e8bd 8890 	ldmia.w	sp!, {r4, r7, fp, pc}
+ 628:	b480      	push	{r7}
+ 62a:	af00      	add	r7, sp, #0
+ 62c:	4b05      	ldr	r3, [pc, #20]	; (0x644)
+ 62e:	681b      	ldr	r3, [r3, #0]
+ 630:	2207      	movs	r2, #7
+ 632:	61da      	str	r2, [r3, #28]
+ 634:	4b03      	ldr	r3, [pc, #12]	; (0x644)
+ 636:	681b      	ldr	r3, [r3, #0]
+ 638:	221c      	movs	r2, #28
+ 63a:	619a      	str	r2, [r3, #24]
+ 63c:	bf00      	nop
+ 63e:	46bd      	mov	sp, r7
+ 640:	bc80      	pop	{r7}
+ 642:	4770      	bx	lr
+ 644:	0734      	lsls	r4, r6, #28
+ 646:	0800      	lsrs	r0, r0, #32
+ 648:	b580      	push	{r7, lr}
+ 64a:	b082      	sub	sp, #8
+ 64c:	af00      	add	r7, sp, #0
+ 64e:	2103      	movs	r1, #3
+ 650:	202d      	movs	r0, #45	; 0x2d
+ 652:	f7ff fecd 	bl	0x3f0
+ 656:	2300      	movs	r3, #0
+ 658:	71fb      	strb	r3, [r7, #7]
+ 65a:	e00b      	b.n	0x674
+ 65c:	202d      	movs	r0, #45	; 0x2d
+ 65e:	f7ff fefb 	bl	0x458
+ 662:	f04f 0064 	mov.w	r0, #100	; 0x64
+ 666:	f04f 0100 	mov.w	r1, #0
+ 66a:	f7ff ffb7 	bl	0x5dc
+ 66e:	79fb      	ldrb	r3, [r7, #7]
+ 670:	3301      	adds	r3, #1
+ 672:	71fb      	strb	r3, [r7, #7]
+ 674:	79fb      	ldrb	r3, [r7, #7]
+ 676:	2b05      	cmp	r3, #5
+ 678:	d9f0      	bls.n	0x65c
+ 67a:	4b07      	ldr	r3, [pc, #28]	; (0x698)
+ 67c:	681b      	ldr	r3, [r3, #0]
+ 67e:	68db      	ldr	r3, [r3, #12]
+ 680:	f403 61e0 	and.w	r1, r3, #1792	; 0x700
+ 684:	4b04      	ldr	r3, [pc, #16]	; (0x698)
+ 686:	681a      	ldr	r2, [r3, #0]
+ 688:	4b04      	ldr	r3, [pc, #16]	; (0x69c)
+ 68a:	430b      	orrs	r3, r1
+ 68c:	60d3      	str	r3, [r2, #12]
+ 68e:	bf00      	nop
+ 690:	3708      	adds	r7, #8
+ 692:	46bd      	mov	sp, r7
+ 694:	bd80      	pop	{r7, pc}
+ 696:	bf00      	nop
+ 698:	0738      	lsls	r0, r7, #28
+ 69a:	0800      	lsrs	r0, r0, #32
+ 69c:	0004      	movs	r4, r0
+ 69e:	05fa      	lsls	r2, r7, #23
+ 6a0:	b580      	push	{r7, lr}
+ 6a2:	af00      	add	r7, sp, #0
+ 6a4:	f7ff ffd0 	bl	0x648
+ 6a8:	bf00      	nop
+ 6aa:	bd80      	pop	{r7, pc}
+ 6ac:	b580      	push	{r7, lr}
+ 6ae:	af00      	add	r7, sp, #0
+ 6b0:	f7ff ffca 	bl	0x648
+ 6b4:	bf00      	nop
+ 6b6:	bd80      	pop	{r7, pc}
+ 6b8:	b580      	push	{r7, lr}
+ 6ba:	af00      	add	r7, sp, #0
+ 6bc:	f7ff ffc4 	bl	0x648
+ 6c0:	bf00      	nop
+ 6c2:	bd80      	pop	{r7, pc}
+ 6c4:	b580      	push	{r7, lr}
+ 6c6:	af00      	add	r7, sp, #0
+ 6c8:	f7ff ffae 	bl	0x628
+ 6cc:	2103      	movs	r1, #3
+ 6ce:	202d      	movs	r0, #45	; 0x2d
+ 6d0:	f7ff fe8e 	bl	0x3f0
+ 6d4:	2103      	movs	r1, #3
+ 6d6:	2007      	movs	r0, #7
+ 6d8:	f7ff fe8a 	bl	0x3f0
+ 6dc:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
+ 6e0:	f44f 717a 	mov.w	r1, #1000	; 0x3e8
+ 6e4:	2003      	movs	r0, #3
+ 6e6:	f7ff fe1f 	bl	0x328
+ 6ea:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
+ 6ee:	f7ff ff2d 	bl	0x54c
+ 6f2:	202d      	movs	r0, #45	; 0x2d
+ 6f4:	f7ff feb0 	bl	0x458
+ 6f8:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
+ 6fc:	f04f 0100 	mov.w	r1, #0
+ 700:	f7ff ff6c 	bl	0x5dc
+ 704:	e7f5      	b.n	0x6f2
+ 706:	0000      	movs	r0, r0
+ 708:	0000      	movs	r0, r0
+ 70a:	4000      	ands	r0, r0
+ 70c:	0400      	lsls	r0, r0, #16
+ 70e:	4000      	ands	r0, r0
+ 710:	0800      	lsrs	r0, r0, #32
+ 712:	4000      	ands	r0, r0
+ 714:	0c00      	lsrs	r0, r0, #16
+ 716:	4000      	ands	r0, r0
+ 718:	1000      	asrs	r0, r0, #32
+ 71a:	4000      	ands	r0, r0
+ 71c:	1400      	asrs	r0, r0, #16
+ 71e:	4000      	ands	r0, r0
+ 720:	e100      	b.n	0x924
+ 722:	e000      	b.n	0x726
+ 724:	0800      	lsrs	r0, r0, #32
+ 726:	4001      	ands	r1, r0
+ 728:	0c00      	lsrs	r0, r0, #16
+ 72a:	4001      	ands	r1, r0
+ 72c:	1000      	asrs	r0, r0, #32
+ 72e:	4001      	ands	r1, r0
+ 730:	e010      	b.n	0x754
+ 732:	e000      	b.n	0x736
+ 734:	1000      	asrs	r0, r0, #32
+ 736:	4002      	ands	r2, r0
+ 738:	e008      	b.n	0x74c
+ 73a:	e000      	b.n	0x73e

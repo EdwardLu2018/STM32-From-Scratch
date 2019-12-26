@@ -2,18 +2,18 @@
 
 systick_t *systick = (systick_t *)(SYSTICK_BASE);
 
-unsigned volatile long cnt = 0;
+uint32_t __IO cnt = 0;
 void systick_handle(void) {
     cnt++;
 }
 
-void systick_init(unsigned long reload_val) {
+void systick_init(uint32_t reload_val) {
     systick->reload = reload_val - 1U;
     systick->val = 0U;
     cnt = 0;
     systick->ctrl = (TICKINT_EN | TICK_EN);
 }
 
-unsigned long millis(void) {
+uint32_t millis(void) {
     return cnt;
 }
