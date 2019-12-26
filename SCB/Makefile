@@ -10,8 +10,7 @@ CC = $(PREFIX)gcc
 AS = $(PREFIX)as
 CP = $(PREFIX)objcopy
 LD = $(PREFIX)ld.bfd
-DS = $(PREFIX)objdump
-DS1 = objdump
+OD = $(PREFIX)objdump
 SZ = $(PREFIX)size
 
 BIN = $(CP) -O binary
@@ -25,10 +24,10 @@ CFLAGS = $(MCU) $(C_INCLUDES)
 LDSCRIPT = blinky.ld
 LDFLAGS = -T $(LDSCRIPT)
 
-DSFLAGS = -D -bbinary -marm -Mforce-thumb
-DS1FLAGS = --disassemble
+ODFLAGS = -S
+ODFLAGS1 = -x --syms
 
-all: $(BUILD_DIR)/$(TARGET).bin
+all: $(BUILD_DIR)/$(TARGET).bin $(BUILD_DIR)/$(TARGET).lss $(BUILD_DIR)/$(TARGET).dmp
 
 OBJECTS = $(addprefix $(BUILD_DIR)/,$(notdir $(ASM_SOURCES:.s=.o)))
 vpath %.s $(sort $(dir $(ASM_SOURCES)))
@@ -44,12 +43,16 @@ $(BUILD_DIR)/%.o: %.s | $(BUILD_DIR)
 
 $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) | $(BUILD_DIR)
 	$(LD) $(LDFLAGS) $(OBJECTS) -o $@
-	$(DS1) $(DS1FLAGS) $@ > $(BUILD_DIR)/disasm.s
 	$(SZ) $@
 
 $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 	$(BIN) $< $@
-	$(DS) $(DSFLAGS) $@ > $(BUILD_DIR)/disassembly.s
+
+$(BUILD_DIR)/$(TARGET).lss: $(BUILD_DIR)/$(TARGET).elf | $(BUILD_DIR)
+	$(OD) $(ODFLAGS) $< > $@
+
+$(BUILD_DIR)/$(TARGET).dmp: $(BUILD_DIR)/$(TARGET).elf | $(BUILD_DIR)
+	$(OD) $(ODFLAGS1) $< > $@
 
 $(BUILD_DIR):
 	mkdir $@
