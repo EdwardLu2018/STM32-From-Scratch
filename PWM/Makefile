@@ -11,6 +11,7 @@ AS = $(PREFIX)as
 CP = $(PREFIX)objcopy
 LD = $(PREFIX)ld.bfd
 DS = $(PREFIX)objdump
+DS1 = objdump
 SZ = $(PREFIX)size
 
 BIN = $(CP) -O binary
@@ -25,6 +26,7 @@ LDSCRIPT = blinky.ld
 LDFLAGS = -T $(LDSCRIPT)
 
 DSFLAGS = -D -bbinary -marm -Mforce-thumb
+DS1FLAGS = --disassemble
 
 all: $(BUILD_DIR)/$(TARGET).bin
 
@@ -42,11 +44,12 @@ $(BUILD_DIR)/%.o: %.s | $(BUILD_DIR)
 
 $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) | $(BUILD_DIR)
 	$(LD) $(LDFLAGS) $(OBJECTS) -o $@
+	$(DS1) $(DS1FLAGS) $@ > $(BUILD_DIR)/disasm.s
 	$(SZ) $@
 
 $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 	$(BIN) $< $@
-	$(DS) $(DSFLAGS) $@ > build/disassembly.s
+	$(DS) $(DSFLAGS) $@ > $(BUILD_DIR)/disassembly.s
 
 $(BUILD_DIR):
 	mkdir $@
