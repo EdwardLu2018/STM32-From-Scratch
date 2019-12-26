@@ -10,6 +10,7 @@ CC = $(PREFIX)gcc
 AS = $(PREFIX)as
 CP = $(PREFIX)objcopy
 LD = $(PREFIX)ld.bfd
+DS = $(PREFIX)objdump
 SZ = $(PREFIX)size
 
 BIN = $(CP) -O binary
@@ -22,6 +23,8 @@ CFLAGS = $(MCU) $(C_INCLUDES)
 
 LDSCRIPT = blinky.ld
 LDFLAGS = -T $(LDSCRIPT)
+
+DSFLAGS = -D -bbinary -marm -Mforce-thumb
 
 all: $(BUILD_DIR)/$(TARGET).bin
 
@@ -43,6 +46,7 @@ $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) | $(BUILD_DIR)
 
 $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 	$(BIN) $< $@
+	$(DS) $(DSFLAGS) $@ > build/disassembly.s
 
 $(BUILD_DIR):
 	mkdir $@
