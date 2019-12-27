@@ -5,6 +5,9 @@ BUILD_DIR = build
 C_SOURCES =  $(shell find . -name "*.c")
 ASM_SOURCES = Startup/startup.s
 
+FLASH = stm32flash
+PORT = /dev/tty.usbserial-1420
+
 PREFIX = arm-none-eabi-
 CC = $(PREFIX)gcc
 AS = $(PREFIX)as
@@ -24,10 +27,10 @@ CFLAGS = $(MCU) $(C_INCLUDES)
 LDSCRIPT = blinky.ld
 LDFLAGS = -T $(LDSCRIPT)
 
-ODFLAGS = -S
+ODFLAGS = -S -marm -Mforce-thumb
 ODFLAGS1 = -x --syms
 
-all: $(BUILD_DIR)/$(TARGET).bin $(BUILD_DIR)/$(TARGET).lss $(BUILD_DIR)/$(TARGET).dmp
+all: $(BUILD_DIR)/$(TARGET).bin $(BUILD_DIR)/$(TARGET).asm $(BUILD_DIR)/$(TARGET).dmp
 
 OBJECTS = $(addprefix $(BUILD_DIR)/,$(notdir $(ASM_SOURCES:.s=.o)))
 vpath %.s $(sort $(dir $(ASM_SOURCES)))
@@ -43,16 +46,16 @@ $(BUILD_DIR)/%.o: %.s | $(BUILD_DIR)
 
 $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) | $(BUILD_DIR)
 	$(LD) $(LDFLAGS) $(OBJECTS) -o $@
-	$(SZ) $@
 
 $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 	$(BIN) $< $@
 
-$(BUILD_DIR)/$(TARGET).lss: $(BUILD_DIR)/$(TARGET).elf | $(BUILD_DIR)
+$(BUILD_DIR)/$(TARGET).asm: $(BUILD_DIR)/$(TARGET).elf | $(BUILD_DIR)
 	$(OD) $(ODFLAGS) $< > $@
 
-$(BUILD_DIR)/$(TARGET).dmp: $(BUILD_DIR)/$(TARGET).elf | $(BUILD_DIR)
+$(BUILD_DIR)/$(TARGET).dmp: $(BUILD_DIR)/$(TARGET).elf
 	$(OD) $(ODFLAGS1) $< > $@
+	$(SZ) $<
 
 $(BUILD_DIR):
 	mkdir $@
@@ -62,8 +65,4 @@ clean:
 
 flash: $(BUILD_DIR)/$(TARGET).bin
 	# st-flash --reset write ./$(BUILD_DIR)/$(TARGET).bin 0x08000000
-	stm32flash -w $< -v -g 0x0 /dev/tty.usbserial-1420
-
-# OPEN_OCD = -f /usr/local/share/openocd/scripts/interface/stlink-v2.cfg -f /usr/local/share/openocd/scripts/target/stm32f1x.cfg
-# flash-ocd: $(BUILD_DIR)/$(TARGET).bin
-# 	openocd $(OPEN_OCD) -c "program ./$(BUILD_DIR)/$(TARGET).elf verify reset exit"
+	$(FLASH) -w $< -v -g 0x0 $(PORT)
