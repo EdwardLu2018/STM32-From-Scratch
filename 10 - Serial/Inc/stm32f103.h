@@ -23,9 +23,12 @@
 #define TIM7_BASE       0x40001400U
 
 #define NVIC_BASE       0xE000E100U
-
 #define SYSTICK_BASE    0xE000E010U
 
-#define SCB_BASE        0xE000E008U
+#define SCB_BASE        0xE000ED00U
+
+#define UART1_BASE	    0x40013800U
+#define UART2_BASE	    0x40004400U
+#define UART3_BASE	    0x40004800U
 
 #endif

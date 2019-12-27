@@ -34,12 +34,12 @@ typedef enum {
 
 // general purpose input/output (page 171 Reference Manual) //
 typedef struct {
-    uint32_t __IO cr[2]; // 0x0 to 0x4 - port configuration register (low/high)
-    uint32_t __IO idr; // 0x8 - input data register
-    uint32_t __IO odr; // 0xC - output data register
-    uint32_t __IO bsrr; // 0x10 - bit set/reset register
-    uint32_t __IO brr; // 0x14 - bit reset register
-    uint32_t __IO lckr; // 0x18 - port configuration lock register
+    uint32_t __IO cr[2];    // 0x0 to 0x4 - port configuration register (low/high)
+    uint32_t __IO idr;      // 0x8 - input data register
+    uint32_t __IO odr;      // 0xC - output data register
+    uint32_t __IO bsrr;     // 0x10 - bit set/reset register
+    uint32_t __IO brr;      // 0x14 - bit reset register
+    uint32_t __IO lckr;     // 0x18 - port configuration lock register
 } gpio_t;
 
 gpio_t *gpio_a;

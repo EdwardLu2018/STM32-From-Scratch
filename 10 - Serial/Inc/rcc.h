@@ -13,16 +13,16 @@
 
 // Reset and clock control (page 99 Reference Manual) //
 typedef struct {
-    uint32_t __IO cr; // 0x0 - control register
-    uint32_t __IO cfgr; // 0x4 - configuration register
-    uint32_t __IO cir; // 0x8 - interrupt register
-    uint32_t __IO apbr2; // 0xC - APB2 peripheral reset register
-    uint32_t __IO apbr1; // 0x10 - APB1 peripheral reset register
-    uint32_t __IO ahbe; // 0x14 - AHB peripheral clock enable register
-    uint32_t __IO apbe2; // 0x18 - APB2 peripheral enable register
-    uint32_t __IO apbe1; // 0x1C - APB1 peripheral enable register
-    uint32_t __IO bdcr; // 0x20 - backup domain control register
-    uint32_t __IO csr; // 0x24 - control/status register
+    uint32_t __IO cr;       // 0x0 - control register
+    uint32_t __IO cfgr;     // 0x4 - configuration register
+    uint32_t __IO cir;      // 0x8 - interrupt register
+    uint32_t __IO apbr2;    // 0xC - APB2 peripheral reset register
+    uint32_t __IO apbr1;    // 0x10 - APB1 peripheral reset register
+    uint32_t __IO ahbe;     // 0x14 - AHB peripheral clock enable register
+    uint32_t __IO apbe2;    // 0x18 - APB2 peripheral enable register
+    uint32_t __IO apbe1;    // 0x1C - APB1 peripheral enable register
+    uint32_t __IO bdcr;     // 0x20 - backup domain control register
+    uint32_t __IO csr;      // 0x24 - control/status register
 } rcc_t;
 
 void rcc_init(void);

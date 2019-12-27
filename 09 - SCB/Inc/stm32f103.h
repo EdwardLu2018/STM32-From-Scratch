@@ -26,6 +26,6 @@
 
 #define SYSTICK_BASE    0xE000E010U
 
-#define SCB_BASE        0xE000E008U
+#define SCB_BASE        0xE000ED00U
 
 #endif

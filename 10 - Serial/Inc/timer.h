@@ -36,21 +36,21 @@ typedef enum {
 
 // Timers (pg 404 Reference Manual) - 72 MHz
 typedef struct {
-    uint32_t __IO cr[2]; // 0x0 to 0x4 - control register (low/high)
-    uint32_t __IO smcr; // 0x8 - slave mode control register
-    uint32_t __IO dier; // 0xC - DMA/Interrupt enable register
-    uint32_t __IO sr; // 0x10 - status register
-    uint32_t __IO egr; // 0x14 - event generation register
-    uint32_t __IO ccmr[2]; // 0x18 to 0x1C - capture/compare mode register (low/high)
-    uint32_t __IO ccer; // 0x20 - capture/compare enable register
-    uint32_t __IO cnt; // 0x24 - counter
-    uint32_t __IO psc; // 0x28 - prescaler
-    uint32_t __IO arr; // 0x2C - auto-reload register
-    uint32_t __padding0; // 0x30 padding
-    uint32_t __IO ccr[4]; // 0x34 to 0x40 - capture/compare register
-    uint32_t __padding1; // 0x44 padding
-    uint32_t __IO dcr; // 0x48 -  DMA control register
-    uint32_t __IO dmar; // 0x4C - DMA address for full transfer
+    uint32_t __IO cr[2];    // 0x0 to 0x4 - control register (low/high)
+    uint32_t __IO smcr;     // 0x8 - slave mode control register
+    uint32_t __IO dier;     // 0xC - DMA/Interrupt enable register
+    uint32_t __IO sr;       // 0x10 - status register
+    uint32_t __IO egr;      // 0x14 - event generation register
+    uint32_t __IO ccmr[2];  // 0x18 to 0x1C - capture/compare mode register (low/high)
+    uint32_t __IO ccer;     // 0x20 - capture/compare enable register
+    uint32_t __IO cnt;      // 0x24 - counter
+    uint32_t __IO psc;      // 0x28 - prescaler
+    uint32_t __IO arr;      // 0x2C - auto-reload register
+    uint32_t __padding0;    // 0x30 padding
+    uint32_t __IO ccr[4];   // 0x34 to 0x40 - capture/compare register
+    uint32_t __padding1;    // 0x44 padding
+    uint32_t __IO dcr;      // 0x48 -  DMA control register
+    uint32_t __IO dmar;     // 0x4C - DMA address for full transfer
 } timer_t;
 
 timer_t *tim2;
