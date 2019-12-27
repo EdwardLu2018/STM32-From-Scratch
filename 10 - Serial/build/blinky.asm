@@ -164,12 +164,12 @@ timer_t *get_timer(uint8_t timer) {
  80001b6:	bc80      	pop	{r7}
  80001b8:	4770      	bx	lr
  80001ba:	bf00      	nop
- 80001bc:	08000708 	.word	0x08000708
- 80001c0:	0800070c 	.word	0x0800070c
- 80001c4:	08000710 	.word	0x08000710
- 80001c8:	08000714 	.word	0x08000714
- 80001cc:	08000718 	.word	0x08000718
- 80001d0:	0800071c 	.word	0x0800071c
+ 80001bc:	08000768 	.word	0x08000768
+ 80001c0:	0800076c 	.word	0x0800076c
+ 80001c4:	08000770 	.word	0x08000770
+ 80001c8:	08000774 	.word	0x08000774
+ 80001cc:	08000778 	.word	0x08000778
+ 80001d0:	0800077c 	.word	0x0800077c
 
 080001d4 <tim2_handle>:
 
@@ -186,7 +186,7 @@ void tim2_handle(void) {
  80001e2:	46bd      	mov	sp, r7
  80001e4:	bc80      	pop	{r7}
  80001e6:	4770      	bx	lr
- 80001e8:	08000708 	.word	0x08000708
+ 80001e8:	08000768 	.word	0x08000768
 
 080001ec <tim3_handle>:
 
@@ -205,7 +205,7 @@ void tim3_handle(void) {
  80001fe:	bf00      	nop
  8000200:	bd80      	pop	{r7, pc}
  8000202:	bf00      	nop
- 8000204:	0800070c 	.word	0x0800070c
+ 8000204:	0800076c 	.word	0x0800076c
 
 08000208 <tim4_handle>:
 
@@ -222,7 +222,7 @@ void tim4_handle(void) {
  8000216:	46bd      	mov	sp, r7
  8000218:	bc80      	pop	{r7}
  800021a:	4770      	bx	lr
- 800021c:	08000710 	.word	0x08000710
+ 800021c:	08000770 	.word	0x08000770
 
 08000220 <tim5_handle>:
 
@@ -239,7 +239,7 @@ void tim5_handle(void) {
  800022e:	46bd      	mov	sp, r7
  8000230:	bc80      	pop	{r7}
  8000232:	4770      	bx	lr
- 8000234:	08000714 	.word	0x08000714
+ 8000234:	08000774 	.word	0x08000774
 
 08000238 <tim6_handle>:
 
@@ -256,7 +256,7 @@ void tim6_handle(void) {
  8000246:	46bd      	mov	sp, r7
  8000248:	bc80      	pop	{r7}
  800024a:	4770      	bx	lr
- 800024c:	08000718 	.word	0x08000718
+ 800024c:	08000778 	.word	0x08000778
 
 08000250 <tim7_handle>:
 
@@ -273,7 +273,7 @@ void tim7_handle(void) {
  800025e:	46bd      	mov	sp, r7
  8000260:	bc80      	pop	{r7}
  8000262:	4770      	bx	lr
- 8000264:	0800071c 	.word	0x0800071c
+ 8000264:	0800077c 	.word	0x0800077c
 
 08000268 <get_timer_cnt>:
 
@@ -477,7 +477,7 @@ void nvic_enable(uint8_t irq_pos) {
  80003a6:	46bd      	mov	sp, r7
  80003a8:	bc80      	pop	{r7}
  80003aa:	4770      	bx	lr
- 80003ac:	08000720 	.word	0x08000720
+ 80003ac:	08000780 	.word	0x08000780
 
 080003b0 <get_gpio>:
 
@@ -519,9 +519,9 @@ gpio_t *get_gpio(uint8_t pin) {
  80003de:	46bd      	mov	sp, r7
  80003e0:	bc80      	pop	{r7}
  80003e2:	4770      	bx	lr
- 80003e4:	08000724 	.word	0x08000724
- 80003e8:	08000728 	.word	0x08000728
- 80003ec:	0800072c 	.word	0x0800072c
+ 80003e4:	08000784 	.word	0x08000784
+ 80003e8:	08000788 	.word	0x08000788
+ 80003ec:	0800078c 	.word	0x0800078c
 
 080003f0 <pin_mode>:
 
@@ -758,7 +758,7 @@ void systick_init(uint32_t reload_val) {
  800057a:	bc80      	pop	{r7}
  800057c:	4770      	bx	lr
  800057e:	bf00      	nop
- 8000580:	08000730 	.word	0x08000730
+ 8000580:	08000790 	.word	0x08000790
  8000584:	20000000 	.word	0x20000000
 
 08000588 <millis>:
@@ -864,7 +864,7 @@ void rcc_init(void) {
  800063e:	46bd      	mov	sp, r7
  8000640:	bc80      	pop	{r7}
  8000642:	4770      	bx	lr
- 8000644:	08000734 	.word	0x08000734
+ 8000644:	08000794 	.word	0x08000794
 
 08000648 <reset_system>:
 #include "gpio.h"
@@ -915,7 +915,7 @@ void reset_system(void) {
  8000692:	46bd      	mov	sp, r7
  8000694:	bd80      	pop	{r7, pc}
  8000696:	bf00      	nop
- 8000698:	08000738 	.word	0x08000738
+ 8000698:	08000798 	.word	0x08000798
  800069c:	05fa0004 	.word	0x05fa0004
 
 080006a0 <hard_fault_handle>:
@@ -955,7 +955,7 @@ void bus_fault_handle(void) {
 #include "rcc.h"
 #include "timer.h"
 #include "systick.h"
-#include "scb.h"
+#include "usart.h"
 
 int main(void) {
  80006c4:	b580      	push	{r7, lr}
@@ -968,27 +968,94 @@ int main(void) {
  80006ce:	202d      	movs	r0, #45	; 0x2d
  80006d0:	f7ff fe8e 	bl	80003f0 <pin_mode>
 
-    pin_mode(PA7, OUT_GP_PUSH_PULL_50);
- 80006d4:	2103      	movs	r1, #3
- 80006d6:	2007      	movs	r0, #7
- 80006d8:	f7ff fe8a 	bl	80003f0 <pin_mode>
-    timer_init(TIM3, 1000U, 1000U);
- 80006dc:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
- 80006e0:	f44f 717a 	mov.w	r1, #1000	; 0x3e8
- 80006e4:	2003      	movs	r0, #3
- 80006e6:	f7ff fe1f 	bl	8000328 <timer_init>
-
     systick_init(1000U); // initialize systick at 1Hz
- 80006ea:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
- 80006ee:	f7ff ff2d 	bl	800054c <systick_init>
+ 80006d4:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
+ 80006d8:	f7ff ff38 	bl	800054c <systick_init>
+    init_usart();
+ 80006dc:	f000 f80e 	bl	80006fc <init_usart>
 
     while(1) {
         led_toggle(PC13);
- 80006f2:	202d      	movs	r0, #45	; 0x2d
- 80006f4:	f7ff feb0 	bl	8000458 <led_toggle>
+ 80006e0:	202d      	movs	r0, #45	; 0x2d
+ 80006e2:	f7ff feb9 	bl	8000458 <led_toggle>
+        send('a');
+ 80006e6:	2061      	movs	r0, #97	; 0x61
+ 80006e8:	f000 f826 	bl	8000738 <send>
         systick_delay(1000);
- 80006f8:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
- 80006fc:	f04f 0100 	mov.w	r1, #0
- 8000700:	f7ff ff6c 	bl	80005dc <systick_delay>
+ 80006ec:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
+ 80006f0:	f04f 0100 	mov.w	r1, #0
+ 80006f4:	f7ff ff72 	bl	80005dc <systick_delay>
         led_toggle(PC13);
- 8000704:	e7f5      	b.n	80006f2 <main+0x2e>
+ 80006f8:	e7f2      	b.n	80006e0 <main+0x1c>
+	...
+
+080006fc <init_usart>:
+
+usart_t *usart1 = (usart_t *)(UART1_BASE);
+usart_t *usart2 = (usart_t *)(UART2_BASE);
+usart_t *usart3 = (usart_t *)(UART3_BASE);
+
+void init_usart(void) {
+ 80006fc:	b480      	push	{r7}
+ 80006fe:	af00      	add	r7, sp, #0
+    usart1->cr1 = (RE|TE|PCE|W_LEN_9|UE);
+ 8000700:	4b0c      	ldr	r3, [pc, #48]	; (8000734 <init_usart+0x38>)
+ 8000702:	681b      	ldr	r3, [r3, #0]
+ 8000704:	f243 420c 	movw	r2, #13324	; 0x340c
+ 8000708:	60da      	str	r2, [r3, #12]
+    usart1->cr2 = 0;
+ 800070a:	4b0a      	ldr	r3, [pc, #40]	; (8000734 <init_usart+0x38>)
+ 800070c:	681b      	ldr	r3, [r3, #0]
+ 800070e:	2200      	movs	r2, #0
+ 8000710:	611a      	str	r2, [r3, #16]
+    usart1->cr3 = 0;
+ 8000712:	4b08      	ldr	r3, [pc, #32]	; (8000734 <init_usart+0x38>)
+ 8000714:	681b      	ldr	r3, [r3, #0]
+ 8000716:	2200      	movs	r2, #0
+ 8000718:	615a      	str	r2, [r3, #20]
+    usart1->gtpr = 0;
+ 800071a:	4b06      	ldr	r3, [pc, #24]	; (8000734 <init_usart+0x38>)
+ 800071c:	681b      	ldr	r3, [r3, #0]
+ 800071e:	2200      	movs	r2, #0
+ 8000720:	619a      	str	r2, [r3, #24]
+    usart1->baud = HSI_MHZ / 115200;
+ 8000722:	4b04      	ldr	r3, [pc, #16]	; (8000734 <init_usart+0x38>)
+ 8000724:	681b      	ldr	r3, [r3, #0]
+ 8000726:	2245      	movs	r2, #69	; 0x45
+ 8000728:	609a      	str	r2, [r3, #8]
+}
+ 800072a:	bf00      	nop
+ 800072c:	46bd      	mov	sp, r7
+ 800072e:	bc80      	pop	{r7}
+ 8000730:	4770      	bx	lr
+ 8000732:	bf00      	nop
+ 8000734:	0800079c 	.word	0x0800079c
+
+08000738 <send>:
+
+void send(char c) {
+ 8000738:	b480      	push	{r7}
+ 800073a:	b083      	sub	sp, #12
+ 800073c:	af00      	add	r7, sp, #0
+ 800073e:	4603      	mov	r3, r0
+ 8000740:	71fb      	strb	r3, [r7, #7]
+    while(!(usart1->sr&TXE));
+ 8000742:	bf00      	nop
+ 8000744:	4b07      	ldr	r3, [pc, #28]	; (8000764 <send+0x2c>)
+ 8000746:	681b      	ldr	r3, [r3, #0]
+ 8000748:	681b      	ldr	r3, [r3, #0]
+ 800074a:	f003 0380 	and.w	r3, r3, #128	; 0x80
+ 800074e:	2b00      	cmp	r3, #0
+ 8000750:	d0f8      	beq.n	8000744 <send+0xc>
+    usart1->data = c;
+ 8000752:	4b04      	ldr	r3, [pc, #16]	; (8000764 <send+0x2c>)
+ 8000754:	681b      	ldr	r3, [r3, #0]
+ 8000756:	79fa      	ldrb	r2, [r7, #7]
+ 8000758:	605a      	str	r2, [r3, #4]
+}
+ 800075a:	bf00      	nop
+ 800075c:	370c      	adds	r7, #12
+ 800075e:	46bd      	mov	sp, r7
+ 8000760:	bc80      	pop	{r7}
+ 8000762:	4770      	bx	lr
+ 8000764:	0800079c 	.word	0x0800079c

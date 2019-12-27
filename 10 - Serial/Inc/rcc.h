@@ -10,6 +10,13 @@
 #define TIM2_EN     (1<<0)
 #define TIM3_EN     (1<<1)
 #define TIM4_EN     (1<<2)
+#define TIM5_EN     (1<<3)
+#define TIM6_EN     (1<<4)
+#define TIM7_EN     (1<<5)
+
+#define USART1_EN   (1<<14) // apbe2
+#define USART2_EN   (1<<17) // apbe1
+#define USART3_EN   (1<<18) // apbe1
 
 // Reset and clock control (page 99 Reference Manual) //
 typedef struct {

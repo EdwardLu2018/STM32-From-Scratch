@@ -3,10 +3,6 @@
 
 #include "stm32f103.h"
 
-#define HSI_MHZ 8000000U  // 8 Mhz clock
-#define PCLK1   36000000U // 36 Mhz clock
-#define PCLK2   72000000U // 72 Mhz clock
-
 #define TIM_IRQ_START_POS 28
 
 #define CHAN1   0

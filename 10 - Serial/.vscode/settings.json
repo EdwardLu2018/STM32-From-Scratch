@@ -9,6 +9,7 @@
         "timer.h": "c",
         "nvic.h": "c",
         "systick.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "usart.h": "c"
     }
 }
