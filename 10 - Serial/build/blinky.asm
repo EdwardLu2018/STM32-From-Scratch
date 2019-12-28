@@ -157,12 +157,12 @@ timer_t *get_timer(uint8_t timer) {
  80001b6:	bc80      	pop	{r7}
  80001b8:	4770      	bx	lr
  80001ba:	bf00      	nop
- 80001bc:	080008b4 	.word	0x080008b4
- 80001c0:	080008b8 	.word	0x080008b8
- 80001c4:	080008bc 	.word	0x080008bc
- 80001c8:	080008c0 	.word	0x080008c0
- 80001cc:	080008c4 	.word	0x080008c4
- 80001d0:	080008c8 	.word	0x080008c8
+ 80001bc:	080008a8 	.word	0x080008a8
+ 80001c0:	080008ac 	.word	0x080008ac
+ 80001c4:	080008b0 	.word	0x080008b0
+ 80001c8:	080008b4 	.word	0x080008b4
+ 80001cc:	080008b8 	.word	0x080008b8
+ 80001d0:	080008bc 	.word	0x080008bc
 
 080001d4 <tim2_handle>:
 
@@ -179,7 +179,7 @@ void tim2_handle(void) {
  80001e2:	46bd      	mov	sp, r7
  80001e4:	bc80      	pop	{r7}
  80001e6:	4770      	bx	lr
- 80001e8:	080008b4 	.word	0x080008b4
+ 80001e8:	080008a8 	.word	0x080008a8
 
 080001ec <tim3_handle>:
 
@@ -198,7 +198,7 @@ void tim3_handle(void) {
  80001fe:	bf00      	nop
  8000200:	bd80      	pop	{r7, pc}
  8000202:	bf00      	nop
- 8000204:	080008b8 	.word	0x080008b8
+ 8000204:	080008ac 	.word	0x080008ac
 
 08000208 <tim4_handle>:
 
@@ -215,7 +215,7 @@ void tim4_handle(void) {
  8000216:	46bd      	mov	sp, r7
  8000218:	bc80      	pop	{r7}
  800021a:	4770      	bx	lr
- 800021c:	080008bc 	.word	0x080008bc
+ 800021c:	080008b0 	.word	0x080008b0
 
 08000220 <tim5_handle>:
 
@@ -232,7 +232,7 @@ void tim5_handle(void) {
  800022e:	46bd      	mov	sp, r7
  8000230:	bc80      	pop	{r7}
  8000232:	4770      	bx	lr
- 8000234:	080008c0 	.word	0x080008c0
+ 8000234:	080008b4 	.word	0x080008b4
 
 08000238 <tim6_handle>:
 
@@ -249,7 +249,7 @@ void tim6_handle(void) {
  8000246:	46bd      	mov	sp, r7
  8000248:	bc80      	pop	{r7}
  800024a:	4770      	bx	lr
- 800024c:	080008c4 	.word	0x080008c4
+ 800024c:	080008b8 	.word	0x080008b8
 
 08000250 <tim7_handle>:
 
@@ -266,7 +266,7 @@ void tim7_handle(void) {
  800025e:	46bd      	mov	sp, r7
  8000260:	bc80      	pop	{r7}
  8000262:	4770      	bx	lr
- 8000264:	080008c8 	.word	0x080008c8
+ 8000264:	080008bc 	.word	0x080008bc
 
 08000268 <get_timer_cnt>:
 
@@ -470,7 +470,7 @@ void nvic_enable(uint8_t irq_pos) {
  80003a6:	46bd      	mov	sp, r7
  80003a8:	bc80      	pop	{r7}
  80003aa:	4770      	bx	lr
- 80003ac:	080008cc 	.word	0x080008cc
+ 80003ac:	080008c0 	.word	0x080008c0
 
 080003b0 <get_gpio>:
 
@@ -512,9 +512,9 @@ gpio_t *get_gpio(uint8_t pin) {
  80003de:	46bd      	mov	sp, r7
  80003e0:	bc80      	pop	{r7}
  80003e2:	4770      	bx	lr
- 80003e4:	080008d0 	.word	0x080008d0
- 80003e8:	080008d4 	.word	0x080008d4
- 80003ec:	080008d8 	.word	0x080008d8
+ 80003e4:	080008c4 	.word	0x080008c4
+ 80003e8:	080008c8 	.word	0x080008c8
+ 80003ec:	080008cc 	.word	0x080008cc
 
 080003f0 <pin_mode>:
 
@@ -751,7 +751,7 @@ void systick_init(uint32_t reload_val) {
  800057a:	bc80      	pop	{r7}
  800057c:	4770      	bx	lr
  800057e:	bf00      	nop
- 8000580:	080008dc 	.word	0x080008dc
+ 8000580:	080008d0 	.word	0x080008d0
  8000584:	20000000 	.word	0x20000000
 
 08000588 <millis>:
@@ -871,7 +871,7 @@ void rcc_init(void) {
  800065e:	46bd      	mov	sp, r7
  8000660:	bc80      	pop	{r7}
  8000662:	4770      	bx	lr
- 8000664:	080008e0 	.word	0x080008e0
+ 8000664:	080008d4 	.word	0x080008d4
 
 08000668 <reset_system>:
 #include "gpio.h"
@@ -922,7 +922,7 @@ void reset_system(void) {
  80006b2:	46bd      	mov	sp, r7
  80006b4:	bd80      	pop	{r7, pc}
  80006b6:	bf00      	nop
- 80006b8:	080008e4 	.word	0x080008e4
+ 80006b8:	080008d8 	.word	0x080008d8
  80006bc:	05fa0004 	.word	0x05fa0004
 
 080006c0 <hard_fault_handle>:
@@ -974,36 +974,36 @@ int main(void) {
  80006ec:	2103      	movs	r1, #3
  80006ee:	202d      	movs	r0, #45	; 0x2d
  80006f0:	f7ff fe7e 	bl	80003f0 <pin_mode>
-    pin_mode(PA9, OUT_ALT_PUSH_PULL_50);
+    pin_mode(PA9, OUT_ALT_PUSH_PULL_50); // enable Tx pin for usart1
  80006f4:	210b      	movs	r1, #11
  80006f6:	2009      	movs	r0, #9
  80006f8:	f7ff fe7a 	bl	80003f0 <pin_mode>
-    // pin_mode(PA10, OUT_ALT_PUSH_PULL_50);
+    pin_mode(PA10, OUT_ALT_PUSH_PULL_50); // enable Rx pin for usart1
+ 80006fc:	210b      	movs	r1, #11
+ 80006fe:	200a      	movs	r0, #10
+ 8000700:	f7ff fe76 	bl	80003f0 <pin_mode>
 
     systick_init(1000U); // initialize systick at 1Hz
- 80006fc:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
- 8000700:	f7ff ff24 	bl	800054c <systick_init>
+ 8000704:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
+ 8000708:	f7ff ff20 	bl	800054c <systick_init>
     init_serial(USART1, 115200U);
- 8000704:	f44f 31e1 	mov.w	r1, #115200	; 0x1c200
- 8000708:	2001      	movs	r0, #1
- 800070a:	f000 f833 	bl	8000774 <init_serial>
+ 800070c:	f44f 31e1 	mov.w	r1, #115200	; 0x1c200
+ 8000710:	2001      	movs	r0, #1
+ 8000712:	f000 f82f 	bl	8000774 <init_serial>
 
     while(1) {
-        led_toggle(PC13);
- 800070e:	202d      	movs	r0, #45	; 0x2d
- 8000710:	f7ff fea2 	bl	8000458 <led_toggle>
-        serial_wr_s(USART1, "hello world", 1);
- 8000714:	2201      	movs	r2, #1
- 8000716:	4905      	ldr	r1, [pc, #20]	; (800072c <main+0x48>)
- 8000718:	2001      	movs	r0, #1
- 800071a:	f000 f86b 	bl	80007f4 <serial_wr_s>
+        if (serial_r_c(USART2) == (char)'a');
+ 8000716:	2002      	movs	r0, #2
+ 8000718:	f000 f899 	bl	800084e <serial_r_c>
+            led_toggle(PC13);
+ 800071c:	202d      	movs	r0, #45	; 0x2d
+ 800071e:	f7ff fe9b 	bl	8000458 <led_toggle>
         systick_delay(1000);
- 800071e:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
- 8000722:	f04f 0100 	mov.w	r1, #0
- 8000726:	f7ff ff59 	bl	80005dc <systick_delay>
-        led_toggle(PC13);
- 800072a:	e7f0      	b.n	800070e <main+0x2a>
- 800072c:	080008a8 	.word	0x080008a8
+ 8000722:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
+ 8000726:	f04f 0100 	mov.w	r1, #0
+ 800072a:	f7ff ff57 	bl	80005dc <systick_delay>
+        if (serial_r_c(USART2) == (char)'a');
+ 800072e:	e7f2      	b.n	8000716 <main+0x32>
 
 08000730 <get_usart>:
 
@@ -1047,9 +1047,9 @@ usart_t *get_usart(uint8_t usart) {
  8000762:	46bd      	mov	sp, r7
  8000764:	bc80      	pop	{r7}
  8000766:	4770      	bx	lr
- 8000768:	080008e8 	.word	0x080008e8
- 800076c:	080008ec 	.word	0x080008ec
- 8000770:	080008f0 	.word	0x080008f0
+ 8000768:	080008dc 	.word	0x080008dc
+ 800076c:	080008e0 	.word	0x080008e0
+ 8000770:	080008e4 	.word	0x080008e4
 
 08000774 <init_serial>:
 

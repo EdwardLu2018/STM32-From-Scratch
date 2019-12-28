@@ -17,6 +17,7 @@
 #define DATA_MASK 0xff // mask for data bits for data register
 
 #define TXE     (1<<7) // transmit data register is empty
+#define TC      (1<<6) // transmission complete
 #define RXNE    (1<<5) // read data register is not empty
 
 // USART registers (pg 817) //

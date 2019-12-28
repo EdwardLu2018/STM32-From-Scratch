@@ -24,7 +24,7 @@ void init_serial(uint8_t usart, uint32_t baud) {
 
 bool serial_wr_c(uint8_t usart, char c) {
     usart_t *serial = get_usart(usart);
-    while(!(serial->sr & TXE));
+    while(!(serial->sr & TC));
     serial->data = c;
     return 1;
 }
@@ -39,7 +39,7 @@ bool serial_wr_s(uint8_t usart, char *s, bool new_line) {
 
 char serial_r_c(uint8_t usart) {
     usart_t *serial = get_usart(usart);
-    while(!(serial->sr) & RXNE);
+    while(!(serial->sr & RXNE));
     return serial->data & DATA_MASK;
 }
 
