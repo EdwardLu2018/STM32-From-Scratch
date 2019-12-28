@@ -11,20 +11,13 @@ timer_t *tim7 = (timer_t *)(TIM7_BASE);
 
 timer_t *get_timer(uint8_t timer) {
     switch (timer) {
-    case TIM2:
-        return tim2;
-    case TIM3:
-        return tim3;
-    case TIM4:
-        return tim4;
-    case TIM5:
-        return tim5;
-    case TIM6:
-        return tim6;
-    case TIM7:
-        return tim7;
-    default:
-        return tim2;
+    case TIM2: return tim2;
+    case TIM3: return tim3;
+    case TIM4: return tim4;
+    case TIM5: return tim5;
+    case TIM6: return tim6;
+    case TIM7: return tim7;
+    default: return tim2;
     }
 }
 

@@ -2,6 +2,7 @@
 #define __USART__
 
 #include "stm32f103.h"
+#include "stdbool.h"
 
 #define USART1  1
 #define USART2  2
@@ -13,7 +14,10 @@
 #define W_LEN_9 (1<<12) // start bit, 9 data bits, stop bit
 #define UE      (1<<13) // usart enable
 
-#define TXE     (1<<7)
+#define DATA_MASK 0xff // mask for data bits for data register
+
+#define TXE     (1<<7) // transmit data register is empty
+#define RXNE    (1<<5) // read data register is not empty
 
 // USART registers (pg 817) //
 typedef struct {
@@ -26,8 +30,11 @@ typedef struct {
     uint32_t __IO gtpr; // 0x18 guard time and prescaler register
 } usart_t;
 
-void init_serial(uint32_t baud);
-uint8_t serial_wr_c(char c);
-uint8_t serial_wr_s(char *s);
+usart_t *get_usart(uint8_t usart);
+void init_serial(uint8_t usart, uint32_t baud);
+bool serial_wr_c(uint8_t usart, char c);
+bool serial_wr_s(uint8_t usart, char *s, bool new_line);
+char serial_r_c(uint8_t usart);
+char *serial_r_s(uint8_t usart, char *buffer);
 
 #endif

@@ -9,15 +9,15 @@ int main(void) {
     rcc_init();
 
     pin_mode(PC13, OUT_GP_PUSH_PULL_50);
-    pin_mode(PA9, OUT_ALT_PUSH_PULL_50);
-    // pin_mode(PA10, OUT_ALT_PUSH_PULL_50);
+    pin_mode(PA9, OUT_ALT_PUSH_PULL_50); // enable Tx pin for usart1
+    pin_mode(PA10, OUT_ALT_PUSH_PULL_50); // enable Rx pin for usart1
 
     systick_init(1000U); // initialize systick at 1Hz
-    init_serial(115200U);
+    init_serial(USART1, 115200U);
 
     while(1) {
         led_toggle(PC13);
-        serial_wr_s("hello world");
+        serial_wr_s(USART1, "hello world", 1);
         systick_delay(1000);
     }
 }
