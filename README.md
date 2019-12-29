@@ -1,8 +1,10 @@
 # STM32-From-Scratch
-Playing around with an STM32F103 microcontroller.
+Playing around with an STM32F103 microcontroller firmware. Writing my own minimal HAL and eventually a simple RTOS.
+
+Written mostly in C, with plans to write in to C++ in the future.
 
 ## Directories
-* **00 - Blinky** -> Blink program. Simple code to make on board LED blink. 
+* **00 - Blinky** -> Blink program. Simple code to make on-board LED blink. 
 * **01 - Blinky 2** -> Blink program, but improved. Code clean up and improved directory structure. 
 * **02 - Blinky 3** -> Blink program, but more improved. Added separate header and implementation files for GPIO and RCC registers.
 * **03 - Extern Blinky** -> Blink program, but with an external LED on A0. Started using OpenOCD and GDB server for debugging.
