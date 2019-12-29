@@ -157,12 +157,12 @@ timer_t *get_timer(uint8_t timer) {
  80001b6:	bc80      	pop	{r7}
  80001b8:	4770      	bx	lr
  80001ba:	bf00      	nop
- 80001bc:	080008a8 	.word	0x080008a8
- 80001c0:	080008ac 	.word	0x080008ac
- 80001c4:	080008b0 	.word	0x080008b0
- 80001c8:	080008b4 	.word	0x080008b4
- 80001cc:	080008b8 	.word	0x080008b8
- 80001d0:	080008bc 	.word	0x080008bc
+ 80001bc:	080008c4 	.word	0x080008c4
+ 80001c0:	080008c8 	.word	0x080008c8
+ 80001c4:	080008cc 	.word	0x080008cc
+ 80001c8:	080008d0 	.word	0x080008d0
+ 80001cc:	080008d4 	.word	0x080008d4
+ 80001d0:	080008d8 	.word	0x080008d8
 
 080001d4 <tim2_handle>:
 
@@ -179,7 +179,7 @@ void tim2_handle(void) {
  80001e2:	46bd      	mov	sp, r7
  80001e4:	bc80      	pop	{r7}
  80001e6:	4770      	bx	lr
- 80001e8:	080008a8 	.word	0x080008a8
+ 80001e8:	080008c4 	.word	0x080008c4
 
 080001ec <tim3_handle>:
 
@@ -198,7 +198,7 @@ void tim3_handle(void) {
  80001fe:	bf00      	nop
  8000200:	bd80      	pop	{r7, pc}
  8000202:	bf00      	nop
- 8000204:	080008ac 	.word	0x080008ac
+ 8000204:	080008c8 	.word	0x080008c8
 
 08000208 <tim4_handle>:
 
@@ -215,7 +215,7 @@ void tim4_handle(void) {
  8000216:	46bd      	mov	sp, r7
  8000218:	bc80      	pop	{r7}
  800021a:	4770      	bx	lr
- 800021c:	080008b0 	.word	0x080008b0
+ 800021c:	080008cc 	.word	0x080008cc
 
 08000220 <tim5_handle>:
 
@@ -232,7 +232,7 @@ void tim5_handle(void) {
  800022e:	46bd      	mov	sp, r7
  8000230:	bc80      	pop	{r7}
  8000232:	4770      	bx	lr
- 8000234:	080008b4 	.word	0x080008b4
+ 8000234:	080008d0 	.word	0x080008d0
 
 08000238 <tim6_handle>:
 
@@ -249,7 +249,7 @@ void tim6_handle(void) {
  8000246:	46bd      	mov	sp, r7
  8000248:	bc80      	pop	{r7}
  800024a:	4770      	bx	lr
- 800024c:	080008b8 	.word	0x080008b8
+ 800024c:	080008d4 	.word	0x080008d4
 
 08000250 <tim7_handle>:
 
@@ -266,7 +266,7 @@ void tim7_handle(void) {
  800025e:	46bd      	mov	sp, r7
  8000260:	bc80      	pop	{r7}
  8000262:	4770      	bx	lr
- 8000264:	080008bc 	.word	0x080008bc
+ 8000264:	080008d8 	.word	0x080008d8
 
 08000268 <get_timer_cnt>:
 
@@ -470,7 +470,7 @@ void nvic_enable(uint8_t irq_pos) {
  80003a6:	46bd      	mov	sp, r7
  80003a8:	bc80      	pop	{r7}
  80003aa:	4770      	bx	lr
- 80003ac:	080008c0 	.word	0x080008c0
+ 80003ac:	080008dc 	.word	0x080008dc
 
 080003b0 <get_gpio>:
 
@@ -512,9 +512,9 @@ gpio_t *get_gpio(uint8_t pin) {
  80003de:	46bd      	mov	sp, r7
  80003e0:	bc80      	pop	{r7}
  80003e2:	4770      	bx	lr
- 80003e4:	080008c4 	.word	0x080008c4
- 80003e8:	080008c8 	.word	0x080008c8
- 80003ec:	080008cc 	.word	0x080008cc
+ 80003e4:	080008e0 	.word	0x080008e0
+ 80003e8:	080008e4 	.word	0x080008e4
+ 80003ec:	080008e8 	.word	0x080008e8
 
 080003f0 <pin_mode>:
 
@@ -751,7 +751,7 @@ void systick_init(uint32_t reload_val) {
  800057a:	bc80      	pop	{r7}
  800057c:	4770      	bx	lr
  800057e:	bf00      	nop
- 8000580:	080008d0 	.word	0x080008d0
+ 8000580:	080008ec 	.word	0x080008ec
  8000584:	20000000 	.word	0x20000000
 
 08000588 <millis>:
@@ -871,7 +871,7 @@ void rcc_init(void) {
  800065e:	46bd      	mov	sp, r7
  8000660:	bc80      	pop	{r7}
  8000662:	4770      	bx	lr
- 8000664:	080008d4 	.word	0x080008d4
+ 8000664:	080008f0 	.word	0x080008f0
 
 08000668 <reset_system>:
 #include "gpio.h"
@@ -922,7 +922,7 @@ void reset_system(void) {
  80006b2:	46bd      	mov	sp, r7
  80006b4:	bd80      	pop	{r7, pc}
  80006b6:	bf00      	nop
- 80006b8:	080008d8 	.word	0x080008d8
+ 80006b8:	080008f4 	.word	0x080008f4
  80006bc:	05fa0004 	.word	0x05fa0004
 
 080006c0 <hard_fault_handle>:
@@ -989,254 +989,263 @@ int main(void) {
     init_serial(USART1, 115200U);
  800070c:	f44f 31e1 	mov.w	r1, #115200	; 0x1c200
  8000710:	2001      	movs	r0, #1
- 8000712:	f000 f82f 	bl	8000774 <init_serial>
+ 8000712:	f000 f833 	bl	800077c <init_serial>
 
     while(1) {
-        if (serial_r_c(USART2) == (char)'a');
- 8000716:	2002      	movs	r0, #2
- 8000718:	f000 f899 	bl	800084e <serial_r_c>
-            led_toggle(PC13);
- 800071c:	202d      	movs	r0, #45	; 0x2d
- 800071e:	f7ff fe9b 	bl	8000458 <led_toggle>
+        // char a = serial_r_c(USART1);
+        serial_wr_s(USART1, "hello world", 1);
+ 8000716:	2201      	movs	r2, #1
+ 8000718:	4906      	ldr	r1, [pc, #24]	; (8000734 <main+0x50>)
+ 800071a:	2001      	movs	r0, #1
+ 800071c:	f000 f86e 	bl	80007fc <serial_wr_s>
+        // systick_delay(1000);
+        // serial_wr_c(USART1, a);
+        led_toggle(PC13);
+ 8000720:	202d      	movs	r0, #45	; 0x2d
+ 8000722:	f7ff fe99 	bl	8000458 <led_toggle>
         systick_delay(1000);
- 8000722:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
- 8000726:	f04f 0100 	mov.w	r1, #0
- 800072a:	f7ff ff57 	bl	80005dc <systick_delay>
-        if (serial_r_c(USART2) == (char)'a');
- 800072e:	e7f2      	b.n	8000716 <main+0x32>
+ 8000726:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
+ 800072a:	f04f 0100 	mov.w	r1, #0
+ 800072e:	f7ff ff55 	bl	80005dc <systick_delay>
+        serial_wr_s(USART1, "hello world", 1);
+ 8000732:	e7f0      	b.n	8000716 <main+0x32>
+ 8000734:	080008b8 	.word	0x080008b8
 
-08000730 <get_usart>:
+08000738 <get_usart>:
 
 usart_t *usart1 = (usart_t *)(UART1_BASE);
 usart_t *usart2 = (usart_t *)(UART2_BASE);
 usart_t *usart3 = (usart_t *)(UART3_BASE);
 
 usart_t *get_usart(uint8_t usart) {
- 8000730:	b480      	push	{r7}
- 8000732:	b083      	sub	sp, #12
- 8000734:	af00      	add	r7, sp, #0
- 8000736:	4603      	mov	r3, r0
- 8000738:	71fb      	strb	r3, [r7, #7]
+ 8000738:	b480      	push	{r7}
+ 800073a:	b083      	sub	sp, #12
+ 800073c:	af00      	add	r7, sp, #0
+ 800073e:	4603      	mov	r3, r0
+ 8000740:	71fb      	strb	r3, [r7, #7]
     switch(usart) {
- 800073a:	79fb      	ldrb	r3, [r7, #7]
- 800073c:	2b02      	cmp	r3, #2
- 800073e:	d006      	beq.n	800074e <get_usart+0x1e>
- 8000740:	2b03      	cmp	r3, #3
- 8000742:	d007      	beq.n	8000754 <get_usart+0x24>
- 8000744:	2b01      	cmp	r3, #1
- 8000746:	d108      	bne.n	800075a <get_usart+0x2a>
+ 8000742:	79fb      	ldrb	r3, [r7, #7]
+ 8000744:	2b02      	cmp	r3, #2
+ 8000746:	d006      	beq.n	8000756 <get_usart+0x1e>
+ 8000748:	2b03      	cmp	r3, #3
+ 800074a:	d007      	beq.n	800075c <get_usart+0x24>
+ 800074c:	2b01      	cmp	r3, #1
+ 800074e:	d108      	bne.n	8000762 <get_usart+0x2a>
         case USART1: return usart1;
- 8000748:	4b07      	ldr	r3, [pc, #28]	; (8000768 <get_usart+0x38>)
- 800074a:	681b      	ldr	r3, [r3, #0]
- 800074c:	e007      	b.n	800075e <get_usart+0x2e>
+ 8000750:	4b07      	ldr	r3, [pc, #28]	; (8000770 <get_usart+0x38>)
+ 8000752:	681b      	ldr	r3, [r3, #0]
+ 8000754:	e007      	b.n	8000766 <get_usart+0x2e>
         case USART2: return usart2;
- 800074e:	4b07      	ldr	r3, [pc, #28]	; (800076c <get_usart+0x3c>)
- 8000750:	681b      	ldr	r3, [r3, #0]
- 8000752:	e004      	b.n	800075e <get_usart+0x2e>
+ 8000756:	4b07      	ldr	r3, [pc, #28]	; (8000774 <get_usart+0x3c>)
+ 8000758:	681b      	ldr	r3, [r3, #0]
+ 800075a:	e004      	b.n	8000766 <get_usart+0x2e>
         case USART3: return usart3;
- 8000754:	4b06      	ldr	r3, [pc, #24]	; (8000770 <get_usart+0x40>)
- 8000756:	681b      	ldr	r3, [r3, #0]
- 8000758:	e001      	b.n	800075e <get_usart+0x2e>
+ 800075c:	4b06      	ldr	r3, [pc, #24]	; (8000778 <get_usart+0x40>)
+ 800075e:	681b      	ldr	r3, [r3, #0]
+ 8000760:	e001      	b.n	8000766 <get_usart+0x2e>
         default: return usart1;
- 800075a:	4b03      	ldr	r3, [pc, #12]	; (8000768 <get_usart+0x38>)
- 800075c:	681b      	ldr	r3, [r3, #0]
+ 8000762:	4b03      	ldr	r3, [pc, #12]	; (8000770 <get_usart+0x38>)
+ 8000764:	681b      	ldr	r3, [r3, #0]
     }
 }
- 800075e:	4618      	mov	r0, r3
- 8000760:	370c      	adds	r7, #12
- 8000762:	46bd      	mov	sp, r7
- 8000764:	bc80      	pop	{r7}
- 8000766:	4770      	bx	lr
- 8000768:	080008dc 	.word	0x080008dc
- 800076c:	080008e0 	.word	0x080008e0
- 8000770:	080008e4 	.word	0x080008e4
+ 8000766:	4618      	mov	r0, r3
+ 8000768:	370c      	adds	r7, #12
+ 800076a:	46bd      	mov	sp, r7
+ 800076c:	bc80      	pop	{r7}
+ 800076e:	4770      	bx	lr
+ 8000770:	080008f8 	.word	0x080008f8
+ 8000774:	080008fc 	.word	0x080008fc
+ 8000778:	08000900 	.word	0x08000900
 
-08000774 <init_serial>:
+0800077c <init_serial>:
 
 void init_serial(uint8_t usart, uint32_t baud) {
- 8000774:	b580      	push	{r7, lr}
- 8000776:	b084      	sub	sp, #16
- 8000778:	af00      	add	r7, sp, #0
- 800077a:	4603      	mov	r3, r0
- 800077c:	6039      	str	r1, [r7, #0]
- 800077e:	71fb      	strb	r3, [r7, #7]
+ 800077c:	b580      	push	{r7, lr}
+ 800077e:	b084      	sub	sp, #16
+ 8000780:	af00      	add	r7, sp, #0
+ 8000782:	4603      	mov	r3, r0
+ 8000784:	6039      	str	r1, [r7, #0]
+ 8000786:	71fb      	strb	r3, [r7, #7]
     usart_t *serial = get_usart(usart);
- 8000780:	79fb      	ldrb	r3, [r7, #7]
- 8000782:	4618      	mov	r0, r3
- 8000784:	f7ff ffd4 	bl	8000730 <get_usart>
- 8000788:	60f8      	str	r0, [r7, #12]
-    serial->cr1 = (RE|TE|PCE|W_LEN_9|UE); // enable Tx/Tx, parity, word length 9, usart
- 800078a:	68fb      	ldr	r3, [r7, #12]
- 800078c:	f243 420c 	movw	r2, #13324	; 0x340c
- 8000790:	60da      	str	r2, [r3, #12]
-    serial->cr2 = 0;
+ 8000788:	79fb      	ldrb	r3, [r7, #7]
+ 800078a:	4618      	mov	r0, r3
+ 800078c:	f7ff ffd4 	bl	8000738 <get_usart>
+ 8000790:	60f8      	str	r0, [r7, #12]
+    serial->cr1 = (RE|TE|W_LEN_9|UE); // enable Tx/Rx, word length 9, usart
  8000792:	68fb      	ldr	r3, [r7, #12]
- 8000794:	2200      	movs	r2, #0
- 8000796:	611a      	str	r2, [r3, #16]
+ 8000794:	f243 020c 	movw	r2, #12300	; 0x300c
+ 8000798:	60da      	str	r2, [r3, #12]
+    serial->cr2 = 0;
+ 800079a:	68fb      	ldr	r3, [r7, #12]
+ 800079c:	2200      	movs	r2, #0
+ 800079e:	611a      	str	r2, [r3, #16]
     serial->cr3 = 0;
- 8000798:	68fb      	ldr	r3, [r7, #12]
- 800079a:	2200      	movs	r2, #0
- 800079c:	615a      	str	r2, [r3, #20]
+ 80007a0:	68fb      	ldr	r3, [r7, #12]
+ 80007a2:	2200      	movs	r2, #0
+ 80007a4:	615a      	str	r2, [r3, #20]
     serial->gtpr = 0;
- 800079e:	68fb      	ldr	r3, [r7, #12]
- 80007a0:	2200      	movs	r2, #0
- 80007a2:	619a      	str	r2, [r3, #24]
+ 80007a6:	68fb      	ldr	r3, [r7, #12]
+ 80007a8:	2200      	movs	r2, #0
+ 80007aa:	619a      	str	r2, [r3, #24]
     serial->baud = HSI_MHZ / baud;
- 80007a4:	4a04      	ldr	r2, [pc, #16]	; (80007b8 <init_serial+0x44>)
- 80007a6:	683b      	ldr	r3, [r7, #0]
- 80007a8:	fbb2 f2f3 	udiv	r2, r2, r3
- 80007ac:	68fb      	ldr	r3, [r7, #12]
- 80007ae:	609a      	str	r2, [r3, #8]
+ 80007ac:	4a04      	ldr	r2, [pc, #16]	; (80007c0 <init_serial+0x44>)
+ 80007ae:	683b      	ldr	r3, [r7, #0]
+ 80007b0:	fbb2 f2f3 	udiv	r2, r2, r3
+ 80007b4:	68fb      	ldr	r3, [r7, #12]
+ 80007b6:	609a      	str	r2, [r3, #8]
 }
- 80007b0:	bf00      	nop
- 80007b2:	3710      	adds	r7, #16
- 80007b4:	46bd      	mov	sp, r7
- 80007b6:	bd80      	pop	{r7, pc}
- 80007b8:	007a1200 	.word	0x007a1200
+ 80007b8:	bf00      	nop
+ 80007ba:	3710      	adds	r7, #16
+ 80007bc:	46bd      	mov	sp, r7
+ 80007be:	bd80      	pop	{r7, pc}
+ 80007c0:	007a1200 	.word	0x007a1200
 
-080007bc <serial_wr_c>:
+080007c4 <serial_wr_c>:
 
 bool serial_wr_c(uint8_t usart, char c) {
- 80007bc:	b580      	push	{r7, lr}
- 80007be:	b084      	sub	sp, #16
- 80007c0:	af00      	add	r7, sp, #0
- 80007c2:	4603      	mov	r3, r0
- 80007c4:	460a      	mov	r2, r1
- 80007c6:	71fb      	strb	r3, [r7, #7]
- 80007c8:	4613      	mov	r3, r2
- 80007ca:	71bb      	strb	r3, [r7, #6]
+ 80007c4:	b580      	push	{r7, lr}
+ 80007c6:	b084      	sub	sp, #16
+ 80007c8:	af00      	add	r7, sp, #0
+ 80007ca:	4603      	mov	r3, r0
+ 80007cc:	460a      	mov	r2, r1
+ 80007ce:	71fb      	strb	r3, [r7, #7]
+ 80007d0:	4613      	mov	r3, r2
+ 80007d2:	71bb      	strb	r3, [r7, #6]
     usart_t *serial = get_usart(usart);
- 80007cc:	79fb      	ldrb	r3, [r7, #7]
- 80007ce:	4618      	mov	r0, r3
- 80007d0:	f7ff ffae 	bl	8000730 <get_usart>
- 80007d4:	60f8      	str	r0, [r7, #12]
-    while(!(serial->sr & TXE));
- 80007d6:	bf00      	nop
- 80007d8:	68fb      	ldr	r3, [r7, #12]
- 80007da:	681b      	ldr	r3, [r3, #0]
- 80007dc:	f003 0380 	and.w	r3, r3, #128	; 0x80
- 80007e0:	2b00      	cmp	r3, #0
- 80007e2:	d0f9      	beq.n	80007d8 <serial_wr_c+0x1c>
+ 80007d4:	79fb      	ldrb	r3, [r7, #7]
+ 80007d6:	4618      	mov	r0, r3
+ 80007d8:	f7ff ffae 	bl	8000738 <get_usart>
+ 80007dc:	60f8      	str	r0, [r7, #12]
     serial->data = c;
- 80007e4:	79ba      	ldrb	r2, [r7, #6]
+ 80007de:	79ba      	ldrb	r2, [r7, #6]
+ 80007e0:	68fb      	ldr	r3, [r7, #12]
+ 80007e2:	605a      	str	r2, [r3, #4]
+    while(!(serial->sr & TC));
+ 80007e4:	bf00      	nop
  80007e6:	68fb      	ldr	r3, [r7, #12]
- 80007e8:	605a      	str	r2, [r3, #4]
+ 80007e8:	681b      	ldr	r3, [r3, #0]
+ 80007ea:	f003 0340 	and.w	r3, r3, #64	; 0x40
+ 80007ee:	2b00      	cmp	r3, #0
+ 80007f0:	d0f9      	beq.n	80007e6 <serial_wr_c+0x22>
     return 1;
- 80007ea:	2301      	movs	r3, #1
+ 80007f2:	2301      	movs	r3, #1
 }
- 80007ec:	4618      	mov	r0, r3
- 80007ee:	3710      	adds	r7, #16
- 80007f0:	46bd      	mov	sp, r7
- 80007f2:	bd80      	pop	{r7, pc}
+ 80007f4:	4618      	mov	r0, r3
+ 80007f6:	3710      	adds	r7, #16
+ 80007f8:	46bd      	mov	sp, r7
+ 80007fa:	bd80      	pop	{r7, pc}
 
-080007f4 <serial_wr_s>:
+080007fc <serial_wr_s>:
 
 bool serial_wr_s(uint8_t usart, char *s, bool new_line) {
- 80007f4:	b580      	push	{r7, lr}
- 80007f6:	b082      	sub	sp, #8
- 80007f8:	af00      	add	r7, sp, #0
- 80007fa:	4603      	mov	r3, r0
- 80007fc:	6039      	str	r1, [r7, #0]
- 80007fe:	71fb      	strb	r3, [r7, #7]
- 8000800:	4613      	mov	r3, r2
- 8000802:	71bb      	strb	r3, [r7, #6]
+ 80007fc:	b580      	push	{r7, lr}
+ 80007fe:	b082      	sub	sp, #8
+ 8000800:	af00      	add	r7, sp, #0
+ 8000802:	4603      	mov	r3, r0
+ 8000804:	6039      	str	r1, [r7, #0]
+ 8000806:	71fb      	strb	r3, [r7, #7]
+ 8000808:	4613      	mov	r3, r2
+ 800080a:	71bb      	strb	r3, [r7, #6]
     while(*s) serial_wr_c(usart, *s++);
- 8000804:	e008      	b.n	8000818 <serial_wr_s+0x24>
- 8000806:	683b      	ldr	r3, [r7, #0]
- 8000808:	1c5a      	adds	r2, r3, #1
- 800080a:	603a      	str	r2, [r7, #0]
- 800080c:	781a      	ldrb	r2, [r3, #0]
- 800080e:	79fb      	ldrb	r3, [r7, #7]
- 8000810:	4611      	mov	r1, r2
- 8000812:	4618      	mov	r0, r3
- 8000814:	f7ff ffd2 	bl	80007bc <serial_wr_c>
- 8000818:	683b      	ldr	r3, [r7, #0]
- 800081a:	781b      	ldrb	r3, [r3, #0]
- 800081c:	2b00      	cmp	r3, #0
- 800081e:	d1f2      	bne.n	8000806 <serial_wr_s+0x12>
+ 800080c:	e008      	b.n	8000820 <serial_wr_s+0x24>
+ 800080e:	683b      	ldr	r3, [r7, #0]
+ 8000810:	1c5a      	adds	r2, r3, #1
+ 8000812:	603a      	str	r2, [r7, #0]
+ 8000814:	781a      	ldrb	r2, [r3, #0]
+ 8000816:	79fb      	ldrb	r3, [r7, #7]
+ 8000818:	4611      	mov	r1, r2
+ 800081a:	4618      	mov	r0, r3
+ 800081c:	f7ff ffd2 	bl	80007c4 <serial_wr_c>
+ 8000820:	683b      	ldr	r3, [r7, #0]
+ 8000822:	781b      	ldrb	r3, [r3, #0]
+ 8000824:	2b00      	cmp	r3, #0
+ 8000826:	d1f2      	bne.n	800080e <serial_wr_s+0x12>
     if (!new_line) return 1;
- 8000820:	79bb      	ldrb	r3, [r7, #6]
- 8000822:	f083 0301 	eor.w	r3, r3, #1
- 8000826:	b2db      	uxtb	r3, r3
- 8000828:	2b00      	cmp	r3, #0
- 800082a:	d001      	beq.n	8000830 <serial_wr_s+0x3c>
- 800082c:	2301      	movs	r3, #1
- 800082e:	e00a      	b.n	8000846 <serial_wr_s+0x52>
+ 8000828:	79bb      	ldrb	r3, [r7, #6]
+ 800082a:	f083 0301 	eor.w	r3, r3, #1
+ 800082e:	b2db      	uxtb	r3, r3
+ 8000830:	2b00      	cmp	r3, #0
+ 8000832:	d001      	beq.n	8000838 <serial_wr_s+0x3c>
+ 8000834:	2301      	movs	r3, #1
+ 8000836:	e00a      	b.n	800084e <serial_wr_s+0x52>
     serial_wr_c(usart, '\r');
- 8000830:	79fb      	ldrb	r3, [r7, #7]
- 8000832:	210d      	movs	r1, #13
- 8000834:	4618      	mov	r0, r3
- 8000836:	f7ff ffc1 	bl	80007bc <serial_wr_c>
+ 8000838:	79fb      	ldrb	r3, [r7, #7]
+ 800083a:	210d      	movs	r1, #13
+ 800083c:	4618      	mov	r0, r3
+ 800083e:	f7ff ffc1 	bl	80007c4 <serial_wr_c>
     serial_wr_c(usart, '\n');
- 800083a:	79fb      	ldrb	r3, [r7, #7]
- 800083c:	210a      	movs	r1, #10
- 800083e:	4618      	mov	r0, r3
- 8000840:	f7ff ffbc 	bl	80007bc <serial_wr_c>
-    return 1;
- 8000844:	2301      	movs	r3, #1
-}
+ 8000842:	79fb      	ldrb	r3, [r7, #7]
+ 8000844:	210a      	movs	r1, #10
  8000846:	4618      	mov	r0, r3
- 8000848:	3708      	adds	r7, #8
- 800084a:	46bd      	mov	sp, r7
- 800084c:	bd80      	pop	{r7, pc}
+ 8000848:	f7ff ffbc 	bl	80007c4 <serial_wr_c>
+    return 1;
+ 800084c:	2301      	movs	r3, #1
+}
+ 800084e:	4618      	mov	r0, r3
+ 8000850:	3708      	adds	r7, #8
+ 8000852:	46bd      	mov	sp, r7
+ 8000854:	bd80      	pop	{r7, pc}
 
-0800084e <serial_r_c>:
+08000856 <serial_r_c>:
 
 char serial_r_c(uint8_t usart) {
- 800084e:	b580      	push	{r7, lr}
- 8000850:	b084      	sub	sp, #16
- 8000852:	af00      	add	r7, sp, #0
- 8000854:	4603      	mov	r3, r0
- 8000856:	71fb      	strb	r3, [r7, #7]
+ 8000856:	b580      	push	{r7, lr}
+ 8000858:	b084      	sub	sp, #16
+ 800085a:	af00      	add	r7, sp, #0
+ 800085c:	4603      	mov	r3, r0
+ 800085e:	71fb      	strb	r3, [r7, #7]
     usart_t *serial = get_usart(usart);
- 8000858:	79fb      	ldrb	r3, [r7, #7]
- 800085a:	4618      	mov	r0, r3
- 800085c:	f7ff ff68 	bl	8000730 <get_usart>
- 8000860:	60f8      	str	r0, [r7, #12]
-    while(!(serial->sr) & RXNE);
- 8000862:	bf00      	nop
- 8000864:	68fb      	ldr	r3, [r7, #12]
- 8000866:	681b      	ldr	r3, [r3, #0]
-    return serial->data & DATA_MASK;
- 8000868:	68fb      	ldr	r3, [r7, #12]
- 800086a:	685b      	ldr	r3, [r3, #4]
- 800086c:	b2db      	uxtb	r3, r3
+ 8000860:	79fb      	ldrb	r3, [r7, #7]
+ 8000862:	4618      	mov	r0, r3
+ 8000864:	f7ff ff68 	bl	8000738 <get_usart>
+ 8000868:	60f8      	str	r0, [r7, #12]
+    while(!(serial->sr & RXNE));
+ 800086a:	bf00      	nop
+ 800086c:	68fb      	ldr	r3, [r7, #12]
+ 800086e:	681b      	ldr	r3, [r3, #0]
+ 8000870:	f003 0320 	and.w	r3, r3, #32
+ 8000874:	2b00      	cmp	r3, #0
+ 8000876:	d0f9      	beq.n	800086c <serial_r_c+0x16>
+    return (char)(serial->data & DATA_MASK);
+ 8000878:	68fb      	ldr	r3, [r7, #12]
+ 800087a:	685b      	ldr	r3, [r3, #4]
+ 800087c:	b2db      	uxtb	r3, r3
 }
- 800086e:	4618      	mov	r0, r3
- 8000870:	3710      	adds	r7, #16
- 8000872:	46bd      	mov	sp, r7
- 8000874:	bd80      	pop	{r7, pc}
+ 800087e:	4618      	mov	r0, r3
+ 8000880:	3710      	adds	r7, #16
+ 8000882:	46bd      	mov	sp, r7
+ 8000884:	bd80      	pop	{r7, pc}
 
-08000876 <serial_r_s>:
+08000886 <serial_r_s>:
 
 char *serial_r_s(uint8_t usart, char *buffer) {
- 8000876:	b590      	push	{r4, r7, lr}
- 8000878:	b083      	sub	sp, #12
- 800087a:	af00      	add	r7, sp, #0
- 800087c:	4603      	mov	r3, r0
- 800087e:	6039      	str	r1, [r7, #0]
- 8000880:	71fb      	strb	r3, [r7, #7]
+ 8000886:	b590      	push	{r4, r7, lr}
+ 8000888:	b083      	sub	sp, #12
+ 800088a:	af00      	add	r7, sp, #0
+ 800088c:	4603      	mov	r3, r0
+ 800088e:	6039      	str	r1, [r7, #0]
+ 8000890:	71fb      	strb	r3, [r7, #7]
     while(*buffer) {
- 8000882:	e008      	b.n	8000896 <serial_r_s+0x20>
+ 8000892:	e008      	b.n	80008a6 <serial_r_s+0x20>
         *buffer++ = serial_r_c(usart);
- 8000884:	683c      	ldr	r4, [r7, #0]
- 8000886:	1c63      	adds	r3, r4, #1
- 8000888:	603b      	str	r3, [r7, #0]
- 800088a:	79fb      	ldrb	r3, [r7, #7]
- 800088c:	4618      	mov	r0, r3
- 800088e:	f7ff ffde 	bl	800084e <serial_r_c>
- 8000892:	4603      	mov	r3, r0
- 8000894:	7023      	strb	r3, [r4, #0]
+ 8000894:	683c      	ldr	r4, [r7, #0]
+ 8000896:	1c63      	adds	r3, r4, #1
+ 8000898:	603b      	str	r3, [r7, #0]
+ 800089a:	79fb      	ldrb	r3, [r7, #7]
+ 800089c:	4618      	mov	r0, r3
+ 800089e:	f7ff ffda 	bl	8000856 <serial_r_c>
+ 80008a2:	4603      	mov	r3, r0
+ 80008a4:	7023      	strb	r3, [r4, #0]
     while(*buffer) {
- 8000896:	683b      	ldr	r3, [r7, #0]
- 8000898:	781b      	ldrb	r3, [r3, #0]
- 800089a:	2b00      	cmp	r3, #0
- 800089c:	d1f2      	bne.n	8000884 <serial_r_s+0xe>
+ 80008a6:	683b      	ldr	r3, [r7, #0]
+ 80008a8:	781b      	ldrb	r3, [r3, #0]
+ 80008aa:	2b00      	cmp	r3, #0
+ 80008ac:	d1f2      	bne.n	8000894 <serial_r_s+0xe>
     }
     return buffer;
- 800089e:	683b      	ldr	r3, [r7, #0]
+ 80008ae:	683b      	ldr	r3, [r7, #0]
 }
- 80008a0:	4618      	mov	r0, r3
- 80008a2:	370c      	adds	r7, #12
- 80008a4:	46bd      	mov	sp, r7
- 80008a6:	bd90      	pop	{r4, r7, pc}
+ 80008b0:	4618      	mov	r0, r3
+ 80008b2:	370c      	adds	r7, #12
+ 80008b4:	46bd      	mov	sp, r7
+ 80008b6:	bd90      	pop	{r4, r7, pc}

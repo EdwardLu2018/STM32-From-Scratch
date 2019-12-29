@@ -15,7 +15,7 @@ usart_t *get_usart(uint8_t usart) {
 
 void init_serial(uint8_t usart, uint32_t baud) {
     usart_t *serial = get_usart(usart);
-    serial->cr1 = (RE|TE|PCE|W_LEN_9|UE); // enable Tx/Tx, parity, word length 9, usart
+    serial->cr1 = (RE|TE|W_LEN_9|UE); // enable Tx/Rx, word length 9, usart
     serial->cr2 = 0;
     serial->cr3 = 0;
     serial->gtpr = 0;
@@ -24,8 +24,8 @@ void init_serial(uint8_t usart, uint32_t baud) {
 
 bool serial_wr_c(uint8_t usart, char c) {
     usart_t *serial = get_usart(usart);
-    while(!(serial->sr & TC));
     serial->data = c;
+    while(!(serial->sr & TC));
     return 1;
 }
 
@@ -40,7 +40,7 @@ bool serial_wr_s(uint8_t usart, char *s, bool new_line) {
 char serial_r_c(uint8_t usart) {
     usart_t *serial = get_usart(usart);
     while(!(serial->sr & RXNE));
-    return serial->data & DATA_MASK;
+    return (char)(serial->data & DATA_MASK);
 }
 
 char *serial_r_s(uint8_t usart, char *buffer) {

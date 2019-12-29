@@ -17,8 +17,9 @@ int main(void) {
 
     while(1) {
         // char a = serial_r_c(USART1);
-        serial_wr_w(USART1, "hello world", 1);
-        // if (a == (char)'a' || a == (char)'\n' || a == (char)'\r')
+        serial_wr_s(USART1, "hello world", 1);
+        // systick_delay(1000);
+        // serial_wr_c(USART1, a);
         led_toggle(PC13);
         systick_delay(1000);
     }

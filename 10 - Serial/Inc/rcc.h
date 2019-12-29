@@ -3,16 +3,16 @@
 
 #include "stm32f103.h"
 
-#define GPIOA_EN    (1<<2)
-#define GPIOB_EN    (1<<3)
-#define GPIOC_EN    (1<<4)
+#define GPIOA_EN    (1<<2) // apbe2
+#define GPIOB_EN    (1<<3) // apbe2
+#define GPIOC_EN    (1<<4) // apbe2
 
-#define TIM2_EN     (1<<0)
-#define TIM3_EN     (1<<1)
-#define TIM4_EN     (1<<2)
-#define TIM5_EN     (1<<3)
-#define TIM6_EN     (1<<4)
-#define TIM7_EN     (1<<5)
+#define TIM2_EN     (1<<0) // apbe1
+#define TIM3_EN     (1<<1) // apbe1
+#define TIM4_EN     (1<<2) // apbe1
+#define TIM5_EN     (1<<3) // apbe1
+#define TIM6_EN     (1<<4) // apbe1
+#define TIM7_EN     (1<<5) // apbe1
 
 #define USART1_EN   (1<<14) // apbe2
 #define USART2_EN   (1<<17) // apbe1
