@@ -1,4 +1,5 @@
 #include "usart.h"
+#include "nvic.h"
 
 usart_t *usart1 = (usart_t *)(UART1_BASE);
 usart_t *usart2 = (usart_t *)(UART2_BASE);
@@ -13,20 +14,21 @@ usart_t *get_usart(uint8_t usart) {
     }
 }
 
-void init_serial(uint8_t usart, uint32_t baud) {
+void serial_init(uint8_t usart, uint32_t baud) {
     usart_t *serial = get_usart(usart);
     serial->cr1 = (RE|TE|W_LEN_9|UE); // enable Tx/Rx, word length 9, usart
     serial->cr2 = 0;
     serial->cr3 = 0;
     serial->gtpr = 0;
     serial->baud = PCLK2 / baud;
+    nvic_enable(USART1_IRQ_START_POS+(usart-1));
 }
 
 bool serial_wr_c(uint8_t usart, char c) {
     usart_t *serial = get_usart(usart);
     serial->data = c;
     while(!(serial->sr & TC));
-    return 1;
+    return USART_SUCCESS;
 }
 
 bool serial_wr_s(uint8_t usart, char *s, bool new_line) {
@@ -34,7 +36,7 @@ bool serial_wr_s(uint8_t usart, char *s, bool new_line) {
     if (!new_line) return 1;
     serial_wr_c(usart, '\r');
     serial_wr_c(usart, '\n');
-    return 1;
+    return USART_SUCCESS;
 }
 
 char serial_r_c(uint8_t usart) {

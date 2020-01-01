@@ -5,9 +5,14 @@
 #include "intrinsic.h"
 #include "stdbool.h"
 
-#define USART1  1
-#define USART2  2
-#define USART3  3
+#define USART1_IRQ_START_POS 37U
+
+#define USART1  0
+#define USART2  1
+#define USART3  2
+
+#define USART_SUCCESS   1
+#define USART_FAIL      0
 
 #define SBK     (1<<0)  // send break point chars
 #define RE      (1<<2)  // receiver enable
@@ -35,8 +40,12 @@ typedef struct
     uint32_t __IO gtpr; // 0x18 guard time and prescaler register
 } usart_t;
 
+usart_t *usart1;
+usart_t *usart2;
+usart_t *usart3;
+
 usart_t *get_usart(uint8_t usart);
-void init_serial(uint8_t usart, uint32_t baud);
+void serial_init(uint8_t usart, uint32_t baud);
 bool serial_wr_c(uint8_t usart, char c);
 bool serial_wr_s(uint8_t usart, char *s, bool new_line);
 char serial_r_c(uint8_t usart);

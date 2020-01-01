@@ -12,19 +12,3 @@ static void reset_system(void) {
     __DSB(); // ensures the completion of memory accesses
     while(1);
 }
-
-void HardFault_Handler(void) {
-    reset_system();
-}
-
-void MemManage_Handler(void) {
-    reset_system();
-}
-
-void BusFault_Handler(void) {
-    reset_system();
-}
-
-void UsageFault_Handler(void) {
-    reset_system();
-}

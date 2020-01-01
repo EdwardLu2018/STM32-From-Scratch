@@ -8,6 +8,8 @@
 #define TICKINT_EN  (1<<1)
 #define TICK_EN     (1<<0)
 
+uint32_t __IO cnt;
+
 // systick timer //
 typedef struct
 {
@@ -19,7 +21,6 @@ typedef struct
 
 systick_t *systick;
 
-void Systick_Handler(void);
 void systick_init(uint32_t reload_val);
 uint32_t millis(void);
 

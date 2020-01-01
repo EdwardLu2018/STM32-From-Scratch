@@ -4,20 +4,20 @@
 #include "stm32f103.h"
 #include "intrinsic.h"
 
-#define TIM_IRQ_START_POS 28
+#define TIM2_IRQ_START_POS 28U
 
 #define CHAN1   0
 #define CHAN2   1
 #define CHAN3   2
 #define CHAN4   3
 
-#define TIM1    1
-#define TIM2    2
-#define TIM3    3
-#define TIM4    4
-#define TIM5    5
-#define TIM6    6
-#define TIM7    7
+#define TIM1    0
+#define TIM2    1
+#define TIM3    2
+#define TIM4    3
+#define TIM5    4
+#define TIM6    5
+#define TIM7    6
 
 //  Output compare modes (pg 414) //
 typedef enum {

@@ -3,53 +3,69 @@ build/blinky.elf:     file format elf32-littlearm
 build/blinky.elf
 architecture: arm, flags 0x00000112:
 EXEC_P, HAS_SYMS, D_PAGED
-start address 0x08000000
+start address 0x080009c1
 
 Program Header:
     LOAD off    0x00010000 vaddr 0x08000000 paddr 0x08000000 align 2**16
-         filesz 0x00000a5c memsz 0x00000a5c flags rwx
-    LOAD off    0x00020000 vaddr 0x20000000 paddr 0x20000000 align 2**16
-         filesz 0x00000000 memsz 0x00000004 flags rw-
+         filesz 0x00000a14 memsz 0x00000a14 flags r-x
+    LOAD off    0x00020000 vaddr 0x20000000 paddr 0x08000a14 align 2**16
+         filesz 0x00000044 memsz 0x00000048 flags rw-
+    LOAD off    0x00020048 vaddr 0x20000048 paddr 0x08000a58 align 2**16
+         filesz 0x00000000 memsz 0x00000600 flags rw-
 private flags = 5000200: [Version5 EABI] [soft-float ABI]
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000a16  08000000  08000000  00010000  2**2
+  0 .isr_vector   00000150  08000000  08000000  00010000  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         000008b4  08000150  08000150  00010150  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000044  08000a18  08000a18  00010a18  2**2
+  2 .rodata       00000010  08000a04  08000a04  00010a04  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  3 .data         00000044  20000000  08000a14  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000004  20000000  20000000  00020000  2**2
+  4 .bss          00000004  20000044  08000a58  00020044  2**2
                   ALLOC
-  3 .ARM.attributes 0000002f  00000000  00000000  00010a5c  2**0
+  5 ._user_heap_stack 00000600  20000048  08000a58  00020048  2**0
+                  ALLOC
+  6 .ARM.attributes 0000002f  00000000  00000000  00020044  2**0
                   CONTENTS, READONLY
-  4 .comment      0000007f  00000000  00000000  00010a8b  2**0
+  7 .debug_info   00001997  00000000  00000000  00020073  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 00000962  00000000  00000000  00021a0a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_aranges 00000158  00000000  00000000  0002236c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_line   00000b84  00000000  00000000  000224c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    0000067d  00000000  00000000  00023048  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .comment      0000007f  00000000  00000000  000236c5  2**0
                   CONTENTS, READONLY
-  5 .debug_info   000019e9  00000000  00000000  00010b0a  2**0
-                  CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000969  00000000  00000000  000124f3  2**0
-                  CONTENTS, READONLY, DEBUGGING
-  7 .debug_aranges 00000158  00000000  00000000  00012e5c  2**0
-                  CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000b81  00000000  00000000  00012fb4  2**0
-                  CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000006e6  00000000  00000000  00013b35  2**0
-                  CONTENTS, READONLY, DEBUGGING
- 10 .debug_frame  000005c0  00000000  00000000  0001421c  2**2
+ 13 .debug_frame  000004f4  00000000  00000000  00023744  2**2
                   CONTENTS, READONLY, DEBUGGING
 SYMBOL TABLE:
-08000000 l    d  .text	00000000 .text
-08000a18 l    d  .data	00000000 .data
-20000000 l    d  .bss	00000000 .bss
+08000000 l    d  .isr_vector	00000000 .isr_vector
+08000150 l    d  .text	00000000 .text
+08000a04 l    d  .rodata	00000000 .rodata
+20000000 l    d  .data	00000000 .data
+20000044 l    d  .bss	00000000 .bss
+20000048 l    d  ._user_heap_stack	00000000 ._user_heap_stack
 00000000 l    d  .ARM.attributes	00000000 .ARM.attributes
-00000000 l    d  .comment	00000000 .comment
 00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
 00000000 l    d  .debug_aranges	00000000 .debug_aranges
 00000000 l    d  .debug_line	00000000 .debug_line
 00000000 l    d  .debug_str	00000000 .debug_str
+00000000 l    d  .comment	00000000 .comment
 00000000 l    d  .debug_frame	00000000 .debug_frame
 00000000 l    df *ABS*	00000000 build/startup.o
-08000150 l     F .text	00000000 _reset
+080009cc l       .text	00000000 LoopCopyDataInit
+080009c4 l       .text	00000000 CopyDataInit
+080009e0 l       .text	00000000 LoopFillZerobss
+080009da l       .text	00000000 FillZerobss
+08000a00 l       .text	00000000 Infinite_Loop
+08000000 l     O .isr_vector	00000000 g_pfnVectors
 00000000 l    df *ABS*	00000000 timer.c
 00000000 l    df *ABS*	00000000 nvic.c
 00000000 l    df *ABS*	00000000 gpio.c
@@ -58,65 +74,138 @@ SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 delay.c
 00000000 l    df *ABS*	00000000 rcc.c
 00000000 l    df *ABS*	00000000 scb.c
-08000708 l     F .text	00000010 __DSB
-08000718 l     F .text	00000028 reset_system
+08000648 l     F .text	00000010 __DSB
+08000658 l     F .text	00000028 reset_system
 00000000 l    df *ABS*	00000000 main.c
 00000000 l    df *ABS*	00000000 usart.c
 00000000 l    df *ABS*	00000000 intrinsic.c
-08000a38 g     O .data	00000004 gpio_b
-080008b0 g     F .text	00000048 init_serial
-08000a4c g     O .data	00000004 scb
-080009fa g     F .text	0000000e __disable_irq
-08000a34 g     O .data	00000004 gpio_a
-08000534 g     F .text	0000001c Systick_Handler
-08000740 g     F .text	0000000c HardFault_Handler
-0800086c g     F .text	00000044 get_usart
-08000a48 g     O .data	00000004 rcc
-08000930 g     F .text	0000005a serial_wr_s
-08000250 g     F .text	00000018 Timer7_Handler
-08000a58 g     O .data	00000004 usart3
-08000a50 g     O .data	00000004 usart1
-080009ec g     F .text	0000000e __enable_irq
-08000268 g     F .text	00000020 get_timer_cnt
-08000a2c g     O .data	00000004 tim7
-08000764 g     F .text	0000000c UsageFault_Handler
-08000238 g     F .text	00000018 Timer6_Handler
-20000000 g     O .bss	00000004 cnt
-080001d4 g     F .text	00000018 Timer2_Handler
-080001ec g     F .text	0000001c Timer3_Handler
-08000a18 g     O .data	00000004 tim2
-08000158 g     F .text	0000007c get_timer
-08000a28 g     O .data	00000004 tim6
-08000a3c g     O .data	00000004 gpio_c
-08000328 g     F .text	00000054 timer_init
-080005e8 g     F .text	0000004c systick_delay
-0800048e g     F .text	00000052 led_on
-08000a54 g     O .data	00000004 usart2
-08000288 g     F .text	000000a0 enable_chan
-08000220 g     F .text	00000018 Timer5_Handler
-0800037c g     F .text	00000038 nvic_enable
-08000550 g     F .text	00000044 systick_init
-08000a08 g     F .text	0000000e __NOP
-080003b4 g     F .text	00000040 get_gpio
-08000a1c g     O .data	00000004 tim3
-0800074c g     F .text	0000000c MemManage_Handler
-08000770 g     F .text	000000fc main
-08000a44 g     O .data	00000004 flash
-0800098a g     F .text	00000030 serial_r_c
-08000a30 g     O .data	00000004 nvic
-0800045c g     F .text	00000032 led_toggle
-080005a8 g     F .text	00000040 delay
-080004e0 g     F .text	00000052 led_off
-20005000 g       *ABS*	00000000 _estack
-08000208 g     F .text	00000018 Timer4_Handler
-080009ba g     F .text	00000032 serial_r_s
-08000758 g     F .text	0000000c BusFault_Handler
-08000634 g     F .text	000000d4 rcc_init
-08000a40 g     O .data	00000004 systick
-080003f4 g     F .text	00000068 pin_mode
-08000594 g     F .text	00000014 millis
-080008f8 g     F .text	00000038 serial_wr_c
-08000a20 g     O .data	00000004 tim4
-08000a24 g     O .data	00000004 tim5
+08000a00  w    F .text	00000002 EXTI2_IRQHandler
+20000020 g     O .data	00000004 gpio_b
+08000a00  w    F .text	00000002 DebugMon_Handler
+20000034 g     O .data	00000004 scb
+080009a2 g     F .text	0000000e __disable_irq
+08000a00  w    F .text	00000002 TIM1_CC_IRQHandler
+08000a00  w    F .text	00000002 DMA2_Chan4_IRQHandler
+2000001c g     O .data	00000004 gpio_a
+08000a00  w    F .text	00000002 HardFault_Handler
+08000808 g     F .text	00000044 get_usart
+20000030 g     O .data	00000004 rcc
+080008d8 g     F .text	0000005a serial_wr_s
+00000400 g       *ABS*	00000000 _Min_Stack_Size
+08000a00  w    F .text	00000002 TIM6_IRQHandler
+080006d8 g     F .text	0000001c SysTick_Handler
+20000040 g     O .data	00000004 usart3
+08000a00  w    F .text	00000002 PVD_IRQHandler
+08000a14 g       *ABS*	00000000 _sidata
+08000a00  w    F .text	00000002 PendSV_Handler
+08000a00  w    F .text	00000002 NMI_Handler
+08000a14 g       .data	00000000 __exidx_end
+08000a00  w    F .text	00000002 CAN2_RX1_IRQHandler
+08000a00  w    F .text	00000002 EXTI3_IRQHandler
+20000038 g     O .data	00000004 usart1
+08000a04 g       .text	00000000 _etext
+08000a00  w    F .text	00000002 DMA2_Chan1_IRQHandler
+20000044 g       .bss	00000000 _sbss
+08000994 g     F .text	0000000e __enable_irq
+08000a00  w    F .text	00000002 EXTI0_IRQHandler
+08000a00  w    F .text	00000002 I2C2_EV_IRQHandler
+08000a00  w    F .text	00000002 CAN1_RX0_IRQHandler
+080001cc g     F .text	00000020 get_timer_cnt
+20000014 g     O .data	00000004 tim7
+08000a00  w    F .text	00000002 UsageFault_Handler
+20000044 g     O .bss	00000004 cnt
+08000a00  w    F .text	00000002 CAN2_SCE_IRQHandler
+08000a00  w    F .text	00000002 ADC1_2_IRQHandler
+20000044 g       .bss	00000000 __bss_start__
+20000000 g       .data	00000000 _sdata
+08000a00  w    F .text	00000002 SPI1_IRQHandler
+08000a00  w    F .text	00000002 DMA1_Chan6_IRQHandler
+08000a00  w    F .text	00000002 TAMPER_IRQHandler
+08000a00  w    F .text	00000002 CAN2_RX0_IRQHandler
+08000a14 g       .data	00000000 __exidx_start
+08000a00  w    F .text	00000002 DMA2_Chan5_IRQHandler
+20000000 g     O .data	00000004 tim2
+08000150 g     F .text	0000007c get_timer
+20000010 g     O .data	00000004 tim6
+08000a00  w    F .text	00000002 USART3_IRQHandler
+08000a00  w    F .text	00000002 RTC_IRQHandler
+20000048 g       .bss	00000000 _ebss
+080009c0  w    F .text	0000002c Reset_Handler
+20000024 g     O .data	00000004 gpio_c
+08000a00  w    F .text	00000002 CAN1_RX1_IRQHandler
+08000a00  w    F .text	00000002 UART5_IRQHandler
+0800028c g     F .text	00000054 timer_init
+08000528 g     F .text	0000004c systick_delay
+080003f2 g     F .text	00000052 led_on
+2000003c g     O .data	00000004 usart2
+08000a00  w    F .text	00000002 TIM4_IRQHandler
+080001ec g     F .text	000000a0 enable_chan
+08000a00  w    F .text	00000002 I2C1_EV_IRQHandler
+08000a00  w    F .text	00000002 DMA2_Chan2_IRQHandler
+08000a00  w    F .text	00000002 UART4_IRQHandler
+20000048 g       .bss	00000000 __bss_end__
+08000698 g     F .text	0000001c TIM3_IRQHandler
+08000a00  w    F .text	00000002 RCC_IRQHandler
+08000a00  w    F .text	00000002 TIM1_TRG_COM_IRQHandler
+00000200 g       *ABS*	00000000 _Min_Heap_Size
+08000a00 g       .text	00000002 Default_Handler
+08000a00  w    F .text	00000002 EXTI15_10_IRQHandler
+080002e0 g     F .text	00000038 nvic_enable
+08000498 g     F .text	0000003c systick_init
+080009b0 g     F .text	0000000e __NOP
+08000a00  w    F .text	00000002 TIM7_IRQHandler
+08000a00  w    F .text	00000002 CAN2_TX_IRQHandler
+08000a00  w    F .text	00000002 TIM5_IRQHandler
+08000a00  w    F .text	00000002 EXTI9_5_IRQHandler
+08000318 g     F .text	00000040 get_gpio
+20000004 g     O .data	00000004 tim3
+08000a00  w    F .text	00000002 ETH_WKUP_IRQHandler
+08000a00  w    F .text	00000002 SPI2_IRQHandler
+08000a00  w    F .text	00000002 MemManage_Handler
+080006f4 g     F .text	00000114 main
+2000002c g     O .data	00000004 flash
+08000a00  w    F .text	00000002 DMA2_Chan3_IRQHandler
+08000a00  w    F .text	00000002 CAN1_TX_IRQHandler
+08000a00  w    F .text	00000002 SVC_Handler
+08000a00  w    F .text	00000002 DMA1_Chan5_IRQHandler
+08000a00  w    F .text	00000002 EXTI4_IRQHandler
+08000a00  w    F .text	00000002 DMA1_Chan4_IRQHandler
+08000932 g     F .text	00000030 serial_r_c
+20000018 g     O .data	00000004 nvic
+0800084c g     F .text	00000054 serial_init
+080003c0 g     F .text	00000032 led_toggle
+080004e8 g     F .text	00000040 delay
+08000444 g     F .text	00000052 led_off
+08000a00  w    F .text	00000002 DMA1_Chan3_IRQHandler
+08000a00  w    F .text	00000002 ETH_IRQHandler
+08000a00  w    F .text	00000002 TIM1_UP_IRQHandler
+08000a00  w    F .text	00000002 WWDG_IRQHandler
+08000a00  w    F .text	00000002 DMA1_Chan1_IRQHandler
+08000680 g     F .text	00000018 TIM2_IRQHandler
+08000a00  w    F .text	00000002 OTG_FS_WKUP_IRQHandler
+08000a00  w    F .text	00000002 TIM1_BRK_IRQHandler
+200027ff g       *ABS*	00000000 _estack
+08000a00  w    F .text	00000002 EXTI1_IRQHandler
+20000044 g       .data	00000000 _edata
+08000a00  w    F .text	00000002 RTCAlarm_IRQHandler
+08000a00  w    F .text	00000002 USART2_IRQHandler
+08000962 g     F .text	00000032 serial_r_s
+08000a00  w    F .text	00000002 I2C2_ER_IRQHandler
+08000a00  w    F .text	00000002 CAN1_SCE_IRQHandler
+08000a00  w    F .text	00000002 FLASH_IRQHandler
+08000a00  w    F .text	00000002 BusFault_Handler
+080006b4 g     F .text	00000024 USART1_IRQHandler
+08000a00  w    F .text	00000002 DMA1_Chan7_IRQHandler
+08000a00  w    F .text	00000002 OTG_FS_IRQHandler
+08000a00  w    F .text	00000002 SPI3_IRQHandler
+08000a00  w    F .text	00000002 I2C1_ER_IRQHandler
+08000574 g     F .text	000000d4 rcc_init
+20000028 g     O .data	00000004 systick
+08000358 g     F .text	00000068 pin_mode
+080004d4 g     F .text	00000014 millis
+080008a0 g     F .text	00000038 serial_wr_c
+20000008 g     O .data	00000004 tim4
+2000000c g     O .data	00000004 tim5
+08000a00  w    F .text	00000002 DMA1_Chan2_IRQHandler
 
 

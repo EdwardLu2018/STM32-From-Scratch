@@ -2,15 +2,9 @@
 
 systick_t *systick = (systick_t *)(SYSTICK_BASE);
 
-uint32_t __IO cnt = 0;
-void Systick_Handler(void) {
-    cnt++;
-}
-
 void systick_init(uint32_t reload_val) {
     systick->reload = PCLK2 / reload_val - 1U;
     systick->val = 0U;
-    cnt = 0;
     systick->ctrl = (AHB_EN|TICKINT_EN|TICK_EN);
 }
 

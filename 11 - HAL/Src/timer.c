@@ -21,31 +21,6 @@ timer_t *get_timer(uint8_t timer) {
     }
 }
 
-void Timer2_Handler(void) {
-    tim2->sr = 0U; // reset interrupt
-}
-
-void Timer3_Handler(void) {
-    tim3->sr = 0U; // reset interrupt
-    led_toggle(PA7);
-}
-
-void Timer4_Handler(void) {
-    tim4->sr = 0U; // reset interrupt
-}
-
-void Timer5_Handler(void) {
-    tim5->sr = 0U; // reset interrupt
-}
-
-void Timer6_Handler(void) {
-    tim6->sr = 0U; // reset interrupt
-}
-
-void Timer7_Handler(void) {
-    tim7->sr = 0U; // reset interrupt
-}
-
 uint32_t get_timer_cnt(uint8_t timer) {
     timer_t *tim = get_timer(timer);
     return tim->cnt;
@@ -80,7 +55,7 @@ void timer_init(uint8_t timer, uint32_t prescaler, uint32_t period) {
 
     tim->dier = 1U;
 
-    nvic_enable(TIM_IRQ_START_POS + (timer-2));
+    nvic_enable(TIM2_IRQ_START_POS+(timer-1));
 
     // enable counter //
     tim->cr[0] = 1U;
