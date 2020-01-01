@@ -1,13 +1,66 @@
+/**
+  ******************************************************************************
+  * @file      startup_stm32f427xx.s
+  * @author    MCD Application Team
+  * @brief     STM32F427xx Devices vector table for GCC based toolchains.
+  *            This module performs:
+  *                - Set the initial SP
+  *                - Set the initial PC == Reset_Handler,
+  *                - Set the vector table entries with the exceptions ISR address
+  *                - Branches to main in the C library (which eventually
+  *                  calls main()).
+  *            After Reset the Cortex-M4 processor is in Thread mode,
+  *            priority is Privileged, and the Stack is set to Main.
+  ******************************************************************************
+  * @attention
+  *
+  * <h2><center>&copy; COPYRIGHT 2017 STMicroelectronics</center></h2>
+  *
+  * Redistribution and use in source and binary forms, with or without modification,
+  * are permitted provided that the following conditions are met:
+  *   1. Redistributions of source code must retain the above copyright notice,
+  *      this list of conditions and the following disclaimer.
+  *   2. Redistributions in binary form must reproduce the above copyright notice,
+  *      this list of conditions and the following disclaimer in the documentation
+  *      and/or other materials provided with the distribution.
+  *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  *      may be used to endorse or promote products derived from this software
+  *      without specific prior written permission.
+  *
+  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  *
+  ******************************************************************************
+  */
+
 .syntax unified
 .cpu cortex-m3 // The Cortex M3 is a thumb only processor
 .fpu softvfp
 .thumb
 
+.global g_pfnVectors
+.global Default_Handler
+
+.word _sidata   // start addr for initialization values of the .data section
+.word _sdata    // start addr for .data section
+.word _edata    // end addr for .data section
+.word _sbss     // start address for .bss section
+.word _ebss     // end address for .bss section
+
+/* Reset_handler */
     .section .text.Reset_Handler
     .weak Reset_Handler
     .type Reset_Handler, %function
 Reset_Handler:
-/* Copy the data segment initializers from flash to SRAM */
+ // Copy the data segment initializers from flash to SRAM //
     movs r1, #0
     b LoopCopyDataInit
 
@@ -26,7 +79,7 @@ LoopCopyDataInit:
     ldr r2, =_sbss
     b LoopFillZerobss
 
-/* Fill the bss segment with zeros */
+// Fill the bss segment with zeros //
 FillZerobss:
     movs r3, #0
     str r3, [r2], #4
@@ -35,13 +88,12 @@ LoopFillZerobss:
     cmp r2, r3
     bcc FillZerobss
 
-/* Call the application's entry point.*/
+// Call the application's entry point //
     bl main
     bx lr
 .size Reset_Handler, .-Reset_Handler
 
-.global Default_Handler
-
+/* Default_Handler */
     .section .text.Default_Handler,"ax",%progbits
 Default_Handler:
 
@@ -53,8 +105,8 @@ Infinite_Loop:
     .type g_pfnVectors, %object
     .size g_pfnVectors, .-g_pfnVectors
 
-g_pfnVectors:
 /* Vector Table (pg 198) */
+g_pfnVectors:
 .word   _estack                 // * Stack top address
 .word   Reset_Handler           // - Reset
 .word   NMI_Handler             // - NMI
