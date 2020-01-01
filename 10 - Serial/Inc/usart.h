@@ -11,8 +11,10 @@
 #define SBK     (1<<0)  // send break point chars
 #define RE      (1<<2)  // receiver enable
 #define TE      (1<<3)  // transmitter enable
-#define PCE     (1<<10) // parity control enable
+#define RXNEIE  (1<<5) // RXNE interrupt enable
+#define TCIE    (1<<6) // Transmission complete interrupt enable
 #define PS      (1<<9)  // odd parity selection
+#define PCE     (1<<10) // parity control enable
 #define W_LEN_9 (1<<12) // start bit, 9 data bits, stop bit
 #define UE      (1<<13) // usart enable
 

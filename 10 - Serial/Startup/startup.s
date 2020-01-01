@@ -56,7 +56,7 @@
 .word   none                // 34 I2C2_ER
 .word   none                // 35 SPI1
 .word   none                // 36 SPI2
-.word   none                // 37 USART1
+.word   usart1_handle       // 37 USART1
 .word   none                // 38 USART2
 .word   none                // 39 USART3
 .word   none                // 40 EXTI15_10

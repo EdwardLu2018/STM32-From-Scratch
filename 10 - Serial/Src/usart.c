@@ -13,13 +13,18 @@ usart_t *get_usart(uint8_t usart) {
     }
 }
 
+void usart1_handle(void) {
+    char in = (char)(usart1->data & DATA_MASK);
+    serial_wr_c(USART1, in);
+}
+
 void init_serial(uint8_t usart, uint32_t baud) {
     usart_t *serial = get_usart(usart);
-    serial->cr1 = (RE|TE|W_LEN_9|UE); // enable Tx/Rx, word length 9, usart
+    serial->cr1 = (RE|TE|RXNEIE|UE); // enable Tx/Rx, word length 9, usart
     serial->cr2 = 0;
     serial->cr3 = 0;
     serial->gtpr = 0;
-    serial->baud = HSI_MHZ / baud;
+    serial->baud = PCLK2 / baud;
 }
 
 bool serial_wr_c(uint8_t usart, char c) {

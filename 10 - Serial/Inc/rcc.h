@@ -3,6 +3,17 @@
 
 #include "stm32f103.h"
 
+#define APB1_DIV2	(4<<8)  // AHB1 = HCLK/2
+#define HSION       (1<<0)  // enable HSI
+#define HSERDY      (1<<17) // external high-speed clock ready flag
+#define HSEON       (1<<16) // enable HSE
+#define PLLHSE      (1<<16) // HSE oscillator clock selected as PLL input clock
+#define PLLON       (1<<24) // enable PLL
+#define PLLRDY      (1<<25) // PLL ready
+#define PLL_9		(7<<18) // PLL x 9
+#define SWSPLL      (2<<2)  // PLL used as system clock
+#define SWPLL       (2<<0)  // set PLL as system clock
+
 #define GPIOA_EN    (1<<2) // apbe2
 #define GPIOB_EN    (1<<3) // apbe2
 #define GPIOC_EN    (1<<4) // apbe2

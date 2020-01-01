@@ -4,6 +4,17 @@
 #include "stm32f103.h"
 #include "intrinsic.h"
 
+#define APB1_DIV2	(4<<8)  // AHB1 = HCLK/2
+#define HSION       (1<<0)  // enable HSI
+#define HSERDY      (1<<17) // external high-speed clock ready flag
+#define HSEON       (1<<16) // enable HSE
+#define PLLHSE      (1<<16) // HSE oscillator clock selected as PLL input clock
+#define PLLON       (1<<24) // enable PLL
+#define PLLRDY      (1<<25) // PLL ready
+#define PLL_9		(7<<18) // PLL x 9
+#define SWSPLL      (2<<2)  // PLL used as system clock
+#define SWPLL       (2<<0)  // set PLL as system clock
+
 #define GPIOA_EN    (1<<2) // apbe2
 #define GPIOB_EN    (1<<3) // apbe2
 #define GPIOC_EN    (1<<4) // apbe2
@@ -20,8 +31,7 @@
 #define USART3_EN   (1<<18) // apbe1
 
 // Reset and clock control (page 99 Reference Manual) //
-typedef struct
-{
+typedef struct {
     uint32_t __IO cr;       // 0x0 - control register
     uint32_t __IO cfgr;     // 0x4 - configuration register
     uint32_t __IO cir;      // 0x8 - interrupt register

@@ -17,6 +17,7 @@
         "usart.h": "c",
         "scb.h": "c",
         "intrinsic.h": "c",
-        "EL_HAL.h": "c"
+        "EL_HAL.h": "c",
+        "flash_acr.h": "c"
     },
 }

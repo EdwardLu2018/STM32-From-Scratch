@@ -31,6 +31,8 @@
 
 #define SCB_BASE        0xE000ED00U
 
+#define FLASH_ACR_BASE  0x40022000U
+
 #define UART1_BASE	    0x40013800U
 #define UART2_BASE	    0x40004400U
 #define UART3_BASE	    0x40004800U

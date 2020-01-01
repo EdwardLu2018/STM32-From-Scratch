@@ -21,18 +21,16 @@
 //  Output compare modes (pg 414) //
 typedef enum {
     // OC1REF toggles when TIMx_CNT=TIMx_CCR1
-    TOGGLE = (3 << 4),
+    TOGGLE = (3<<4),
     // enables timer PWM mode and corresponding preload register
-    PWM = ((6 << 4)|(1<<3)),
+    PWM = ((6<<4)|(1<<3)),
 
 } output_compare_mode_t;
 
-#define TOGGLE  (3 << 4)
-#define PWM     ((6 << 4)|(1<<3)) // enables timer PWM mode and corresponding preload register
-
 // Timers (pg 404 Reference Manual) - 72 MHz
 typedef struct {
-    uint32_t __IO cr[2];    // 0x0 to 0x4 - control register (low/high)
+    uint32_t __IO cr1;      // 0x0 - control register 1
+    uint32_t __IO cr2;      // 0x4 - control register 2
     uint32_t __IO smcr;     // 0x8 - slave mode control register
     uint32_t __IO dier;     // 0xC - DMA/Interrupt enable register
     uint32_t __IO sr;       // 0x10 - status register
