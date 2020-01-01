@@ -1,5 +1,5 @@
 # STM32-From-Scratch
-Playing around with an STM32F103 microcontroller firmware. Writing my own minimal HAL and eventually a simple RTOS.
+Programming an STM32F103 microcontroller at the register level. Writing my own minimal HAL and eventually a simple RTOS.
 
 Written mostly in C.
 
