@@ -183,7 +183,7 @@ SYMBOL TABLE:
 08000694 g     F .text	00000018 TIM2_IRQHandler
 08000a14  w    F .text	00000002 OTG_FS_WKUP_IRQHandler
 08000a14  w    F .text	00000002 TIM1_BRK_IRQHandler
-200027ff g       *ABS*	00000000 _estack
+20005000 g       *ABS*	00000000 _estack
 08000a14  w    F .text	00000002 EXTI1_IRQHandler
 20000044 g       .data	00000000 _edata
 08000a14  w    F .text	00000002 RTCAlarm_IRQHandler
