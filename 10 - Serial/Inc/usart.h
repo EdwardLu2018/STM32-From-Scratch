@@ -4,9 +4,11 @@
 #include "stm32f103.h"
 #include "stdbool.h"
 
-#define USART1  1
-#define USART2  2
-#define USART3  3
+#define USART1_IRQ_START_POS 37U
+
+#define USART1  0
+#define USART2  1
+#define USART3  2
 
 #define SBK     (1<<0)  // send break point chars
 #define RE      (1<<2)  // receiver enable
@@ -36,7 +38,7 @@ typedef struct {
 } usart_t;
 
 usart_t *get_usart(uint8_t usart);
-void init_serial(uint8_t usart, uint32_t baud);
+void serial_init(uint8_t usart, uint32_t baud);
 bool serial_wr_c(uint8_t usart, char c);
 bool serial_wr_s(uint8_t usart, char *s, bool new_line);
 char serial_r_c(uint8_t usart);

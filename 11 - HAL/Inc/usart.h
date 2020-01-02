@@ -28,6 +28,9 @@
 #define TC      (1<<6) // transmission complete
 #define RXNE    (1<<5) // read data register is not empty
 
+#define TCIE    (1<<6) // Transmission complete interrupt enable
+#define RXNEIE  (1<<5) // RXNE interrupt enable
+
 // USART registers (pg 817) //
 typedef struct
 {

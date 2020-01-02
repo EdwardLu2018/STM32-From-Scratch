@@ -1,4 +1,5 @@
 #include "usart.h"
+#include "nvic.h"
 
 usart_t *usart1 = (usart_t *)(UART1_BASE);
 usart_t *usart2 = (usart_t *)(UART2_BASE);
@@ -18,13 +19,14 @@ void usart1_handle(void) {
     serial_wr_c(USART1, in);
 }
 
-void init_serial(uint8_t usart, uint32_t baud) {
+void serial_init(uint8_t usart, uint32_t baud) {
     usart_t *serial = get_usart(usart);
-    serial->cr1 = (RE|TE|RXNEIE|UE); // enable Tx/Rx, word length 9, usart
+    serial->cr1 = (RE|TE|RXNEIE|UE); // enable Tx/Rx, RXNE interrupt, usart
     serial->cr2 = 0;
     serial->cr3 = 0;
     serial->gtpr = 0;
     serial->baud = PCLK2 / baud;
+    nvic_enable(USART1_IRQ_START_POS+usart);
 }
 
 bool serial_wr_c(uint8_t usart, char c) {

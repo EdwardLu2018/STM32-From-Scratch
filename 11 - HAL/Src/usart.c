@@ -16,12 +16,12 @@ usart_t *get_usart(uint8_t usart) {
 
 void serial_init(uint8_t usart, uint32_t baud) {
     usart_t *serial = get_usart(usart);
-    serial->cr1 = (RE|TE|W_LEN_9|UE); // enable Tx/Rx, word length 9, usart
+    serial->cr1 = (RE|TE|RXNEIE|UE); // enable Tx/Rx, RXNE interrupt, usart
     serial->cr2 = 0;
     serial->cr3 = 0;
     serial->gtpr = 0;
     serial->baud = PCLK2 / baud;
-    nvic_enable(USART1_IRQ_START_POS+(usart-1));
+    nvic_enable(USART1_IRQ_START_POS+usart);
 }
 
 bool serial_wr_c(uint8_t usart, char c) {

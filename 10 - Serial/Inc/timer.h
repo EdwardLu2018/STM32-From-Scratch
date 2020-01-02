@@ -3,7 +3,7 @@
 
 #include "stm32f103.h"
 
-#define TIM_IRQ_START_POS 28
+#define TIM_IRQ_START_POS 28U
 
 #define CHAN1   0
 #define CHAN2   1

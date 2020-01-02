@@ -55,7 +55,7 @@ void timer_init(uint8_t timer, uint32_t prescaler, uint32_t period) {
 
     tim->dier = 1U;
 
-    nvic_enable(TIM2_IRQ_START_POS+(timer-1));
+    nvic_enable(TIM2_IRQ_START_POS+timer);
 
     // enable counter //
     tim->cr[0] = 1U;

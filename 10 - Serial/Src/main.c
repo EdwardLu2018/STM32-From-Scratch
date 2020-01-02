@@ -10,10 +10,10 @@ int main(void) {
 
     pin_mode(PC13, OUT_GP_PUSH_PULL_50);
     pin_mode(PA9, OUT_ALT_PUSH_PULL_50); // enable Tx pin for usart1
-    pin_mode(PA10, OUT_ALT_PUSH_PULL_50); // enable Rx pin for usart1
+    pin_mode(PA10, INPUT_FLOATING_PT); // enable Rx pin for usart1
 
     systick_init(1000U); // initialize systick at 1Hz
-    init_serial(USART1, 115200U);
+    serial_init(USART1, 115200U);
 
     while(1) {
         // char a = serial_r_c(USART1);

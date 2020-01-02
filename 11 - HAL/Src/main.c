@@ -25,8 +25,8 @@ int main(void) {
     rcc_init(TIM2_EN|TIM3_EN, GPIOA_EN|GPIOB_EN|GPIOC_EN, USART1_EN);
 
     pin_mode(PC13, OUT_GP_PUSH_PULL_50);
-    pin_mode(PA9, OUT_ALT_PUSH_PULL_50); // enable Tx pin for usart1
-    pin_mode(PA10, OUT_ALT_PUSH_PULL_50); // enable Rx pin for usart1
+    pin_mode(PA9, OUT_ALT_PUSH_PULL_50); // enable Tx pin for usart1 as output
+    pin_mode(PA10, INPUT_FLOATING_PT); // enable Rx pin for usart1 as input
 
     timer_init(TIM3, 10000U, 10000U); // tim3 at 1MHz
     pin_mode(PA7, OUT_GP_PUSH_PULL_50);

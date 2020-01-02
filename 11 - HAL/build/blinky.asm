@@ -229,9 +229,9 @@ void timer_init(uint8_t timer, uint32_t prescaler, uint32_t period) {
  80002d0:	2201      	movs	r2, #1
  80002d2:	60da      	str	r2, [r3, #12]
 
-    nvic_enable(TIM2_IRQ_START_POS+(timer-1));
+    nvic_enable(TIM2_IRQ_START_POS+timer);
  80002d4:	7bfb      	ldrb	r3, [r7, #15]
- 80002d6:	331b      	adds	r3, #27
+ 80002d6:	331c      	adds	r3, #28
  80002d8:	b2db      	uxtb	r3, r3
  80002da:	4618      	mov	r0, r3
  80002dc:	f000 f80a 	bl	80002f4 <nvic_enable>
@@ -886,8 +886,8 @@ int main(void) {
  8000724:	210b      	movs	r1, #11
  8000726:	2009      	movs	r0, #9
  8000728:	f7ff fe20 	bl	800036c <pin_mode>
-    pin_mode(PA10, OUT_ALT_PUSH_PULL_50); // enable Rx pin for usart1
- 800072c:	210b      	movs	r1, #11
+    pin_mode(PA10, INPUT_FLOATING_PT); // enable Rx pin for usart1
+ 800072c:	2104      	movs	r1, #4
  800072e:	200a      	movs	r0, #10
  8000730:	f7ff fe1c 	bl	800036c <pin_mode>
 
@@ -1067,9 +1067,9 @@ void serial_init(uint8_t usart, uint32_t baud) {
  800086e:	4618      	mov	r0, r3
  8000870:	f7ff ffd4 	bl	800081c <get_usart>
  8000874:	60f8      	str	r0, [r7, #12]
-    serial->cr1 = (RE|TE|W_LEN_9|UE); // enable Tx/Rx, word length 9, usart
+    serial->cr1 = (RE|TE|RXNEIE|UE); // enable Tx/Rx, RXNE interrupt, usart
  8000876:	68fb      	ldr	r3, [r7, #12]
- 8000878:	f243 020c 	movw	r2, #12300	; 0x300c
+ 8000878:	f242 022c 	movw	r2, #8236	; 0x202c
  800087c:	60da      	str	r2, [r3, #12]
     serial->cr2 = 0;
  800087e:	68fb      	ldr	r3, [r7, #12]
@@ -1089,9 +1089,9 @@ void serial_init(uint8_t usart, uint32_t baud) {
  8000894:	fbb2 f2f3 	udiv	r2, r2, r3
  8000898:	68fb      	ldr	r3, [r7, #12]
  800089a:	609a      	str	r2, [r3, #8]
-    nvic_enable(USART1_IRQ_START_POS+(usart-1));
+    nvic_enable(USART1_IRQ_START_POS+usart);
  800089c:	79fb      	ldrb	r3, [r7, #7]
- 800089e:	3324      	adds	r3, #36	; 0x24
+ 800089e:	3325      	adds	r3, #37	; 0x25
  80008a0:	b2db      	uxtb	r3, r3
  80008a2:	4618      	mov	r0, r3
  80008a4:	f7ff fd26 	bl	80002f4 <nvic_enable>
