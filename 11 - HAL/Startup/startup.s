@@ -68,7 +68,7 @@ Infinite_Loop:
 g_pfnVectors:
 .word   _estack                 // * Stack top address
 .word   Reset_Handler           // - Reset
-.word   NMI_Handler             // - NMI
+.word   NMI_Handler             // - Non Maskable Interrupt
 .word   HardFault_Handler       // - HardFault
 .word   MemManage_Handler       // - MemManage Fault
 .word   BusFault_Handler        // - BusFault
@@ -82,7 +82,6 @@ g_pfnVectors:
 .word   0                       // - RESERVED
 .word   PendSV_Handler          // - PendSV
 .word   SysTick_Handler         // - SysTick
-/* IQR */
 .word   WWDG_IRQHandler         // 0 WWDG
 .word   PVD_IRQHandler          // 1 PVD
 .word   TAMPER_IRQHandler       // 2 TAMPER

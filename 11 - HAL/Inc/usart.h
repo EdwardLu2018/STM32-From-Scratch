@@ -5,8 +5,6 @@
 #include "intrinsic.h"
 #include "stdbool.h"
 
-#define USART1_IRQ_START_POS 37U
-
 #define USART1  0
 #define USART2  1
 #define USART3  2

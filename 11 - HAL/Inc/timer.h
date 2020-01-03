@@ -4,8 +4,6 @@
 #include "stm32f103.h"
 #include "intrinsic.h"
 
-#define TIM2_IRQ_START_POS 28U
-
 #define CHAN1   0
 #define CHAN2   1
 #define CHAN3   2

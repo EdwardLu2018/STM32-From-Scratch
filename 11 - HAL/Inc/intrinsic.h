@@ -8,6 +8,6 @@
 
 void __enable_irq(void);
 void __disable_irq(void);
-void __nop(void);
+void __NOP(void);
 
 #endif

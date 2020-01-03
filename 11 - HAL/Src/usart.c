@@ -21,7 +21,6 @@ void serial_init(uint8_t usart, uint32_t baud) {
     serial->cr3 = 0;
     serial->gtpr = 0;
     serial->baud = PCLK2 / baud;
-    nvic_enable(USART1_IRQ_START_POS+usart);
 }
 
 bool serial_wr_c(uint8_t usart, char c) {

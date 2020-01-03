@@ -30,12 +30,15 @@ int main(void) {
 
     timer_init(TIM3, 10000U, 10000U); // tim3 at 1MHz
     pin_mode(PA7, OUT_GP_PUSH_PULL_50);
+    nvic_irq_enable(TIM3_IRQn);
 
     timer_init(TIM2, 10000U, 255U);
     pin_mode(PA2, OUT_ALT_PUSH_PULL_50);
+    nvic_irq_enable(TIM2_IRQn);
 
     systick_init(1000U); // initialize systick at 1Hz
     serial_init(USART1, 115200U); // initializer serial at 115200 baud
+    nvic_irq_enable(USART1_IRQn);
 
     uint8_t pwm = 0U;
     uint64_t start_t = millis();
