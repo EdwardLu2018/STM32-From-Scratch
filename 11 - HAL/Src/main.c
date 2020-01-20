@@ -34,6 +34,8 @@ int main(void) {
     pin_mode(PA9, OUT_ALT_PUSH_PULL_50); // enable Tx pin for usart1 as output
     pin_mode(PA10, INPUT_FLOATING_PT); // enable Rx pin for usart1 as input
 
+    adc_init(ADC1);
+    adc_set_chan(ADC1, CHAN1, cycles_28Pt5); // 28.5 cycles
     pin_mode(PA0, INPUT_ANALOG); // enable analog input at A0
     nvic_irq_enable(ADC1_2_IRQn);
 
@@ -50,20 +52,17 @@ int main(void) {
     nvic_irq_enable(USART1_IRQn);
 
     uint8_t pwm = 0U;
-    uint64_t start_t = millis();
+    uint64_t start_t = systick_millis();
     bool up = true;
 
     while(1) {
-        if (millis() - start_t > 1000U) {
+        if (systick_millis() - start_t > 1000U) {
             serial_wr_s(USART1, "hello world!", true);
             led_toggle(PC13);
-            start_t = millis();
-            if (up) {
-                pwm += STEP;
-            }
-            else {
-                pwm -= STEP;
-            }
+            start_t = systick_millis();
+
+            if (up) pwm += STEP;
+            else pwm -= STEP;
 
             if (pwm == 250 || pwm == 0) up = !up;
             enable_chan(TIM2, PWM, CHAN3, pwm);

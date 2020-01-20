@@ -8,7 +8,7 @@ void delay(uint64_t volatile t) {
 }
 
 void systick_delay(uint64_t __IO t) {
-    uint64_t start_t = millis();
-    while(millis() - start_t < t)
+    uint64_t start_t = systick_millis();
+    while(systick_millis() - start_t < t)
         __NOP();
 }

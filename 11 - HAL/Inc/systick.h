@@ -22,6 +22,6 @@ typedef struct
 systick_t *systick;
 
 void systick_init(uint32_t reload_val);
-uint32_t millis(void);
+uint32_t systick_millis(void);
 
 #endif
