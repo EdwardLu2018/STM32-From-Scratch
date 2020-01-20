@@ -45,7 +45,7 @@ typedef enum {
     PC8, PC9, PC10, PC11, PC12, PC13, PC14, PC15
 } pin_t;
 
-gpio_t *get_gpio(uint8_t pin);
+gpio_t *gpio_get(uint8_t pin);
 void pin_mode(uint8_t pin, uint8_t mode);
 void led_toggle(uint8_t pin);
 void led_on(uint8_t pin);

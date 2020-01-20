@@ -9,15 +9,15 @@ void rcc_init(uint32_t tim_en, uint32_t gpio_en, uint32_t usart_en) {
     rcc->cfgr |= APB1_DIV2;
 
     rcc->cr |= HSEON;
-    while(!(rcc->cr & HSERDY));
+    while (!(rcc->cr & HSERDY));
 
     rcc->cfgr |= (PLLHSE|PLL_9);
     rcc->cr |= PLLON;
-    while(!(rcc->cr & PLLRDY));
+    while (!(rcc->cr & PLLRDY));
 
     rcc->cfgr |= SWPLL;
-    while(!(rcc->cfgr & SWSPLL));
+    while (!(rcc->cfgr & SWSPLL));
 
     rcc->apbe1 |= tim_en; // enable timers
-    rcc->apbe2 |= gpio_en | usart_en; // enable GPIO pins and USART
+    rcc->apbe2 |= (gpio_en|usart_en); // enable GPIO pins and USART
 }

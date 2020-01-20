@@ -1,6 +1,8 @@
 #ifndef __STM32f103__
 #define __STM32f103__
 
+// Memory addresses found on page 80
+
 #define HSI_MHZ 8000000U  // 8 Mhz clock
 #define PCLK1   36000000U // 36 Mhz clock
 #define PCLK2   72000000U // 72 Mhz clock
@@ -13,6 +15,10 @@
 #define GPIOC_BASE      0x40011000U
 #define GPIOD_BASE      0x40011400U
 #define GPIOE_BASE      0x40011800U
+
+#define ADC1_BASE	    0x40012400U
+#define ADC2_BASE	    0x40012800U
+#define ADC3_BASE	    0x40013C00U
 
 #define TIM1_BASE       0x40012C00U
 #define TIM2_BASE       0x40000000U

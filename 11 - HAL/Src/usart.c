@@ -5,7 +5,7 @@ usart_t *usart1 = (usart_t *)(UART1_BASE);
 usart_t *usart2 = (usart_t *)(UART2_BASE);
 usart_t *usart3 = (usart_t *)(UART3_BASE);
 
-usart_t *get_usart(uint8_t usart) {
+usart_t *usart_get(uint8_t usart) {
     switch(usart) {
         case USART1: return usart1;
         case USART2: return usart2;
@@ -15,7 +15,7 @@ usart_t *get_usart(uint8_t usart) {
 }
 
 void serial_init(uint8_t usart, uint32_t baud) {
-    usart_t *serial = get_usart(usart);
+    usart_t *serial = usart_get(usart);
     serial->cr1 = (RE|TE|RXNEIE|UE); // enable Tx/Rx, RXNE interrupt, usart
     serial->cr2 = 0;
     serial->cr3 = 0;
@@ -24,7 +24,7 @@ void serial_init(uint8_t usart, uint32_t baud) {
 }
 
 bool serial_wr_c(uint8_t usart, char c) {
-    usart_t *serial = get_usart(usart);
+    usart_t *serial = usart_get(usart);
     serial->data = c;
     while(!(serial->sr & TC));
     return USART_SUCCESS;
@@ -39,7 +39,7 @@ bool serial_wr_s(uint8_t usart, char *s, bool new_line) {
 }
 
 char serial_r_c(uint8_t usart) {
-    usart_t *serial = get_usart(usart);
+    usart_t *serial = usart_get(usart);
     while(!(serial->sr & RXNE));
     return (char)(serial->data & DATA_MASK);
 }

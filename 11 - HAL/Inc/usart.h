@@ -45,7 +45,7 @@ usart_t *usart1;
 usart_t *usart2;
 usart_t *usart3;
 
-usart_t *get_usart(uint8_t usart);
+usart_t *usart_get(uint8_t usart);
 void serial_init(uint8_t usart, uint32_t baud);
 bool serial_wr_c(uint8_t usart, char c);
 bool serial_wr_s(uint8_t usart, char *s, bool new_line);

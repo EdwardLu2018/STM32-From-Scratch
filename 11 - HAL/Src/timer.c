@@ -9,7 +9,7 @@ timer_t *tim5 = (timer_t *)(TIM5_BASE);
 timer_t *tim6 = (timer_t *)(TIM6_BASE);
 timer_t *tim7 = (timer_t *)(TIM7_BASE);
 
-timer_t *get_timer(uint8_t timer) {
+timer_t *timer_get(uint8_t timer) {
     switch (timer) {
     case TIM2: return tim2;
     case TIM3: return tim3;
@@ -21,13 +21,13 @@ timer_t *get_timer(uint8_t timer) {
     }
 }
 
-uint32_t get_timer_cnt(uint8_t timer) {
-    timer_t *tim = get_timer(timer);
+uint32_t timer_get_cnt(uint8_t timer) {
+    timer_t *tim = timer_get(timer);
     return tim->cnt;
 }
 
 void enable_chan(uint8_t timer, uint8_t mode, uint8_t channel, uint32_t load) {
-    timer_t *tim = get_timer(timer);
+    timer_t *tim = timer_get(timer);
     tim->ccr[channel] = load;
 
     uint8_t shift_by;
@@ -45,7 +45,7 @@ void enable_chan(uint8_t timer, uint8_t mode, uint8_t channel, uint32_t load) {
 }
 
 void timer_init(uint8_t timer, uint32_t prescaler, uint32_t period) {
-    timer_t *tim = get_timer(timer);
+    timer_t *tim = timer_get(timer);
 
     // set prescalar (ms) //
     // PWM Frequency = fCK_PSC / (PSC*ARR)

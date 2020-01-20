@@ -53,8 +53,8 @@ timer_t *tim2;
 timer_t *tim3;
 timer_t *tim4;
 
-timer_t *get_timer(uint8_t timer);
-uint32_t get_timer_cnt(uint8_t timer);
+timer_t *timer_get(uint8_t timer);
+uint32_t timer_get_cnt(uint8_t timer);
 void enable_chan(uint8_t timer, uint8_t mode, uint8_t channel, uint32_t load);
 void timer_init(uint8_t timer, uint32_t prescaler, uint32_t period);
 
