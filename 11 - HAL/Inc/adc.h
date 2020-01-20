@@ -8,6 +8,7 @@
 #define ADC2    1
 #define ADC3    2
 
+#define EOC     (1<<1) // end of conversion
 #define EOCIE   (1<<5) // enable end of conversion interrupt
 #define ADON    (1<<0)
 #define CAL     (1<<2)
@@ -44,5 +45,6 @@ adc_t *adc3;
 adc_t *adc_get(uint8_t adc_num);
 void adc_init(uint8_t adc_num);
 void adc_calibrate(uint8_t adc_num);
+uint32_t adc_read(uint8_t adc_num);
 
 #endif

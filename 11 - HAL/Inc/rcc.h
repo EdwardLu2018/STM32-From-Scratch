@@ -19,6 +19,10 @@
 #define GPIOB_EN    (1<<3) // apbe2
 #define GPIOC_EN    (1<<4) // apbe2
 
+#define ADC1_EN     (1<<9) // apbe2
+#define ADC2_EN     (1<<10) // apbe2
+#define ADC3_EN     (1<<15) // apbe3
+
 #define TIM2_EN     (1<<0) // apbe1
 #define TIM3_EN     (1<<1) // apbe1
 #define TIM4_EN     (1<<2) // apbe1
@@ -44,6 +48,6 @@ typedef struct {
     uint32_t __IO csr;      // 0x24 - control/status register
 } rcc_t;
 
-void rcc_init(uint32_t tim_en, uint32_t gpio_en, uint32_t usart_en);
+void rcc_init(uint32_t tim_en, uint32_t gpio_en, uint32_t adc_en, uint32_t usart_en);
 
 #endif

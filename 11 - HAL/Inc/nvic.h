@@ -33,7 +33,7 @@ typedef enum {
    	DMA1_Chan5_IRQn,  	// 15 DMA1_Channel5
    	DMA1_Chan6_IRQn,  	// 16 DMA1_Channel6
    	DMA1_Chan7_IRQn,  	// 17 DMA1_Channel7
-   	ADC1_2_IRQn,      	// 18 ADC1_2
+   	ADC1_2_IRQn,      	// 18 ADC1_2 (both ADC1 and ADC2)
    	CAN1_TX_IRQn,     	// 19 CAN1_TX
    	CAN1_RX0_IRQn,    	// 20 CAN1_RX0
    	CAN1_RX1_IRQn,    	// 21 CAN1_RX1

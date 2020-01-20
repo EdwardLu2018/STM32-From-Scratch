@@ -25,3 +25,8 @@ void adc_calibrate(uint8_t adc_num) {
     while (adc->cr2 & CAL); // check if calibration is complete
     adc->cr1 |= EOCIE;
 }
+
+uint32_t adc_read(uint8_t adc_num) {
+    adc_t *adc = adc_get(adc_num);
+    return (adc->sr & EOC) ? adc->dr : 0;
+}

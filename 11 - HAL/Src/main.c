@@ -1,5 +1,11 @@
 #include "main.h"
 
+uint64_t adc_in;
+
+void ADC1_2_IRQHandler(void) {
+    adc_in = adc_read(ADC1);
+}
+
 void TIM2_IRQHandler(void) {
     tim2->sr = 0U; // reset interrupt
 }
@@ -22,11 +28,14 @@ void SysTick_Handler(void) {
 #define STEP 25
 
 int main(void) {
-    rcc_init(TIM2_EN|TIM3_EN, GPIOA_EN|GPIOB_EN|GPIOC_EN, USART1_EN);
+    rcc_init(TIM2_EN|TIM3_EN, GPIOA_EN|GPIOB_EN|GPIOC_EN, ADC1_EN, USART1_EN);
 
     pin_mode(PC13, OUT_GP_PUSH_PULL_50);
     pin_mode(PA9, OUT_ALT_PUSH_PULL_50); // enable Tx pin for usart1 as output
     pin_mode(PA10, INPUT_FLOATING_PT); // enable Rx pin for usart1 as input
+
+    pin_mode(PA0, INPUT_ANALOG); // enable analog input at A0
+    nvic_irq_enable(ADC1_2_IRQn);
 
     timer_init(TIM3, 10000U, 10000U); // tim3 at 1MHz
     pin_mode(PA7, OUT_GP_PUSH_PULL_50);
