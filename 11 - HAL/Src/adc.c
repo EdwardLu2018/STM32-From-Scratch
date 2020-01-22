@@ -1,42 +1,42 @@
 #include "adc.h"
 
-adc_t *adc1 = (adc_t *)(ADC1_BASE);
-adc_t *adc2 = (adc_t *)(ADC2_BASE);
-adc_t *adc3 = (adc_t *)(ADC3_BASE);
+ADC_t *adc1 = (ADC_t *)(ADC1_BASE);
+ADC_t *adc2 = (ADC_t *)(ADC2_BASE);
+ADC_t *adc3 = (ADC_t *)(ADC3_BASE);
 
-adc_t *adc_get(uint8_t adc_num) {
+ADC_t *ADC_Get(uint8_t adc_num) {
     switch (adc_num) {
-    case ADC1: return adc1;
-    case ADC2: return adc2;
-    case ADC3: return adc3;
-    default: return adc1;
+        case ADC1: return adc1;
+        case ADC2: return adc2;
+        case ADC3: return adc3;
+        default: return adc1;
     }
 }
 
-void adc_init(uint8_t adc_num) {
-    adc_t *adc = adc_get(adc_num);
-    adc->cr2 |= (CONT|ADON);
-    adc_calibrate(adc_num);
+void ADC_Init(uint8_t adc_num) {
+    ADC_t *adc = ADC_Get(adc_num);
+    adc->CR2 |= (CONT|ADON);
+    ADC_Calibrate(adc_num);
 }
 
-void adc_calibrate(uint8_t adc_num) {
-    adc_t *adc = adc_get(adc_num);
-    adc->cr2 |= RSTCAL; // reset calibration
-    while (adc->cr2 & RSTCAL); // wait for calibration register
-    adc->cr2 |= CAL; // enable adc calibration
-    while (adc->cr2 & CAL); // check if calibration is complete
-    adc->cr1 |= EOCIE;
+void ADC_Calibrate(uint8_t adc_num) {
+    ADC_t *adc = ADC_Get(adc_num);
+    adc->CR2 |= RSTCAL; // reset calibration
+    while (adc->CR2 & RSTCAL); // wait for calibration register
+    adc->CR2 |= CAL; // enable adc calibration
+    while (adc->CR2 & CAL); // check if calibration is complete
+    adc->CR1 |= EOCIE;
 }
 
-void adc_set_chan(uint8_t adc_num, uint8_t chan, uint32_t sample_bits) {
-    adc_t *adc = adc_get(adc_num);
-    adc->sqr1 = 0;
-    adc->sqr2 = 0;
-    adc->sqr3 = chan;
-    adc->smpr[chan] = sample_bits;
+void ADC_Set_Chan(uint8_t adc_num, uint8_t chan, uint32_t sample_bits) {
+    ADC_t *adc = ADC_Get(adc_num);
+    adc->SQR1 = 0;
+    adc->SQR2 = 0;
+    adc->SQR3 = chan;
+    adc->SMPR[chan] = sample_bits;
 }
 
-uint32_t adc_read(uint8_t adc_num) {
-    adc_t *adc = adc_get(adc_num);
-    return (adc->sr & EOC) ? adc->dr : 0;
+uint32_t ADC_Read(uint8_t adc_num) {
+    ADC_t *adc = ADC_Get(adc_num);
+    return (adc->SR & EOC) ? adc->DR : 0;
 }

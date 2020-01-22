@@ -13,15 +13,15 @@ uint32_t __IO cnt;
 // systick timer //
 typedef struct
 {
-    uint32_t __IO ctrl;     // 0x0 - control and status register
-    uint32_t __IO reload;   // 0x4 - reload value register
-    uint32_t __IO val;      // 0x8 - current value register
-    uint32_t __IO calib;    // 0xC - calibration value register
-} systick_t;
+    uint32_t __IO CTRL;     // 0x0 - control and status register
+    uint32_t __IO RELOAD;   // 0x4 - reload value register
+    uint32_t __IO VAL;      // 0x8 - current value register
+    uint32_t __IO CALIB;    // 0xC - calibration value register
+} Systick_t;
 
-systick_t *systick;
+Systick_t *systick;
 
-void systick_init(uint32_t reload_val);
-uint32_t systick_millis(void);
+void Systick_Init(uint32_t reload_val);
+uint32_t Systick_Millis(void);
 
 #endif

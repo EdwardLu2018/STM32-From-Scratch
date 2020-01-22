@@ -8,9 +8,9 @@
 .global g_pfnVectors
 .global Default_Handler
 
-.word _sidata   // start addr for initialization values of the .data section
-.word _sdata    // start addr for .data section
-.word _edata    // end addr for .data section
+.word _sidata   // start addr for initialization values of the .DATA section
+.word _sdata    // start addr for .DATA section
+.word _edata    // end addr for .DATA section
 .word _sbss     // start address for .bss section
 .word _ebss     // end address for .bss section
 
@@ -19,7 +19,7 @@
     .weak Reset_Handler
     .type Reset_Handler, %function
 Reset_Handler:
- // Copy the data segment initializers from flash to SRAM //
+ // Copy the DATA segment initializers from flash to SRAM //
     movs r1, #0
     b LoopCopyDataInit
 

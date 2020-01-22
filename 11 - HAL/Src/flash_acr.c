@@ -1,3 +1,3 @@
 #include "flash_acr.h"
 
-flash_t *flash = (flash_t *)(FLASH_ACR_BASE);
+Flash_t *flash = (Flash_t *)(FLASH_ACR_BASE);

@@ -3,21 +3,21 @@
 uint64_t adc_in;
 
 void ADC1_2_IRQHandler(void) {
-    adc_in = adc_read(ADC1);
+    adc_in = ADC_Read(ADC1);
 }
 
 void TIM2_IRQHandler(void) {
-    tim2->sr = 0U; // reset interrupt
+    tim2->SR = 0U; // reset interrupt
 }
 
 void TIM3_IRQHandler(void) {
-    tim3->sr = 0U; // reset interrupt
-    led_toggle(PA7);
+    tim3->SR = 0U; // reset interrupt
+    LED_Toggle(PA7);
 }
 
 void USART1_IRQHandler(void) {
-    char in = (char)(usart1->data & DATA_MASK);
-    serial_wr_c(USART1, in);
+    char in = (char)(usart1->DATA & DATA_MASK);
+    Serial_Write_Char(USART1, in);
 }
 
 uint32_t __IO cnt = 0;
@@ -28,44 +28,44 @@ void SysTick_Handler(void) {
 #define STEP 25
 
 int main(void) {
-    rcc_init(TIM2_EN|TIM3_EN, GPIOA_EN|GPIOB_EN|GPIOC_EN, ADC1_EN, USART1_EN);
+    RCC_Init(TIM2_EN|TIM3_EN, GPIOA_EN|GPIOB_EN|GPIOC_EN, ADC1_EN, USART1_EN);
 
-    pin_mode(PC13, OUT_GP_PUSH_PULL_50);
-    pin_mode(PA9, OUT_ALT_PUSH_PULL_50); // enable Tx pin for usart1 as output
-    pin_mode(PA10, INPUT_FLOATING_PT); // enable Rx pin for usart1 as input
+    GPIO_PinMode(PC13, OUT_GP_PUSH_PULL_50);
+    GPIO_PinMode(PA9, OUT_ALT_PUSH_PULL_50); // enable Tx pin for usart1 as output
+    GPIO_PinMode(PA10, INPUT_FLOATING_PT); // enable Rx pin for usart1 as input
 
-    adc_init(ADC1);
-    adc_set_chan(ADC1, CHAN1, cycles_28Pt5); // 28.5 cycles
-    pin_mode(PA0, INPUT_ANALOG); // enable analog input at A0
-    nvic_irq_enable(ADC1_2_IRQn);
+    ADC_Init(ADC1);
+    ADC_Set_Chan(ADC1, CHAN1, Cycles_28Pt5); // 28.5 Cycles
+    GPIO_PinMode(PA0, INPUT_ANALOG); // enable analog input at A0
+    NVIC_Irq_Enable(ADC1_2_IRQn);
 
-    timer_init(TIM3, 10000U, 10000U); // tim3 at 1MHz
-    pin_mode(PA7, OUT_GP_PUSH_PULL_50);
-    nvic_irq_enable(TIM3_IRQn);
+    TIM_Init(TIM3, 10000U, 10000U); // tim3 at 1MHz
+    GPIO_PinMode(PA7, OUT_GP_PUSH_PULL_50);
+    NVIC_Irq_Enable(TIM3_IRQn);
 
-    timer_init(TIM2, 10000U, 255U);
-    pin_mode(PA2, OUT_ALT_PUSH_PULL_50);
-    nvic_irq_enable(TIM2_IRQn);
+    TIM_Init(TIM2, 10000U, 255U);
+    GPIO_PinMode(PA2, OUT_ALT_PUSH_PULL_50);
+    NVIC_Irq_Enable(TIM2_IRQn);
 
-    systick_init(1000U); // initialize systick at 1Hz
-    serial_init(USART1, 115200U); // initializer serial at 115200 baud
-    nvic_irq_enable(USART1_IRQn);
+    Systick_Init(1000U); // initialize systick at 1Hz
+    Serial_Init(USART1, 115200U); // initializer serial at 115200 BAUD
+    NVIC_Irq_Enable(USART1_IRQn);
 
     uint8_t pwm = 0U;
-    uint64_t start_t = systick_millis();
+    uint64_t start_t = Systick_Millis();
     bool up = true;
 
     while(1) {
-        if (systick_millis() - start_t > 1000U) {
-            serial_wr_s(USART1, "hello world!", true);
-            led_toggle(PC13);
-            start_t = systick_millis();
+        if (Systick_Millis() - start_t > 1000U) {
+            Serial_Write_Str(USART1, "hello world!", true);
+            LED_Toggle(PC13);
+            start_t = Systick_Millis();
 
             if (up) pwm += STEP;
             else pwm -= STEP;
 
             if (pwm == 250 || pwm == 0) up = !up;
-            enable_chan(TIM2, PWM, CHAN3, pwm);
+            TIM_Enable_Chan(TIM2, PWM, CHAN3, pwm);
         }
     }
 }
