@@ -15,4 +15,5 @@ Written mostly in C.
 * **08 - PWM** -> Using general purpose timers to generate a PWM signal. Started using objdump for disassembly. Also code cleanup and fixed issue with timing.
 * **09 - SCB** -> Adding system control block exception handlers.
 * **10 - Serial** -> Enabling and using USART/serial.
-* **11 - HAL** -> Small hardware abstraction layer.
+* **11 - HAL** -> Non-exhaustive hardware abstraction layer.
+* **12 - RTOS** -> Minimal Real Time Operating System Kernal.
