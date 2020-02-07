@@ -16,4 +16,4 @@ Written mostly in C.
 * **09 - SCB** -> Adding system control block exception handlers.
 * **10 - Serial** -> Enabling and using USART/serial.
 * **11 - HAL** -> Non-exhaustive hardware abstraction layer.
-* **12 - RTOS** -> Minimal Real Time Operating System Kernal.
+* **12 - RTOS** -> Minimal Real Time Operating System Kernel.
