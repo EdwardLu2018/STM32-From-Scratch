@@ -53,6 +53,7 @@ void TIM_Init(uint8_t timer, uint32_t prescaler, uint32_t period) {
     tim->PSC = PCLK2 / prescaler - 1U; // a prescaler value of PSC will increment cnt every PSC+1 clock Cycles.
     tim->ARR = period - 1U; // "period" of timer - updates every time cnt reaches ARR
 
+    // enable interrupt //
     tim->DIER = 1U;
 
     // enable counter //
