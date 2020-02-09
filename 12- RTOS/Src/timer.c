@@ -26,7 +26,10 @@ uint32_t TIM_Get_Cnt(uint8_t timer) {
     return tim->CNT;
 }
 
-void TIM_Enable_Chan(uint8_t timer, uint8_t mode, uint8_t channel, uint32_t load) {
+void TIM_Enable_Chan(uint8_t timer,
+                     uint8_t mode,
+                     uint8_t channel,
+                     uint32_t load) {
     TIM_t *tim = TIM_Get(timer);
     tim->CCR[channel] = load;
 

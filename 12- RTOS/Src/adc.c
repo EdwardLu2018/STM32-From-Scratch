@@ -28,7 +28,9 @@ void ADC_Calibrate(uint8_t adc_num) {
     adc->CR1 |= EOCIE;
 }
 
-void ADC_Set_Chan(uint8_t adc_num, uint8_t chan, uint32_t sample_bits) {
+void ADC_Set_Chan(uint8_t adc_num,
+                  uint8_t chan,
+                  uint32_t sample_bits) {
     ADC_t *adc = ADC_Get(adc_num);
     adc->SQR1 = 0;
     adc->SQR2 = 0;

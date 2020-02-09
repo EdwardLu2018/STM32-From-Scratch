@@ -1,5 +1,5 @@
-#ifndef __MAIN__
-#define __MAIN__
+#ifndef __BSP__
+#define __BSP__
 
 #include "delay.h"
 #include "rcc.h"

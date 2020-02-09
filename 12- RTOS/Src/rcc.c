@@ -3,7 +3,10 @@
 
 RCC_t *rcc = (RCC_t *)(RCC_BASE);
 
-void RCC_Init(uint32_t tim_en, uint32_t gpio_en, uint32_t adc_en, uint32_t usart_en) {
+void RCC_Init(uint32_t tim_en,
+              uint32_t gpio_en,
+              uint32_t adc_en,
+              uint32_t usart_en) {
     // switch to 72Mhz clock //
     flash->ACR |= LATENCY_2;
     rcc->CFGR |= APB1_DIV2;

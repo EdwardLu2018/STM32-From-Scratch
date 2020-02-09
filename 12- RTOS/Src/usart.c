@@ -30,7 +30,9 @@ bool Serial_Write_Char(uint8_t usart, char c) {
     return USART_SUCCESS;
 }
 
-bool Serial_Write_Str(uint8_t usart, char *s, bool new_line) {
+bool Serial_Write_Str(uint8_t usart,
+                      char *s,
+                      bool new_line) {
     while(*s) Serial_Write_Char(usart, *s++);
     if (!new_line) return 1;
     Serial_Write_Char(usart, '\r');

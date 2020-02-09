@@ -1,10 +1,6 @@
 #include "bsp.h"
 
-uint32_t __IO cnt = 0;
-void SysTick_Handler(void) {
-    cnt++;
-}
-
+// thread 1
 uint32_t stack_blinky1[40];
 uint32_t *sp_blinky1 = &stack_blinky1[40];
 void blinky1() {
@@ -16,6 +12,7 @@ void blinky1() {
     }
 }
 
+// thread 2
 uint32_t stack_blinky2[40];
 uint32_t *sp_blinky2 = &stack_blinky2[40];
 void blinky2() {
@@ -43,15 +40,15 @@ int main(void) {
      * | {aligner} | * high addresses
      * |   xPSR    | *
      * |    PC     | *      ||
-     * |  LR (R14) | *      ||
-     * |    R12    | *      ||
-     * |    R3     | *      ||
+     * |  LR (R14) | *      || Stack
+     * |    R12    | *      || grows
+     * |    R3     | *      || down!
      * |    R2     | *      \/
      * |    R1     | *
      * |    R0     | * low addresses
-     * Stack grows down!
      */
 
+    // fabricate stack for each thread: //
     *(--sp_blinky1) = (1U << 24); // set thumb state bit of xPSR (pg 22 of programming manual)
     *(--sp_blinky1) = (uint32_t)&blinky1; // set PC to address of blinky1. cast to 32 bits to fit on stack
     // since blinky1 is a thread function, there is no return, so set remaining regs to dummy values
@@ -61,16 +58,32 @@ int main(void) {
     *(--sp_blinky1) = 0x00000002U; // R2
     *(--sp_blinky1) = 0x00000001U; // R1
     *(--sp_blinky1) = 0x00000000U; // R0
+    *(--sp_blinky1) = 0x0000000BU; // R11
+    *(--sp_blinky1) = 0x0000000AU; // R10
+    *(--sp_blinky1) = 0x00000008U; // R9
+    *(--sp_blinky1) = 0x00000008U; // R8
+    *(--sp_blinky1) = 0x00000007U; // R7
+    *(--sp_blinky1) = 0x00000006U; // R6
+    *(--sp_blinky1) = 0x00000005U; // R5
+    *(--sp_blinky1) = 0x00000004U; // R4
 
     // do same for blinky2
-    *(--sp_blinky1) = (1U << 24);
-    *(--sp_blinky1) = (uint32_t)&blinky2;
-    *(--sp_blinky1) = 0x0000000EU; // R14
-    *(--sp_blinky1) = 0x0000000CU; // R12
-    *(--sp_blinky1) = 0x00000003U; // R3
-    *(--sp_blinky1) = 0x00000002U; // R2
-    *(--sp_blinky1) = 0x00000001U; // R1
-    *(--sp_blinky1) = 0x00000000U; // R0
+    *(--sp_blinky2) = (1U << 24);
+    *(--sp_blinky2) = (uint32_t)&blinky2;
+    *(--sp_blinky2) = 0x0000000EU; // R14
+    *(--sp_blinky2) = 0x0000000CU; // R12
+    *(--sp_blinky2) = 0x00000003U; // R3
+    *(--sp_blinky2) = 0x00000002U; // R2
+    *(--sp_blinky2) = 0x00000001U; // R1
+    *(--sp_blinky2) = 0x00000000U; // R0
+    *(--sp_blinky2) = 0x0000000BU; // R11
+    *(--sp_blinky2) = 0x0000000AU; // R10
+    *(--sp_blinky2) = 0x00000008U; // R9
+    *(--sp_blinky2) = 0x00000008U; // R8
+    *(--sp_blinky2) = 0x00000007U; // R7
+    *(--sp_blinky2) = 0x00000006U; // R6
+    *(--sp_blinky2) = 0x00000005U; // R5
+    *(--sp_blinky2) = 0x00000004U; // R4
 
     while(1) {}
 }
