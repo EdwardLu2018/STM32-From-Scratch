@@ -4,6 +4,6 @@ void OS_idle_thread(void) {
     while(1);
 }
 
-void RTOS_Init(void) {
+void OS_init(void) {
 
 }
