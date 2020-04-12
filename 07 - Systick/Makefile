@@ -53,6 +53,11 @@ clean:
 flash: $(BUILD_DIR)/$(TARGET).bin
 	st-flash --reset write ./$(BUILD_DIR)/$(TARGET).bin 0x08000000
 
-# OPEN_OCD = -f /usr/local/share/openocd/scripts/interface/stlink-v2.cfg -f /usr/local/share/openocd/scripts/target/stm32f1x.cfg
-# flash-ocd: $(BUILD_DIR)/$(TARGET).bin
-# 	openocd $(OPEN_OCD) -c "program ./$(BUILD_DIR)/$(TARGET).elf verify reset exit"
+openocd:
+	openocd -f openocd.cfg
+
+telnet:
+	telnet localhost 4444
+
+gdb: $(BUILD_DIR)/$(TARGET).elf
+	arm-none-eabi-gdb --eval-command="target remote localhost:3333" $<
