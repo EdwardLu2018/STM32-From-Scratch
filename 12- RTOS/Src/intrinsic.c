@@ -1,16 +1,20 @@
 #include "intrinsic.h"
 
 // enable interrupt
-void __enable_irq(void) {
-    __ASM volatile ("cpsie i" ::: "memory");
+inline void __enable_irq(void) {
+    __ASM volatile ("cpsie i");
 }
 
 // disable interrupt
-void __disable_irq(void) {
-    __ASM volatile ("cpsid i" ::: "memory");
+inline void __disable_irq(void) {
+    __ASM volatile ("cpsid i");
+}
+
+inline void __WFI(void) {
+    __ASM volatile ("wfi");
 }
 
 // no operation
-void __NOP(void) {
+inline void __NOP(void) {
     __ASM volatile ("nop");
 }

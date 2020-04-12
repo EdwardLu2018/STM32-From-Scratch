@@ -35,9 +35,9 @@ typedef struct
     uint32_t __IO LCKR;     // 0x18 - port configuration lock register
 } GPIO_t;
 
-GPIO_t *gpio_a;
-GPIO_t *gpio_b;
-GPIO_t *gpio_c;
+extern GPIO_t *gpio_a;
+extern GPIO_t *gpio_b;
+extern GPIO_t *gpio_c;
 
 typedef enum
 {

@@ -42,9 +42,9 @@ typedef struct
     uint32_t __IO GTPR; // 0x18 guard time and prescaler register
 } USART_t;
 
-USART_t *usart1;
-USART_t *usart2;
-USART_t *usart3;
+extern USART_t *usart1;
+extern USART_t *usart2;
+extern USART_t *usart3;
 
 void Serial_Init(uint8_t usart, uint32_t BAUD);
 bool Serial_Write_Char(uint8_t usart, char c);

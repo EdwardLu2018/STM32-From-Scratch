@@ -47,9 +47,9 @@ typedef struct
     uint32_t __IO DMAR;     // 0x4C - DMA address for full transfer
 } TIM_t;
 
-TIM_t *tim2;
-TIM_t *tim3;
-TIM_t *tim4;
+extern TIM_t *tim2;
+extern TIM_t *tim3;
+extern TIM_t *tim4;
 
 uint32_t TIM_Get_Cnt(uint8_t timer);
 void TIM_Enable_Chan(uint8_t timer, uint8_t mode, uint8_t channel, uint32_t load);

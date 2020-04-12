@@ -90,7 +90,7 @@ typedef struct {
 	// uint32_t __IO STIR;	// 0x48 to 0x54 - software trigger interrupt register
 } NVIC_t;
 
-NVIC_t *nvic;
+extern NVIC_t *nvic;
 
 void NVIC_Irq_Enable(uint8_t irq_pos);
 

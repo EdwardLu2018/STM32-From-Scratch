@@ -17,7 +17,7 @@ typedef struct
     uint32_t __IO CALIB;    // 0xC - calibration value register
 } Systick_t;
 
-Systick_t *systick;
+extern Systick_t *systick;
 
 void Systick_Init(uint32_t reload_val);
 uint32_t Systick_Millis(void);

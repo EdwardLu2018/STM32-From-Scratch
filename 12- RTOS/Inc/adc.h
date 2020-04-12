@@ -50,9 +50,9 @@ typedef struct
     uint32_t __IO DR; // 0x4C - regular DATA register
 } ADC_t;
 
-ADC_t *adc1;
-ADC_t *adc2;
-ADC_t *adc3;
+extern ADC_t *adc1;
+extern ADC_t *adc2;
+extern ADC_t *adc3;
 
 void ADC_Init(uint8_t adc_num);
 void ADC_Calibrate(uint8_t adc_num);

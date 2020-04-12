@@ -13,6 +13,6 @@ typedef struct Flash_t {
     uint32_t __IO ACR; // 0x0 - flash access control register
 } Flash_t;
 
-Flash_t *flash;
+extern Flash_t *flash;
 
 #endif
