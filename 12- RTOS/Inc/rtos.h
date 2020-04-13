@@ -4,18 +4,23 @@
 #include "intrinsic.h"
 
 #define MAX_THREADS 32
-#define MAX_THREAD_STACK_SIZE 64
+#define THREAD_STACK_SIZE 64
 
-typedef struct {
+typedef struct RTOS_Thread {
+    uint32_t ticks;
     void *sp; // stack pointer
-} OS_Thread;
+} RTOS_Thread;
 
-typedef void (*OS_ThreadFunc)(void);
+typedef void (*RTOS_ThreadFunc)(void);
 
-extern OS_Thread * __IO curr_thread;
-extern OS_Thread * __IO next_thread;
+extern RTOS_Thread * __IO curr_thread;
+extern RTOS_Thread * __IO next_thread;
 
-void OS_init(void);
-void OS_add_thread(OS_ThreadFunc task, void *thread_sp);
+void RTOS_init(void);
+void RTOS_run(void);
+void RTOS_tick(void);
+void RTOS_schedule(void);
+void RTOS_delay(uint32_t ticks);
+void RTOS_add_thread(RTOS_ThreadFunc task, void *thread_sp);
 
 #endif

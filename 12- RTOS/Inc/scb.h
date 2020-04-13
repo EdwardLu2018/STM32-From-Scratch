@@ -8,6 +8,8 @@
 #define SYSRESETREQ (1<<2)
 #define PRIORITY    (7<<8)
 
+#define PENDSVSET   (1<<28)
+
 // system control block (pg 129) //
 typedef struct
 {
@@ -27,5 +29,9 @@ typedef struct
     uint32_t __IO MMFAR;    // 0x34 memory management fault address registe
     uint32_t __IO BFAR;     // 0x38 bus fault address register
 } SCB_t;
+
+extern SCB_t *scb;
+
+void SYSTICK_set_prio(uint8_t prio);
 
 #endif

@@ -10,5 +10,6 @@
 #include "systick.h"
 #include "timer.h"
 #include "usart.h"
+#include "rtos.h"
 
 #endif

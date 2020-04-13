@@ -86,7 +86,8 @@ typedef struct {
 	uint32_t __IO ISPR[3];	// 0x18 to 0x24 - interrupt set-pending registers
 	uint32_t __IO ICPR[3];	// 0x24 to 0x30 - interrupt clear-pending registers
 	uint32_t __IO IABR[3];	// 0x30 to 0x3C - interrupt active bit registers
-	// uint32_t __IO IPR[3];	// 0x3C to 0x48 - interrupt priority registers
+	// TODO: list proper memory addresses for IPR and STIR
+	uint32_t __IO IPR[32];	// 0x3C to 0x48 - interrupt priority registers
 	// uint32_t __IO STIR;	// 0x48 to 0x54 - software trigger interrupt register
 } NVIC_t;
 

@@ -1,4 +1,5 @@
 #include "systick.h"
+#include "rtos.h"
 
 Systick_t *systick = (Systick_t *)(SYSTICK_BASE);
 
@@ -11,6 +12,12 @@ void Systick_Init(uint32_t RELOAD_val) {
 static uint32_t __IO SysTick_TickCtr = 0;
 void SysTick_Handler(void) {
     SysTick_TickCtr++;
+
+    RTOS_tick();
+
+    __disable_irq();
+    RTOS_schedule();
+    __enable_irq();
 }
 
 uint32_t Systick_Millis(void) {
