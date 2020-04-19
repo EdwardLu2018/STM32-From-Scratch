@@ -13,8 +13,9 @@ static uint32_t __IO SysTick_TickCtr = 0;
 void SysTick_Handler(void) {
     SysTick_TickCtr++;
 
-    __disable_irq();
     RTOS_tick();
+
+    __disable_irq();
     RTOS_schedule();
     __enable_irq();
 }

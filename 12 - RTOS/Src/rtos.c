@@ -24,13 +24,13 @@ static void ready_set_remove(uint8_t n) {
 }
 
 static uint32_t ready_set_get(uint8_t n) {
-    return ready_set &= (0x1U << (n - 1));
+    return ready_set & (0x1U << (n - 1));
 }
 
 RTOS_TCB idle_tcb;
 static uint32_t stack_idle_thread[THREAD_STACK_SIZE];
 static void RTOS_idle_thread(void) {
-    __WFI(); // wait for interrupt
+    while(1) __WFI();
 }
 
 static void PENDSV_set_prio(uint8_t prio) {
@@ -38,7 +38,7 @@ static void PENDSV_set_prio(uint8_t prio) {
 }
 
 static void PENDSV_trigger(void) {
-    scb->ICSR = PENDSVSET; // trigger PENDSV interrupt
+    scb->ICSR |= PENDSVSET; // trigger PENDSV interrupt
 }
 
 void RTOS_init(void) {
@@ -59,8 +59,7 @@ void RTOS_tick(void) {
     uint8_t i;
     for (i = 1; i < threads_added; i++) {
         if (threads[i]->ticks != 0U) {
-            --threads[i]->ticks;
-            if (threads[i]->ticks == 0U) {
+            if (threads[i]->ticks-- == 0U) {
                 ready_set_add(i);
             }
         }
@@ -76,7 +75,8 @@ void RTOS_schedule(void) {
             if (thread_idx++ == threads_added) {
                 thread_idx = 1U;
             }
-        } while (ready_set_get(thread_idx) == 0U);
+        }
+        while (ready_set_get(thread_idx) == 0U);
     }
     next_tcb = threads[thread_idx];
 
@@ -101,7 +101,7 @@ static uint32_t align(uint32_t x) {
 }
 
 void RTOS_add_thread(RTOS_TCB *tcb, RTOS_ThreadFunc thread_handler, void *thread_sp) {
-    uint32_t *sp = (uint32_t *)align((uint32_t)thread_sp + sizeof(thread_handler));
+    uint32_t *sp = (uint32_t *)align((uint32_t)thread_sp + THREAD_STACK_SIZE*4);
 
     /* https://developer.arm.com/docs/100235/0002/the-cortexm33-processor/exception-model/exception-entry-and-return
      *
@@ -154,7 +154,7 @@ void RTOS_add_thread(RTOS_TCB *tcb, RTOS_ThreadFunc thread_handler, void *thread
     if (threads_added > 0U) {
         ready_set_add(threads_added);
     }
-    ++threads_added;
+    threads_added++;
 }
 
 void PendSV_Handler(void) {
@@ -187,5 +187,4 @@ void PendSV_Handler(void) {
 
         "bx     lr                  \n\t"
     );
-
 }
