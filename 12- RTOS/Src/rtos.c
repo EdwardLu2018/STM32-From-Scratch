@@ -2,13 +2,14 @@
 #include "scb.h"
 #include <stdlib.h>
 
-RTOS_Thread * __IO curr_thread;
-RTOS_Thread * __IO next_thread;
-static RTOS_Thread *threads[MAX_THREADS+1]; // array of pointers to threads
-static uint8_t threads_added;
-static uint8_t thread_idx;
-static uint32_t ready_set;
-// static RTOS_Thread *threads; // linked list of threads
+RTOS_TCB * __IO curr_tcb;
+RTOS_TCB * __IO next_tcb;
+
+RTOS_TCB *threads[MAX_THREADS+1]; // array of pointers to threads
+uint8_t threads_added;
+uint8_t thread_idx;
+uint32_t ready_set;
+// static RTOS_TCB *threads; // linked list of threads
 
 static uint32_t ready_set_empty() {
     return !(!!ready_set);
@@ -26,6 +27,7 @@ static uint32_t ready_set_get(uint8_t n) {
     return ready_set &= (0x1U << (n - 1));
 }
 
+RTOS_TCB idle_tcb;
 static uint32_t stack_idle_thread[THREAD_STACK_SIZE];
 static void RTOS_idle_thread(void) {
     __WFI(); // wait for interrupt
@@ -36,14 +38,15 @@ static void PENDSV_set_prio(uint8_t prio) {
 }
 
 static void PENDSV_trigger(void) {
-    scb->ICSR |= PENDSVSET; // trigger PENDSV interrupt
+    scb->ICSR = PENDSVSET; // trigger PENDSV interrupt
 }
 
 void RTOS_init(void) {
     PENDSV_set_prio(0xFFU); // set PENDSV priority to lowest level
     SYSTICK_set_prio(0x0U); // set SYSTICK priority to highest level
 
-    RTOS_add_thread(&RTOS_idle_thread, &stack_idle_thread);
+    threads_added = 0;
+    RTOS_add_thread(&idle_tcb, &RTOS_idle_thread, &stack_idle_thread);
 }
 
 void RTOS_run(void) {
@@ -75,9 +78,9 @@ void RTOS_schedule(void) {
             }
         } while (ready_set_get(thread_idx) == 0U);
     }
-    next_thread = threads[thread_idx];
+    next_tcb = threads[thread_idx];
 
-    if (next_thread != curr_thread) {
+    if (next_tcb != curr_tcb) {
         PENDSV_trigger();
     }
 }
@@ -85,7 +88,7 @@ void RTOS_schedule(void) {
 void RTOS_delay(uint32_t ticks) {
     __disable_irq();
 
-    curr_thread->ticks = ticks;
+    curr_tcb->ticks = ticks;
     ready_set_remove(thread_idx);
     RTOS_schedule();
 
@@ -97,9 +100,8 @@ static uint32_t align(uint32_t x) {
     return (x / 8) * 8;
 }
 
-void RTOS_add_thread(RTOS_ThreadFunc thread_handler, void *thread_sp) {
+void RTOS_add_thread(RTOS_TCB *tcb, RTOS_ThreadFunc thread_handler, void *thread_sp) {
     uint32_t *sp = (uint32_t *)align((uint32_t)thread_sp + sizeof(thread_handler));
-    RTOS_Thread *tcb; // thread control block
 
     /* https://developer.arm.com/docs/100235/0002/the-cortexm33-processor/exception-model/exception-entry-and-return
      *
@@ -146,20 +148,44 @@ void RTOS_add_thread(RTOS_ThreadFunc thread_handler, void *thread_sp) {
 
     // store stack top
     tcb->sp = sp;
-    tcb->ticks = 0;
 
     // add thread to thread list
     threads[threads_added] = tcb;
     if (threads_added > 0U) {
         ready_set_add(threads_added);
     }
-    threads_added++;
+    ++threads_added;
 }
 
 void PendSV_Handler(void) {
     __ASM volatile (
-        "cpsid  i\n\t" // disable interrupts
+        "cpsid  i                   \n\t" // disable interrupts
 
-        "cpsie  i\n\t" // enable interrupts
+        "ldr    r1,=curr_tcb        \n\t"
+        "ldr    r1,[r1]             \n\t"
+        "cbz    r1,PendSV_restore   \n\t"
+
+        "push   {r4-r11}            \n\t"
+
+        "ldr    r1,=curr_tcb        \n\t"
+        "ldr    r1,[r1]             \n\t"
+        "str    sp,[r1]             \n\t"
+
+        "PendSV_restore:            \n\t"
+        "ldr    r1,=next_tcb        \n\t"
+        "ldr    r1,[r1]             \n\t"
+        "ldr    sp,[r1]             \n\t"
+
+        "ldr    r1,=next_tcb        \n\t"
+        "ldr    r1,[r1]             \n\t"
+        "ldr    r2,=curr_tcb        \n\t"
+        "str    r1,[r2]             \n\t"
+
+        "pop    {r4-r11}            \n\t"
+
+        "cpsie  i                   \n\t" // enable interrupts
+
+        "bx     lr                  \n\t"
     );
+
 }

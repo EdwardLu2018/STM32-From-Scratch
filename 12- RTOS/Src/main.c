@@ -1,6 +1,7 @@
 #include "bsp.h"
 
 // thread 1
+RTOS_TCB tcb1;
 uint32_t stack_thread1[THREAD_STACK_SIZE];
 void thread1() {
     while(1) {
@@ -12,6 +13,7 @@ void thread1() {
 }
 
 // thread 2
+RTOS_TCB tcb2;
 uint32_t stack_thread2[THREAD_STACK_SIZE];
 void thread2() {
     while(1) {
@@ -34,8 +36,8 @@ int main(void) {
 
     RTOS_init();
 
-    RTOS_add_thread(thread1, &stack_thread1);
-    RTOS_add_thread(thread2, &stack_thread2);
+    RTOS_add_thread(&tcb1, thread1, &stack_thread1);
+    RTOS_add_thread(&tcb2, thread2, &stack_thread2);
 
     RTOS_run();
 
