@@ -34,8 +34,8 @@ int main(void) {
 
     RTOS_init();
 
-    RTOS_add_thread(&tcb1, thread1, &stack_thread1);
-    RTOS_add_thread(&tcb2, thread2, &stack_thread2);
+    RTOS_add_thread(&tcb1, &thread1, stack_thread1);
+    RTOS_add_thread(&tcb2, &thread2, stack_thread2);
 
     RTOS_run();
 

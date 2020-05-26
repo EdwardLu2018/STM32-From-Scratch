@@ -1,18 +1,19 @@
 #include "rtos.h"
 #include "scb.h"
 #include <stdlib.h>
+#include <stdbool.h>
 
 RTOS_TCB * __IO curr_tcb;
 RTOS_TCB * __IO next_tcb;
 
-RTOS_TCB *threads[MAX_THREADS+1]; // array of pointers to threads
-uint8_t threads_added;
-uint8_t thread_idx;
-uint32_t ready_set;
+RTOS_TCB *threads[MAX_THREADS + 1]; // array of pointers to threads
+static uint8_t threads_added;
+static uint8_t thread_idx;
+static uint32_t ready_set;
 // static RTOS_TCB *threads; // linked list of threads
 
-static uint32_t ready_set_empty() {
-    return !(!!ready_set);
+static bool ready_set_empty() {
+    return ready_set == 0;
 }
 
 static void ready_set_add(uint8_t n) {
@@ -46,7 +47,7 @@ void RTOS_init(void) {
     SYSTICK_set_prio(0x0U); // set SYSTICK priority to highest level
 
     threads_added = 0;
-    RTOS_add_thread(&idle_tcb, &RTOS_idle_thread, &stack_idle_thread);
+    RTOS_add_thread(&idle_tcb, &RTOS_idle_thread, stack_idle_thread);
 }
 
 void RTOS_run(void) {
@@ -57,9 +58,10 @@ void RTOS_run(void) {
 
 void RTOS_tick(void) {
     uint8_t i;
-    for (i = 1; i < threads_added; i++) {
+    for (i = 1; i < threads_added; ++i) {
         if (threads[i]->ticks != 0U) {
-            if (threads[i]->ticks-- == 0U) {
+            --threads[i]->ticks;
+            if (threads[i]->ticks == 0U) {
                 ready_set_add(i);
             }
         }
@@ -72,12 +74,14 @@ void RTOS_schedule(void) {
     }
     else {
         do {
-            if (thread_idx++ == threads_added) {
+            ++thread_idx;
+            if (thread_idx == threads_added) {
                 thread_idx = 1U;
             }
         }
         while (ready_set_get(thread_idx) == 0U);
     }
+
     next_tcb = threads[thread_idx];
 
     if (next_tcb != curr_tcb) {
@@ -154,7 +158,7 @@ void RTOS_add_thread(RTOS_TCB *tcb, RTOS_ThreadFunc thread_handler, void *thread
     if (threads_added > 0U) {
         ready_set_add(threads_added);
     }
-    threads_added++;
+    ++threads_added;
 }
 
 void PendSV_Handler(void) {
@@ -162,24 +166,24 @@ void PendSV_Handler(void) {
         "cpsid  i                   \n\t" // disable interrupts
 
         "ldr    r1,=curr_tcb        \n\t"
-        "ldr    r1,[r1]             \n\t"
-        "cbz    r1,PendSV_restore   \n\t"
+        "ldr    r1,[r1]             \n\t" // r1 = curr_tcb
+        "cbz    r1,PendSV_restore   \n\t" // if curr_tcb == NULL, PendSV_restore
 
         "push   {r4-r11}            \n\t"
 
         "ldr    r1,=curr_tcb        \n\t"
         "ldr    r1,[r1]             \n\t"
-        "str    sp,[r1]             \n\t"
+        "str    sp,[r1]             \n\t" // r1 = curr_tcb->sp
 
         "PendSV_restore:            \n\t"
         "ldr    r1,=next_tcb        \n\t"
         "ldr    r1,[r1]             \n\t"
-        "ldr    sp,[r1]             \n\t"
+        "ldr    sp,[r1]             \n\t" // r1 = next_tcb->sp
 
         "ldr    r1,=next_tcb        \n\t"
         "ldr    r1,[r1]             \n\t"
         "ldr    r2,=curr_tcb        \n\t"
-        "str    r1,[r2]             \n\t"
+        "str    r1,[r2]             \n\t" // curr_tcb = next_tcb
 
         "pop    {r4-r11}            \n\t"
 
