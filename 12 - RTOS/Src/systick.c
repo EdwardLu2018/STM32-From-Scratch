@@ -3,8 +3,8 @@
 
 Systick_t *systick = (Systick_t *)(SYSTICK_BASE);
 
-void Systick_Init(uint32_t RELOAD_val) {
-    systick->RELOAD = PCLK2 / RELOAD_val - 1U;
+void Systick_Init(uint32_t reload_val) {
+    systick->RELOAD = PCLK2 / reload_val - 1U;
     systick->VAL = 0U;
     systick->CTRL = (AHB_EN|TICKINT_EN|TICK_EN);
 }
@@ -13,10 +13,10 @@ static uint32_t __IO SysTick_TickCtr = 0;
 void SysTick_Handler(void) {
     SysTick_TickCtr++;
 
-    RTOS_tick();
+    RTOS_Tick();
 
     __disable_irq();
-    RTOS_schedule();
+    RTOS_Schedule();
     __enable_irq();
 }
 

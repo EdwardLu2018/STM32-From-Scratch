@@ -3,9 +3,9 @@
 
 // Memory addresses found on page 80
 
-#define HSI_MHZ 8000000U  // 8 Mhz clock
-#define PCLK1   36000000U // 36 Mhz clock
-#define PCLK2   72000000U // 72 Mhz clock
+#define HSI_MHZ         8000000U  // 8 Mhz clock
+#define PCLK1           36000000U // 36 Mhz clock
+#define PCLK2           72000000U // 72 Mhz clock
 
 // Base Addresses For Peripherals (pg 34 Reference Manual) //
 #define RCC_BASE        0x40021000U
@@ -38,5 +38,7 @@
 #define UART1_BASE	    0x40013800U
 #define UART2_BASE	    0x40004400U
 #define UART3_BASE	    0x40004800U
+
+#define WWDG_BASE       0x40002C00U
 
 #endif

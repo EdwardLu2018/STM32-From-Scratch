@@ -1,16 +1,16 @@
-#include "rtos.h"
+#include "rcc.h"
 #include "scb.h"
+#include "rtos.h"
 #include <stdlib.h>
 #include <stdbool.h>
 
 RTOS_TCB * __IO curr_tcb;
 RTOS_TCB * __IO next_tcb;
 
-RTOS_TCB *threads[MAX_THREADS + 1]; // array of pointers to threads
-static uint8_t threads_added;
+RTOS_TCB *threads[MAX_THREADS+1]; // array of pointers to threads
+static uint8_t threads_added = 0;
 static uint8_t thread_idx;
 static uint32_t ready_set;
-// static RTOS_TCB *threads; // linked list of threads
 
 static bool ready_set_empty() {
     return ready_set == 0;
@@ -29,34 +29,33 @@ static uint32_t ready_set_get(uint8_t n) {
 }
 
 RTOS_TCB idle_tcb;
-static uint32_t stack_idle_thread[THREAD_STACK_SIZE];
+uint32_t stack_idle_thread[THREAD_STACK_SIZE];
 static void RTOS_idle_thread(void) {
-    while(1) __WFI();
+    __WFI();
 }
 
-static void PENDSV_set_prio(uint8_t prio) {
+static void PENDSV_Set_Prio(uint8_t prio) {
     scb->SHPR3 |= (prio << 16);
 }
 
-static void PENDSV_trigger(void) {
+static void PENDSV_Trigger(void) {
     scb->ICSR |= PENDSVSET; // trigger PENDSV interrupt
 }
 
-void RTOS_init(void) {
-    PENDSV_set_prio(0xFFU); // set PENDSV priority to lowest level
+void RTOS_Init() {
+    PENDSV_Set_Prio(0xFFU); // set PENDSV priority to lowest level
     SYSTICK_set_prio(0x0U); // set SYSTICK priority to highest level
 
-    threads_added = 0;
-    RTOS_add_thread(&idle_tcb, &RTOS_idle_thread, stack_idle_thread);
+    RTOS_Add_Thread(&idle_tcb, &RTOS_idle_thread, stack_idle_thread);
 }
 
-void RTOS_run(void) {
+void RTOS_Run(void) {
     __disable_irq();
-    RTOS_schedule();
+    RTOS_Schedule();
     __enable_irq();
 }
 
-void RTOS_tick(void) {
+void RTOS_Tick(void) {
     uint8_t i;
     for (i = 1; i < threads_added; ++i) {
         if (threads[i]->ticks != 0U) {
@@ -68,7 +67,7 @@ void RTOS_tick(void) {
     }
 }
 
-void RTOS_schedule(void) {
+void RTOS_Schedule(void) {
     if (ready_set_empty()) {
         thread_idx = 0U;
     }
@@ -85,27 +84,22 @@ void RTOS_schedule(void) {
     next_tcb = threads[thread_idx];
 
     if (next_tcb != curr_tcb) {
-        PENDSV_trigger();
+        PENDSV_Trigger();
     }
 }
 
-void RTOS_delay(uint32_t ticks) {
+void RTOS_Delay(uint32_t ticks) {
     __disable_irq();
 
     curr_tcb->ticks = ticks;
     ready_set_remove(thread_idx);
-    RTOS_schedule();
+    RTOS_Schedule();
 
     __enable_irq();
 }
 
-/* Rounds x down to a multiple of 8 for address alignment */
-static uint32_t align(uint32_t x) {
-    return (x / 8) * 8;
-}
-
-void RTOS_add_thread(RTOS_TCB *tcb, RTOS_ThreadFunc thread_handler, void *thread_sp) {
-    uint32_t *sp = (uint32_t *)align((uint32_t)thread_sp + THREAD_STACK_SIZE*4);
+void RTOS_Add_Thread(RTOS_TCB *tcb, RTOS_ThreadFunc thread_handler, void *thread_stack) {
+    uint32_t *sp = (uint32_t *)((((uint32_t)thread_stack + 4*THREAD_STACK_SIZE) / 8) * 8);
 
     /* https://developer.arm.com/docs/100235/0002/the-cortexm33-processor/exception-model/exception-entry-and-return
      *
@@ -124,13 +118,12 @@ void RTOS_add_thread(RTOS_TCB *tcb, RTOS_ThreadFunc thread_handler, void *thread
      */
 
     /* Fabricate stack for thread function: */
-    // set thumb state bit of xPSR (Special-purpose Program Status Registers) (pg 22 of programming manual)
+    // set thumb state bit of xPSR (Special-Purpose Program Status Register) (pg 22 of programming manual)
     *(--sp) = (1U << 24); // xPSR
-    // set program counter to address of thread and cast to 32 bits to fit on stack
+    // set program counter to address of thread handler; cast to 32 bits to fit on stack
     *(--sp) = (uint32_t)thread_handler; // PC
 
-    // threads have no return/inputs,
-    // so set registers to dummy values (values of reg)
+    // threads have no return/inputs, so set registers to dummy values (values of reg)
     *(--sp) = 0x0000000EU; // R14 (LR - link register: holds address to return to)
     *(--sp) = 0x0000000CU; // R12 (static link)
 
@@ -143,7 +136,7 @@ void RTOS_add_thread(RTOS_TCB *tcb, RTOS_ThreadFunc thread_handler, void *thread
     // fabricate local variables
     *(--sp) = 0x0000000BU; // R11
     *(--sp) = 0x0000000AU; // R10
-    *(--sp) = 0x00000008U; // R9
+    *(--sp) = 0x00000009U; // R9
     *(--sp) = 0x00000008U; // R8
     *(--sp) = 0x00000007U; // R7
     *(--sp) = 0x00000006U; // R6
@@ -162,33 +155,34 @@ void RTOS_add_thread(RTOS_TCB *tcb, RTOS_ThreadFunc thread_handler, void *thread
 }
 
 void PendSV_Handler(void) {
-    __ASM volatile (
-        "cpsid  i                   \n\t" // disable interrupts
+    __asm volatile
+    (
+        "cpsid  i                   \n" // disable interrupts
 
-        "ldr    r1,=curr_tcb        \n\t"
-        "ldr    r1,[r1]             \n\t" // r1 = curr_tcb
-        "cbz    r1,PendSV_restore   \n\t" // if curr_tcb == NULL, PendSV_restore
+        "ldr    r1,=curr_tcb        \n"
+        "ldr    r1,[r1]             \n" // r1 = curr_tcb
+        "cbz    r1,restore_context  \n" // if curr_tcb == NULL, goto restore_context
 
-        "push   {r4-r11}            \n\t"
+        "push   {r4-r11}            \n"
 
-        "ldr    r1,=curr_tcb        \n\t"
-        "ldr    r1,[r1]             \n\t"
-        "str    sp,[r1]             \n\t" // r1 = curr_tcb->sp
+        "ldr    r1,=curr_tcb        \n"
+        "ldr    r1,[r1]             \n"
+        "str    sp,[r1]             \n" // curr_tcb->sp = sp
 
-        "PendSV_restore:            \n\t"
-        "ldr    r1,=next_tcb        \n\t"
-        "ldr    r1,[r1]             \n\t"
-        "ldr    sp,[r1]             \n\t" // r1 = next_tcb->sp
+        "restore_context:           \n"
+        "ldr    r1,=next_tcb        \n"
+        "ldr    r1,[r1]             \n"
+        "ldr    sp,[r1]             \n" // sp = next_tcb->sp
 
-        "ldr    r1,=next_tcb        \n\t"
-        "ldr    r1,[r1]             \n\t"
-        "ldr    r2,=curr_tcb        \n\t"
-        "str    r1,[r2]             \n\t" // curr_tcb = next_tcb
+        "ldr    r1,=next_tcb        \n"
+        "ldr    r1,[r1]             \n"
+        "ldr    r2,=curr_tcb        \n"
+        "str    r1,[r2]             \n" // curr_tcb = next_tcb
 
-        "pop    {r4-r11}            \n\t"
+        "pop    {r4-r11}            \n"
 
-        "cpsie  i                   \n\t" // enable interrupts
+        "cpsie  i                   \n" // enable interrupts
 
-        "bx     lr                  \n\t"
+        "bx     lr                  \n"
     );
 }
