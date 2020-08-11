@@ -3,7 +3,7 @@ Programming an STM32F103 microcontroller at the register level. Writing my own m
 
 The goal is to write low level drivers without the use of fancy (and useful) libraries and IDE's.
 
-Everything should be able to be done with just a Unix machine, make, and the (gnu arm embedded toolchain)[https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm]
+Everything should be able to be done with just a Unix machine, make, and the [gnu arm embedded toolchain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm).
 
 ## Directories
 * **00 - Blinky** -> Blink program. Simple code to make on-board LED blink.
