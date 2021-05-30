@@ -1,7 +1,7 @@
 # STM32-From-Scratch
 Programming an STM32F103 microcontroller at the register level. Writing my own minimal HAL and eventually a simple RTOS.
 
-The goal is to write low level drivers without the use of fancy (and useful) libraries and IDE's.
+The goal is to write low level drivers, and eventually an RTOS, without the use of fancy libraries and IDEs for embedded development.
 
 Everything should be able to be done with just a Unix machine, make, and the [gnu arm embedded toolchain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm).
 
