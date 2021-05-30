@@ -88,10 +88,10 @@ typedef struct {
 	// TODO: list proper memory addresses for IPR and STIR
 	uint32_t volatile IPR[32];	// 0x3C to 0x48 - interrupt priority registers
 	// uint32_t volatile STIR;	// 0x48 to 0x54 - software trigger interrupt register
-} NVIC_t;
+} nvic_t;
 
-extern NVIC_t *nvic;
+extern nvic_t *nvic;
 
-void NVIC_Irq_Enable(uint8_t irq_pos);
+void nvic_irq_enable(uint8_t irq_pos);
 
 #endif

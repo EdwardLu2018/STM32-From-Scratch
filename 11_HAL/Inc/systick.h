@@ -14,9 +14,9 @@ typedef struct {
     uint32_t volatile RELOAD;   // 0x4 - reload value register
     uint32_t volatile VAL;      // 0x8 - current value register
     uint32_t volatile CALIB;    // 0xC - calibration value register
-} Systick_t;
+} systick_t;
 
-void Systick_Init(uint32_t reload_val);
-uint32_t Systick_Millis(void);
+void systick_init(uint32_t reload_val);
+uint32_t systick_millis(void);
 
-#endif
+#endif /* _SYSTICK_H_ */

@@ -45,12 +45,11 @@ typedef struct {
     uint32_t volatile JDR3; // 0x44 - injected DATA register 3
     uint32_t volatile JDR4; // 0x48 - injected DATA register 4
     uint32_t volatile DR; // 0x4C - regular DATA register
-} ADC_t;
+} adc_t;
 
-ADC_t *ADC_Get(uint8_t adc_num);
-void ADC_Init(uint8_t adc_num);
-void ADC_Calibrate(uint8_t adc_num);
-void ADC_Set_Chan(uint8_t adc_num, uint8_t chan, uint32_t sample_bits);
-uint32_t ADC_Read(uint8_t adc_num);
+void adc_init(uint8_t adc_num);
+void adc_calibrate(uint8_t adc_num);
+void adc_set_chan(uint8_t adc_num, uint8_t chan, uint32_t sample_bits);
+uint32_t adc_read(uint8_t adc_num);
 
 #endif

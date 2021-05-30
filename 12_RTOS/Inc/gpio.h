@@ -30,11 +30,7 @@ typedef struct {
     uint32_t volatile BSRR;     // 0x10 - bit set/reset register
     uint32_t volatile BRR;      // 0x14 - bit reset register
     uint32_t volatile LCKR;     // 0x18 - port configuration lock register
-} GPIO_t;
-
-extern GPIO_t *gpio_a;
-extern GPIO_t *gpio_b;
-extern GPIO_t *gpio_c;
+} gpio_t;
 
 typedef enum {
     // GPIO A pins start with 0x0 as MSB //
@@ -48,7 +44,7 @@ typedef enum {
     PC8, PC9, PC10, PC11, PC12, PC13, PC14, PC15
 } pin_t;
 
-void GPIO_PinMode(pin_t pin, uint8_t mode);
+void gpio_pin_mode(pin_t pin, uint8_t mode);
 void gpio_toggle(pin_t pin);
 void gio_on(pin_t pin);
 void gio_off(pin_t pin);

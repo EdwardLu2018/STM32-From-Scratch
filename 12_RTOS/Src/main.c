@@ -21,12 +21,12 @@ void thread1() {
 // }
 
 int main(void) {
-    RCC_Init(0, GPIOA_EN|GPIOC_EN, 0, 0);
+    rcc_init(0, GPIOA_EN|GPIOC_EN, 0, 0);
 
-    GPIO_PinMode(PC13, OUT_GP_PUSH_PULL_50);
-    // GPIO_PinMode(PA2, OUT_GP_PUSH_PULL_50);
+    gpio_pin_mode(PC13, OUT_GP_PUSH_PULL_50);
+    // gpio_pin_mode(PA2, OUT_GP_PUSH_PULL_50);
 
-    Systick_Init(1000U); // initialize systick at 1Hz
+    systick_init(1000U); // initialize systick at 1Hz
 
     RTOS_Init();
 

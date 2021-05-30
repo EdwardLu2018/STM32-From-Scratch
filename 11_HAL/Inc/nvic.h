@@ -87,8 +87,8 @@ typedef struct {
 	uint32_t volatile IABR[3];	// 0x30 to 0x3C - interrupt active bit registers
 	// uint32_t volatile IPR[3];	// 0x3C to 0x48 - interrupt priority registers
 	// uint32_t volatile STIR;	// 0x48 to 0x54 - software trigger interrupt register
-} NVIC_t;
+} nvic_t;
 
-void NVIC_Irq_Enable(uint8_t irq_pos);
+void nvic_irq_enable(uint8_t irq_pos);
 
 #endif

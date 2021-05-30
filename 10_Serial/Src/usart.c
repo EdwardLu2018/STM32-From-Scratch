@@ -40,7 +40,7 @@ char serial_rd_ch(usart_port_t usart_port) {
     return (char)(serial->data & DATA_MASK);
 }
 
-char *serial_rd_str(usart_port_t usart_port, char *buffer) {
+char *Serial_Read_Str(usart_port_t usart_port, char *buffer) {
     while(*buffer) {
         *buffer++ = serial_rd_ch(usart_port);
     }

@@ -35,10 +35,12 @@ static void RTOS_idle_thread(void) {
 }
 
 static void PENDSV_Set_Prio(uint8_t prio) {
+    scb_t *scb = (scb_t *)(SCB_BASE);
     scb->SHPR3 |= (prio << 16);
 }
 
 static void PENDSV_Trigger(void) {
+    scb_t *scb = (scb_t *)(SCB_BASE);
     scb->ICSR |= PENDSVSET; // trigger PENDSV interrupt
 }
 

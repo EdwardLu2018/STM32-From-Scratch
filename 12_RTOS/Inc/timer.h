@@ -42,14 +42,11 @@ typedef struct {
     uint32_t __padding1;    // 0x44 padding
     uint32_t volatile DCR;      // 0x48 -  DMA control register
     uint32_t volatile DMAR;     // 0x4C - DMA address for full transfer
-} TIM_t;
+} tim_t;
 
-extern TIM_t *tim2;
-extern TIM_t *tim3;
-extern TIM_t *tim4;
-
-uint32_t TIM_Get_Cnt(uint8_t timer);
-void TIM_Enable_Chan(uint8_t timer, uint8_t mode, uint8_t channel, uint32_t load);
-void TIM_Init(uint8_t timer, uint32_t prescaler, uint32_t period);
+uint32_t tim_get_cnt(uint8_t timer);
+void tim_reset_int(uint8_t timer);
+void tim_enable_chan(uint8_t timer, uint8_t mode, uint8_t channel, uint32_t load);
+void tim_init(uint8_t timer, uint32_t prescaler, uint32_t period);
 
 #endif

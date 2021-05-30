@@ -41,6 +41,6 @@ void serial_init(usart_port_t usart_port, uint32_t baud);
 bool serial_wr_ch(usart_port_t usart_port, char c);
 bool serial_wr_str(usart_port_t usart_port, char *s, bool new_line);
 char serial_rd_ch(usart_port_t usart_port);
-char *serial_rd_str(usart_port_t usart_port, char *buffer);
+char *Serial_Read_Str(usart_port_t usart_port, char *buffer);
 
 #endif /* _USART_H_ */

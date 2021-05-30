@@ -1,9 +1,9 @@
 #include "rcc.h"
 #include "flash_acr.h"
 
-RCC_t *rcc = (RCC_t *)(RCC_BASE);
+rcc_t *rcc = (rcc_t *)(RCC_BASE);
 
-void RCC_Init(uint32_t tim_en,
+void rcc_init(uint32_t tim_en,
               uint32_t gpio_en,
               uint32_t adc_en,
               uint32_t usart_en) {

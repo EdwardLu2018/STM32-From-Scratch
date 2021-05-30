@@ -46,8 +46,8 @@ typedef struct {
     uint32_t volatile APBE1;    // 0x1C - APB1 peripheral enable register
     uint32_t volatile BDCR;     // 0x20 - backup domain control register
     uint32_t volatile CSR;      // 0x24 - control/status register
-} RCC_t;
+} rcc_t;
 
-void RCC_Init(uint32_t tim_en, uint32_t gpio_en, uint32_t adc_en, uint32_t usart_en);
+void rcc_init(uint32_t tim_en, uint32_t gpio_en, uint32_t adc_en, uint32_t usart_en);
 
 #endif

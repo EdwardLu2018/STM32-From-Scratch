@@ -81,7 +81,7 @@ g_pfnVectors:
 .word   DebugMon_Handler        // - Debug Monitor
 .word   0                       // - RESERVED
 .word   PendSV_Handler          // - PendSV
-.word   SysTick_Handler         // - SysTick
+.word   systick_handler         // - SysTick
 .word   WWDG_IRQHandler         // 0 WWDG
 .word   PVD_IRQHandler          // 1 PVD
 .word   TAMPER_IRQHandler       // 2 TAMPER
@@ -100,7 +100,7 @@ g_pfnVectors:
 .word   DMA1_Chan5_IRQHandler   // 15 DMA1_Channel5
 .word   DMA1_Chan6_IRQHandler   // 16 DMA1_Channel6
 .word   DMA1_Chan7_IRQHandler   // 17 DMA1_Channel7
-.word   ADC1_2_IRQHandler       // 18 ADC1_2
+.word   adc1_2_irq_handler       // 18 ADC1_2
 .word   CAN1_TX_IRQHandler      // 19 CAN1_TX
 .word   CAN1_RX0_IRQHandler     // 20 CAN1_RX0
 .word   CAN1_RX1_IRQHandler     // 21 CAN1_RX1
@@ -110,8 +110,8 @@ g_pfnVectors:
 .word   TIM1_UP_IRQHandler      // 25 TIM1_UP
 .word   TIM1_TRG_COM_IRQHandler // 26 TIM1_TRG_COM
 .word   TIM1_CC_IRQHandler      // 27 TIM1_CC
-.word   TIM2_IRQHandler         // 28 TIM2
-.word   TIM3_IRQHandler         // 29 TIM3
+.word   tim2_irq_handler         // 28 TIM2
+.word   tim3_irq_handler         // 29 TIM3
 .word   TIM4_IRQHandler         // 30 TIM4
 .word   I2C1_EV_IRQHandler      // 31 I2C1_EV
 .word   I2C1_ER_IRQHandler      // 32 I2C1_ER
@@ -119,7 +119,7 @@ g_pfnVectors:
 .word   I2C2_ER_IRQHandler      // 34 I2C2_ER
 .word   SPI1_IRQHandler         // 35 SPI1
 .word   SPI2_IRQHandler         // 36 SPI2
-.word   USART1_IRQHandler       // 37 USART1
+.word   usart1_irq_handler       // 37 USART1
 .word   USART2_IRQHandler       // 38 USART2
 .word   USART3_IRQHandler       // 39 USART3
 .word   EXTI15_10_IRQHandler    // 40 EXTI15_10
@@ -175,8 +175,8 @@ g_pfnVectors:
 .weak PendSV_Handler
   .thumb_set PendSV_Handler,Default_Handler
 
-.weak SysTick_Handler
-  .thumb_set SysTick_Handler,Default_Handler
+.weak systick_handler
+  .thumb_set systick_handler,Default_Handler
 
 .weak WWDG_IRQHandler
   .thumb_set WWDG_IRQHandler,Default_Handler
@@ -232,8 +232,8 @@ g_pfnVectors:
 .weak DMA1_Chan7_IRQHandler
   .thumb_set DMA1_Chan7_IRQHandler,Default_Handler
 
-.weak ADC1_2_IRQHandler
-  .thumb_set ADC1_2_IRQHandler,Default_Handler
+.weak adc1_2_irq_handler
+  .thumb_set adc1_2_irq_handler,Default_Handler
 
 .weak CAN1_TX_IRQHandler
   .thumb_set CAN1_TX_IRQHandler,Default_Handler
@@ -262,11 +262,11 @@ g_pfnVectors:
 .weak TIM1_CC_IRQHandler
   .thumb_set TIM1_CC_IRQHandler,Default_Handler
 
-.weak TIM2_IRQHandler
-  .thumb_set TIM2_IRQHandler,Default_Handler
+.weak tim2_irq_handler
+  .thumb_set tim2_irq_handler,Default_Handler
 
-.weak TIM3_IRQHandler
-  .thumb_set TIM3_IRQHandler,Default_Handler
+.weak tim3_irq_handler
+  .thumb_set tim3_irq_handler,Default_Handler
 
 .weak TIM4_IRQHandler
   .thumb_set TIM4_IRQHandler,Default_Handler
@@ -289,8 +289,8 @@ g_pfnVectors:
 .weak SPI2_IRQHandler
   .thumb_set SPI2_IRQHandler,Default_Handler
 
-.weak USART1_IRQHandler
-  .thumb_set USART1_IRQHandler,Default_Handler
+.weak usart1_irq_handler
+  .thumb_set usart1_irq_handler,Default_Handler
 
 .weak USART2_IRQHandler
   .thumb_set USART2_IRQHandler,Default_Handler

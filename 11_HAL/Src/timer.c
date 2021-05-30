@@ -2,24 +2,29 @@
 #include "nvic.h"
 #include "gpio.h"
 
-static TIM_t *const timers[] = {
-    (TIM_t *)0x0,        // timer 0
-    (TIM_t *)0x0,        // timer 1
-    (TIM_t *)TIM2_BASE,
-    (TIM_t *)TIM3_BASE,
-    (TIM_t *)TIM4_BASE,
-    (TIM_t *)TIM5_BASE,
-    (TIM_t *)TIM6_BASE,
-    (TIM_t *)TIM7_BASE
+static tim_t *const timers[] = {
+    (tim_t *)0x0,        // timer 0
+    (tim_t *)0x0,        // timer 1
+    (tim_t *)TIM2_BASE,
+    (tim_t *)TIM3_BASE,
+    (tim_t *)TIM4_BASE,
+    (tim_t *)TIM5_BASE,
+    (tim_t *)TIM6_BASE,
+    (tim_t *)TIM7_BASE
 };
 
-uint32_t TIM_Get_Cnt(uint8_t timer) {
-    TIM_t *tim = timers[timer];
+uint32_t tim_get_cnt(uint8_t timer) {
+    tim_t *tim = timers[timer];
     return tim->CNT;
 }
 
-void TIM_Enable_Chan(uint8_t timer, uint8_t mode, uint8_t channel, uint32_t load) {
-    TIM_t *tim = timers[timer];
+void tim_reset_int(uint8_t timer) {
+    tim_t *tim = timers[timer];
+    tim->SR = 0U; // reset interrupt
+}
+
+void tim_enable_chan(uint8_t timer, uint8_t mode, uint8_t channel, uint32_t load) {
+    tim_t *tim = timers[timer];
     tim->CCR[channel] = load;
 
     uint8_t shift_by;
@@ -36,8 +41,8 @@ void TIM_Enable_Chan(uint8_t timer, uint8_t mode, uint8_t channel, uint32_t load
     tim->CCMR[mr_idx] = (config | (mode << shift_by));
 }
 
-void TIM_Init(uint8_t timer, uint32_t prescaler, uint32_t period) {
-    TIM_t *tim = timers[timer];
+void tim_init(uint8_t timer, uint32_t prescaler, uint32_t period) {
+    tim_t *tim = timers[timer];
 
     // set prescalar (ms) //
     // PWM Frequency = fCK_PSC / (PSC*ARR)

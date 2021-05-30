@@ -7,8 +7,8 @@ void delay(uint32_t volatile t) {
         __NOP();
 }
 
-void Systick_delay(uint32_t volatile t) {
-    uint32_t start_t = Systick_Millis();
-    while(Systick_Millis() - start_t < t)
+void systick_delay(uint32_t volatile t) {
+    uint32_t start_t = systick_millis();
+    while(systick_millis() - start_t < t)
         __NOP();
 }

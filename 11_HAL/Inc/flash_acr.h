@@ -9,8 +9,8 @@
 #define LATENCY_2   (1<<1)
 
 // flash access control register (pg 60)
-typedef struct Flash_t {
+typedef struct flash_t {
     uint32_t volatile ACR; // 0x0 - flash access control register
-} Flash_t;
+} flash_t;
 
 #endif

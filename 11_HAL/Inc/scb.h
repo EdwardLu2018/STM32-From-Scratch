@@ -27,4 +27,4 @@ typedef struct {
     uint32_t volatile BFAR;     // 0x38 bus fault address register
 } scb_t;
 
-#endif
+#endif /* _SCB_H_ */

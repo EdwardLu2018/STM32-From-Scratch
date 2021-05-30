@@ -38,13 +38,12 @@ typedef struct {
     uint32_t volatile CR2;  // 0x10 control register 2
     uint32_t volatile CR3;  // 0x14 control register 3
     uint32_t volatile GTPR; // 0x18 guard time and prescaler register
-} USART_t;
+} usart_t;
 
-USART_t *USART_Get(usart_port_t usart_port);
-void Serial_Init(usart_port_t usart_port, uint32_t BAUD);
-bool Serial_Write_Char(usart_port_t usart_port, char c);
-bool Serial_Write_Str(usart_port_t usart_port, char *s, bool new_line);
-char Serial_Read_Char(usart_port_t usart_port);
+void serial_init(usart_port_t usart_port, uint32_t BAUD);
+bool serial_wr_ch(usart_port_t usart_port, char c);
+bool serial_wr_str(usart_port_t usart_port, char *s, bool new_line);
+char serial_rd_ch(usart_port_t usart_port);
 char *Serial_Read_Str(usart_port_t usart_port, char *buffer);
 
 #endif
