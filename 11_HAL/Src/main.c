@@ -12,7 +12,7 @@ void TIM2_IRQHandler(void) {
 
 void TIM3_IRQHandler(void) {
     tim3->SR = 0U; // reset interrupt
-    LED_Toggle(PA7);
+    gpio_toggle(PA7);
 }
 
 void USART1_IRQHandler(void) {
@@ -58,7 +58,7 @@ int main(void) {
     while(1) {
         if (Systick_Millis() - start_t > 1000U) {
             Serial_Write_Str(USART1, "hello world!", true);
-            LED_Toggle(PC13);
+            gpio_toggle(PC13);
             start_t = Systick_Millis();
 
             if (up) pwm += STEP;

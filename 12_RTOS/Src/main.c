@@ -5,7 +5,7 @@ RTOS_TCB tcb1;
 uint32_t stack_thread1[THREAD_STACK_SIZE];
 void thread1() {
     while(1) {
-        LED_Toggle(PC13);
+        gpio_toggle(PC13);
         RTOS_Delay(1U);
     }
 }
@@ -15,7 +15,7 @@ void thread1() {
 // uint32_t stack_thread2[THREAD_STACK_SIZE];
 // void thread2() {
 //     while(1) {
-//         LED_Toggle(PA2);
+//         gpio_toggle(PA2);
 //         RTOS_Delay(1000U);
 //     }
 // }

@@ -53,7 +53,7 @@ typedef enum
 } pin_t;
 
 void GPIO_PinMode(uint8_t pin, uint8_t mode);
-void LED_Toggle(uint8_t pin);
+void gpio_toggle(uint8_t pin);
 void LED_On(uint8_t pin);
 void LED_Off(uint8_t pin);
 

@@ -19,3 +19,11 @@ Everything should be able to be done with just a Unix machine, make, and the [gn
 * **10 - Serial** -> Enabling and using USART/Serial communication.
 * **11 - HAL** -> Non-exhaustive hardware abstraction layer.
 * **12 - RTOS** -> Minimal Real Time Operating System Kernel. Work in progress.
+
+## Getting Started
+Install `arm-none-eabi` toolchain and `openocd`.
+
+### MacOS
+```
+brew install arm-gcc-bin openocd
+```

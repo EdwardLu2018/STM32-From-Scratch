@@ -7,7 +7,7 @@ int main (void) {
     gpio_init();
 
     while (1) {
-        led_toggle(13U);
+        gpio_toggle(13U);
         delay(1000000U);
     }
 }

@@ -32,5 +32,3 @@ spin:
 _reset_:
     bl main
     bkpt
-
-/* THE END */

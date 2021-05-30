@@ -6,7 +6,7 @@ timer_t *tim2 = (timer_t *)(TIM2_BASE);
 
 void tim2_handle(void) {
     tim2->sr = 0U; // reset interrupt
-    led_toggle(PA2);
+    gpio_toggle(PA2);
 }
 
 void enable_chan(unsigned char channel, unsigned char load) {

@@ -22,13 +22,12 @@
 .word   spin        /* 17 IRQ1 */
 .word   spin        /* 18 IRQ2 */
 .word   spin        /* 19 ...   */
-		    /* On to IRQ67 */
+		            /* On to IRQ67 */
 
-spin:   b spin
+spin:
+    bkpt
 
 .thumb_func
 _reset:
     bl main
-    b .
-
-/* THE END */
+    bkpt

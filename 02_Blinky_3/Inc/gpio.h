@@ -1,5 +1,5 @@
-#ifndef __GPIO__
-#define __GPIO__
+#ifndef _GPIO_H_
+#define _GPIO_H_
 
 #include "stm32f103.h"
 
@@ -14,6 +14,6 @@ typedef struct gpio_t {
 } gpio_t;
 
 void gpio_init(void);
-void led_toggle(unsigned long led);
+void gpio_toggle(unsigned long led);
 
-#endif
+#endif /* _GPIO_H_ */

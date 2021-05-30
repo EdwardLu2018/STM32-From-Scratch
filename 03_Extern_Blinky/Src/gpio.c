@@ -18,7 +18,7 @@ void gpio_init(void) {
     led_on(gpio_a, LED_BIT);
 }
 
-void led_toggle(gpio_t *gpio, unsigned int led) {
+void gpio_toggle(gpio_t *gpio, unsigned int led) {
     gpio->odr ^= LED_MASK(led);
 }
 

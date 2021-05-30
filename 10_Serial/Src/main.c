@@ -20,7 +20,7 @@ int main(void) {
         // serial_wr_s(USART1, "hello world", 1);
         // systick_delay(1000);
         // serial_wr_c(USART1, a);
-        led_toggle(PC13);
+        gpio_toggle(PC13);
         systick_delay(1000);
     }
 }

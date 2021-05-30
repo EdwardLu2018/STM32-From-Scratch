@@ -17,7 +17,7 @@ int main(void) {
     unsigned long start_t = millis();
     while(1) {
         if (millis() - start_t > 1000) {
-            led_toggle(PC13);
+            gpio_toggle(PC13);
             start_t = millis();
         }
     }

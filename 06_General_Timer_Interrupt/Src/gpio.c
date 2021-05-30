@@ -22,7 +22,7 @@ void pinMode_output(unsigned char pin) {
     gpio->cr[reg_idx] = (config | (MODE_OUTPUT_50 << shift_by));
 }
 
-void led_toggle(unsigned char pin) {
+void gpio_toggle(unsigned char pin) {
     gpio_t *gpio = get_gpio(pin);
     gpio->odr ^= LED_MASK(pin & PIN_MASK);
 }

@@ -30,5 +30,3 @@ spin:   b spin
 _reset:
     bl main
     b .
-
-/* THE END */

@@ -55,7 +55,7 @@ flash: $(BUILD_DIR)/$(TARGET).bin
 
 
 openocd:
-	openocd -f openocd.cfg
+	openocd -f ../utils/openocd.cfg
 
 telnet:
 	telnet localhost 4444

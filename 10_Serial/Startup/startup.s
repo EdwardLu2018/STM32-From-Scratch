@@ -95,5 +95,3 @@ none:   b .
 _reset:
     bl main
     b .
-
-/* THE END */

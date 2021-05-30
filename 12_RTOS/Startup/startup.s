@@ -360,5 +360,3 @@ g_pfnVectors:
 
 .weak OTG_FS_IRQHandler
   .thumb_set OTG_FS_IRQHandler,Default_Handler
-
-/* THE END */

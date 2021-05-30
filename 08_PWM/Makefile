@@ -62,7 +62,7 @@ flash: $(BUILD_DIR)/$(TARGET).bin
 	stm32flash -w $< -v -g 0x0 /dev/tty.usbserial-1420
 
 openocd:
-	openocd -f openocd.cfg
+	openocd -f ../utils/openocd.cfg
 
 telnet:
 	telnet localhost 4444

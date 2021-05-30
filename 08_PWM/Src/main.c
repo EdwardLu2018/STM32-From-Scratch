@@ -24,7 +24,7 @@ int main(void) {
     unsigned char up = 1;
     while(1) {
         if (millis() - start_t > 1000U) {
-            led_toggle(PC13);
+            gpio_toggle(PC13);
             start_t = millis();
             if (up) {
                 pwm += STEP;

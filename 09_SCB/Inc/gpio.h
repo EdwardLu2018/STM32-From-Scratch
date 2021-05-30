@@ -60,7 +60,7 @@ typedef enum {
 
 gpio_t *get_gpio(uint8_t pin);
 void pin_mode(uint8_t pin, uint8_t mode);
-void led_toggle(uint8_t pin);
+void gpio_toggle(uint8_t pin);
 void led_on(uint8_t pin);
 void led_off(uint8_t pin);
 

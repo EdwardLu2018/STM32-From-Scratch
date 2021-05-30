@@ -29,7 +29,7 @@ gpio_t *gpio_c;
 
 void gpio_init(void);
 void pinMode_output(gpio_t *gpio, unsigned int bit);
-void led_toggle(gpio_t *gpio, unsigned int led);
+void gpio_toggle(gpio_t *gpio, unsigned int led);
 void led_on(gpio_t *gpio, unsigned int led);
 void led_off(gpio_t *gpio, unsigned int led);
 

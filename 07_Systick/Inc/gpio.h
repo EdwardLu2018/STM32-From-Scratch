@@ -49,7 +49,7 @@ typedef enum pin_t {
 
 gpio_t *get_gpio(unsigned char pin);
 void pin_mode(unsigned char pin, unsigned char mode);
-void led_toggle(unsigned char pin);
+void gpio_toggle(unsigned char pin);
 void led_on(unsigned char pin);
 void led_off(unsigned char pin);
 

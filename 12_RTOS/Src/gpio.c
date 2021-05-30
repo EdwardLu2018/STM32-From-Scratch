@@ -22,7 +22,7 @@ void GPIO_PinMode(uint8_t pin, uint8_t mode) {
     gpio->CR[reg_idx] = (config | (mode << shift_by));
 }
 
-void LED_Toggle(uint8_t pin) {
+void gpio_toggle(uint8_t pin) {
     GPIO_t *gpio = GPIO_Get(pin);
     gpio->ODR ^= LED_MASK(pin & PIN_MASK);
 }

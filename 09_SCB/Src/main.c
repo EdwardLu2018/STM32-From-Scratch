@@ -16,7 +16,7 @@ int main(void) {
     systick_init(1000U); // initialize systick at 1Hz
 
     while(1) {
-        led_toggle(PC13);
+        gpio_toggle(PC13);
         systick_delay(1000);
     }
 }

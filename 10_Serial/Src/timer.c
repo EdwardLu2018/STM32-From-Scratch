@@ -23,12 +23,12 @@ timer_t *get_timer(uint8_t timer) {
 
 void tim2_handle(void) {
     tim2->sr = 0U; // reset interrupt
-    led_toggle(PA7);
+    gpio_toggle(PA7);
 }
 
 void tim3_handle(void) {
     tim3->sr = 0U; // reset interrupt
-    led_toggle(PA7);
+    gpio_toggle(PA7);
 }
 
 void tim4_handle(void) {

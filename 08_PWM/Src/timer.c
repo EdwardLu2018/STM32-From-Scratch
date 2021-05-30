@@ -21,17 +21,17 @@ timer_t *get_timer(unsigned char timer) {
 
 void tim2_handle(void) {
     tim2->sr = 0U; // reset interrupt
-    // led_toggle(PA8);
+    // gpio_toggle(PA8);
 }
 
 void tim3_handle(void) {
     tim3->sr = 0U; // reset interrupt
-    led_toggle(PA7);
+    gpio_toggle(PA7);
 }
 
 void tim4_handle(void) {
     tim4->sr = 0U; // reset interrupt
-    // led_toggle(PA0);
+    // gpio_toggle(PA0);
 }
 
 unsigned long get_timer_cnt(unsigned char timer) {
