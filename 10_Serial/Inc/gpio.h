@@ -32,14 +32,18 @@ typedef enum {
 #define LED_MASK(pin)   (1<<(pin))
 #define PIN_MASK        0x0f
 
+typedef enum {
+    GPIO_A=0, GPIO_B=1, GPIO_C=2
+} gpio_port_t;
+
 // general purpose input/output (page 171 Reference Manual) //
 typedef struct {
-    uint32_t __IO cr[2];    // 0x0 to 0x4 - port configuration register (low/high)
-    uint32_t __IO idr;      // 0x8 - input data register
-    uint32_t __IO odr;      // 0xC - output data register
-    uint32_t __IO bsrr;     // 0x10 - bit set/reset register
-    uint32_t __IO brr;      // 0x14 - bit reset register
-    uint32_t __IO lckr;     // 0x18 - port configuration lock register
+    uint32_t volatile cr[2];    // 0x0 to 0x4 - port configuration register (low/high)
+    uint32_t volatile idr;      // 0x8 - input data register
+    uint32_t volatile odr;      // 0xC - output data register
+    uint32_t volatile bsrr;     // 0x10 - bit set/reset register
+    uint32_t volatile brr;      // 0x14 - bit reset register
+    uint32_t volatile lckr;     // 0x18 - port configuration lock register
 } gpio_t;
 
 typedef enum {
@@ -54,10 +58,10 @@ typedef enum {
     PC8, PC9, PC10, PC11, PC12, PC13, PC14, PC15
 } pin_t;
 
-gpio_t *get_gpio(uint8_t pin);
-void pin_mode(uint8_t pin, uint8_t mode);
-void gpio_toggle(uint8_t pin);
-void gio_on(uint8_t pin);
-void gio_off(uint8_t pin);
+gpio_t *get_gpio(pin_t pin);
+void pin_mode(pin_t pin, uint8_t mode);
+void gpio_toggle(pin_t pin);
+void gio_on(pin_t pin);
+void gio_off(pin_t pin);
 
-#endif
+#endif /* _GPIO_H_ */

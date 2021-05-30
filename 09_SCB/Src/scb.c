@@ -2,9 +2,8 @@
 #include "gpio.h"
 #include "delay.h"
 
-scb_t *scb = (scb_t *)(SCB_BASE);
-
 void reset_system(void) {
+    scb_t *scb = (scb_t *)(SCB_BASE);
     pin_mode(PC13, OUT_GP_PUSH_PULL_50);
     for (uint8_t i = 0; i <= 5; i++) {
         gpio_toggle(PC13);

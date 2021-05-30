@@ -3,8 +3,6 @@
 
 #include <stdint.h>
 
-#define __IO volatile
-
 // Base Addresses For Peripherals (pg 34 Reference Manual) //
 #define RCC_BASE        0x40021000U
 
@@ -28,4 +26,4 @@
 
 #define SCB_BASE        0xE000ED00U
 
-#endif
+#endif /* _STM32F103_H_ */

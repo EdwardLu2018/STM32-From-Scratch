@@ -4,14 +4,15 @@
 #include "stm32f103.h"
 #include "intrinsic.h"
 
-typedef enum
-{
+#define LED_MASK(pin)   (1<<(pin))
+#define PIN_MASK        0x0f
+
+typedef enum {
     GPIOA, GPIOB, GPIOC
 } gpio_num_t;
 
 // Output bit modes and configuration bits //
-typedef enum
-{
+typedef enum {
     // input mode
     INPUT_ANALOG=0, INPUT_FLOATING_PT=4, INPUT_PULL_UP_DOWN=8,
     // max speed 10 MHz    max speed 2 MHz       max speed 50 MHz
@@ -21,22 +22,17 @@ typedef enum
     OUT_ALT_OPEN_drAIN_10=13, OUT_ALT_OPEN_drAIN_2=14, OUT_ALT_OPEN_drAIN_50=15
 } gpio_mode_config_t;
 
-#define LED_MASK(pin)   (1<<(pin))
-#define PIN_MASK        0x0f
-
 // general purpose input/output (page 171 Reference Manual) //
-typedef struct
-{
-    uint32_t __IO CR[2];    // 0x0 to 0x4 - port configuration register (low/high)
-    uint32_t __IO IDR;      // 0x8 - input DATA register
-    uint32_t __IO ODR;      // 0xC - output DATA register
-    uint32_t __IO BSRR;     // 0x10 - bit set/reset register
-    uint32_t __IO BRR;      // 0x14 - bit reset register
-    uint32_t __IO LCKR;     // 0x18 - port configuration lock register
+typedef struct {
+    uint32_t volatile CR[2];    // 0x0 to 0x4 - port configuration register (low/high)
+    uint32_t volatile IDR;      // 0x8 - input DATA register
+    uint32_t volatile ODR;      // 0xC - output DATA register
+    uint32_t volatile BSRR;     // 0x10 - bit set/reset register
+    uint32_t volatile BRR;      // 0x14 - bit reset register
+    uint32_t volatile LCKR;     // 0x18 - port configuration lock register
 } GPIO_t;
 
-typedef enum
-{
+typedef enum {
     // GPIO A pins start with 0x0 as MSB //
     PA0=0x00, PA1, PA2, PA3, PA4, PA5, PA6, PA7,
     PA8, PA9, PA10, PA11, PA12, PA13, PA14, PA15,
@@ -48,10 +44,9 @@ typedef enum
     PC8, PC9, PC10, PC11, PC12, PC13, PC14, PC15
 } pin_t;
 
-GPIO_t *GPIO_Get(uint8_t pin);
-void GPIO_PinMode(uint8_t pin, uint8_t mode);
-void gpio_toggle(uint8_t pin);
-void gio_on(uint8_t pin);
-void gio_off(uint8_t pin);
+void GPIO_PinMode(pin_t pin, uint8_t mode);
+void gpio_toggle(pin_t pin);
+void gio_on(pin_t pin);
+void gio_off(pin_t pin);
 
-#endif
+#endif /* _GPIO_H_ */

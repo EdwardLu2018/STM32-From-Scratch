@@ -1,5 +1,5 @@
-#ifndef __USART__
-#define __USART__
+#ifndef _USART_H_
+#define _USART_H_
 
 #include "stm32f103.h"
 #include "intrinsic.h"
@@ -10,9 +10,7 @@
 
 // flash access control register (pg 60)
 typedef struct Flash_t {
-    uint32_t __IO ACR; // 0x0 - flash access control register
+    uint32_t volatile ACR; // 0x0 - flash access control register
 } Flash_t;
-
-Flash_t *flash;
 
 #endif

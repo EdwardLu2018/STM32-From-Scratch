@@ -1,37 +1,16 @@
 #include "timer.h"
 #include "gpio.h"
 #include "nvic.h"
-
 static timer_t *const timers[] = {
     (timer_t *)0x0,        // timer 0
     (timer_t *)0x0,        // timer 1
     (timer_t *)TIM2_BASE,
     (timer_t *)TIM3_BASE,
     (timer_t *)TIM4_BASE,
-    (timer_t *)0x0         // timer 5
+    (timer_t *)TIM5_BASE,
+    (timer_t *)TIM6_BASE,
+    (timer_t *)TIM7_BASE
 };
-timer_t *tim5 = (timer_t *)(TIM5_BASE);
-timer_t *tim6 = (timer_t *)(TIM6_BASE);
-timer_t *tim7 = (timer_t *)(TIM7_BASE);
-
-timer_t *get_timer(uint8_t timer) {
-    switch (timer) {
-    case TIM2:
-        return tim2;
-    case TIM3:
-        return tim3;
-    case TIM4:
-        return tim4;
-    case TIM5:
-        return tim5;
-    case TIM6:
-        return tim6;
-    case TIM7:
-        return tim7;
-    default:
-        return tim2;
-    }
-}
 
 void tim2_handle(void) {
     timer_t *tim2 = timers[2];
@@ -50,14 +29,17 @@ void tim4_handle(void) {
 }
 
 void tim5_handle(void) {
+    timer_t *tim5 = timers[5];
     tim5->sr = 0U; // reset interrupt
 }
 
 void tim6_handle(void) {
+    timer_t *tim6 = timers[6];
     tim6->sr = 0U; // reset interrupt
 }
 
 void tim7_handle(void) {
+    timer_t *tim7 = timers[7];
     tim7->sr = 0U; // reset interrupt
 }
 

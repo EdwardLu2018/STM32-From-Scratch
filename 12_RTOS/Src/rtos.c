@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-RTOS_TCB * __IO curr_tcb;
-RTOS_TCB * __IO next_tcb;
+RTOS_TCB * volatile curr_tcb;
+RTOS_TCB * volatile next_tcb;
 
 RTOS_TCB *threads[MAX_THREADS+1]; // array of pointers to threads
 static uint8_t threads_added = 0;

@@ -1,16 +1,18 @@
 #include "main.h"
 
-uint64_t adc_in;
+uint32_t adc_in;
 
 void ADC1_2_IRQHandler(void) {
     adc_in = ADC_Read(ADC1);
 }
 
 void TIM2_IRQHandler(void) {
+    TIM_t *tim2 = timers[2];
     tim2->SR = 0U; // reset interrupt
 }
 
 void TIM3_IRQHandler(void) {
+    TIM_t *tim3 = timers[3];
     tim3->SR = 0U; // reset interrupt
     gpio_toggle(PA7);
 }
@@ -20,7 +22,7 @@ void USART1_IRQHandler(void) {
     Serial_Write_Char(USART1, in);
 }
 
-uint32_t __IO cnt = 0;
+static uint32_t volatile cnt = 0;
 void SysTick_Handler(void) {
     cnt++;
 }
@@ -52,7 +54,7 @@ int main(void) {
     NVIC_Irq_Enable(USART1_IRQn);
 
     uint8_t pwm = 0U;
-    uint64_t start_t = Systick_Millis();
+    uint32_t start_t = Systick_Millis();
     bool up = true;
 
     while(1) {

@@ -1,14 +1,13 @@
-#ifndef __USART__
-#define __USART__
+#ifndef _USART_H_
+#define _USART_H_
 
 #include "stm32f103.h"
 #include "intrinsic.h"
 #include "stdbool.h"
 
-typedef enum
-{
+typedef enum {
     USART1, USART2, USART3
-} usart_num_t;
+} usart_port_t;
 
 #define USART_SUCCESS   1
 #define USART_FAIL      0
@@ -31,15 +30,14 @@ typedef enum
 #define RXNEIE  (1<<5) // RXNE interrupt enable
 
 // USART registers (pg 817) //
-typedef struct
-{
-    uint32_t __IO SR;   // 0x0 status register
-    uint32_t __IO DATA; // 0x4 DATA register
-    uint32_t __IO BAUD; // 0x8 BAUD rate register
-    uint32_t __IO CR1;  // 0xC control register 1
-    uint32_t __IO CR2;  // 0x10 control register 2
-    uint32_t __IO CR3;  // 0x14 control register 3
-    uint32_t __IO GTPR; // 0x18 guard time and prescaler register
+typedef struct {
+    uint32_t volatile SR;   // 0x0 status register
+    uint32_t volatile DATA; // 0x4 DATA register
+    uint32_t volatile BAUD; // 0x8 BAUD rate register
+    uint32_t volatile CR1;  // 0xC control register 1
+    uint32_t volatile CR2;  // 0x10 control register 2
+    uint32_t volatile CR3;  // 0x14 control register 3
+    uint32_t volatile GTPR; // 0x18 guard time and prescaler register
 } USART_t;
 
 extern USART_t *usart1;

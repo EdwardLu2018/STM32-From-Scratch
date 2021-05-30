@@ -1,21 +1,10 @@
 #include "usart.h"
 #include "nvic.h"
 
-USART_t *usart1 = (USART_t *)(UART1_BASE);
-USART_t *usart2 = (USART_t *)(UART2_BASE);
-USART_t *usart3 = (USART_t *)(UART3_BASE);
+static USART_t *const usarts[] = {(USART_t *)UART1_BASE, (USART_t *)UART2_BASE, (USART_t *)UART3_BASE};
 
-USART_t *USART_Get(uint8_t usart) {
-    switch(usart) {
-        case USART1: return usart1;
-        case USART2: return usart2;
-        case USART3: return usart3;
-        default: return usart1;
-    }
-}
-
-void Serial_Init(uint8_t usart, uint32_t BAUD) {
-    USART_t *serial = USART_Get(usart);
+void Serial_Init(usart_port_t usart_port, uint32_t BAUD) {
+    USART_t *serial = usarts[usart_port];
     serial->CR1 = (RE|TE|RXNEIE|UE); // enable Tx/Rx, RXNE interrupt, usart
     serial->CR2 = 0;
     serial->CR3 = 0;
@@ -23,30 +12,30 @@ void Serial_Init(uint8_t usart, uint32_t BAUD) {
     serial->BAUD = PCLK2 / BAUD;
 }
 
-bool Serial_Write_Char(uint8_t usart, char c) {
-    USART_t *serial = USART_Get(usart);
+bool Serial_Write_Char(usart_port_t usart_port, char c) {
+    USART_t *serial = usarts[usart_port];
     serial->DATA = c;
     while(!(serial->SR & TC));
     return USART_SUCCESS;
 }
 
-bool Serial_Write_Str(uint8_t usart, char *s, bool new_line) {
-    while(*s) Serial_Write_Char(usart, *s++);
+bool Serial_Write_Str(usart_port_t usart_port, char *s, bool new_line) {
+    while(*s) Serial_Write_Char(usart_port, *s++);
     if (!new_line) return 1;
-    Serial_Write_Char(usart, '\r');
-    Serial_Write_Char(usart, '\n');
+    Serial_Write_Char(usart_port, '\r');
+    Serial_Write_Char(usart_port, '\n');
     return USART_SUCCESS;
 }
 
-char Serial_Read_Char(uint8_t usart) {
-    USART_t *serial = USART_Get(usart);
+char Serial_Read_Char(usart_port_t usart_port) {
+    USART_t *serial = usarts[usart_port];
     while(!(serial->SR & RXNE));
     return (char)(serial->DATA & DATA_MASK);
 }
 
-char *Serial_Read_Str(uint8_t usart, char *buffer) {
+char *Serial_Read_Str(usart_port_t usart_port, char *buffer) {
     while(*buffer) {
-        *buffer++ = Serial_Read_Char(usart);
+        *buffer++ = Serial_Read_Char(usart_port);
     }
     return buffer;
 }

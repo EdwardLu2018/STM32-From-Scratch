@@ -5,8 +5,7 @@
 #include "intrinsic.h"
 
 // IRQ numbers for enabling interrupts //
-typedef enum
-{
+typedef enum {
 	NMI_IRQn = -14,     // -14 Non Maskable Interrupt
    	HardFault_IRQn,     // -13 HardFault
    	MemManage_IRQn,     // -12 MemManage Fault
@@ -81,14 +80,14 @@ typedef enum
 
 // nested vectored interrupt controller (pg 118 Programming Manual) //
 typedef struct {
-   	uint32_t __IO ISER[3];	// 0x0 to 0xB - interrupt set-enable registers
-	uint32_t __IO ICER[3];	// 0xC to 0x18 - interrupt clear-enable registers
-	uint32_t __IO ISPR[3];	// 0x18 to 0x24 - interrupt set-pending registers
-	uint32_t __IO ICPR[3];	// 0x24 to 0x30 - interrupt clear-pending registers
-	uint32_t __IO IABR[3];	// 0x30 to 0x3C - interrupt active bit registers
+   	uint32_t volatile ISER[3];	// 0x0 to 0xB - interrupt set-enable registers
+	uint32_t volatile ICER[3];	// 0xC to 0x18 - interrupt clear-enable registers
+	uint32_t volatile ISPR[3];	// 0x18 to 0x24 - interrupt set-pending registers
+	uint32_t volatile ICPR[3];	// 0x24 to 0x30 - interrupt clear-pending registers
+	uint32_t volatile IABR[3];	// 0x30 to 0x3C - interrupt active bit registers
 	// TODO: list proper memory addresses for IPR and STIR
-	uint32_t __IO IPR[32];	// 0x3C to 0x48 - interrupt priority registers
-	// uint32_t __IO STIR;	// 0x48 to 0x54 - software trigger interrupt register
+	uint32_t volatile IPR[32];	// 0x3C to 0x48 - interrupt priority registers
+	// uint32_t volatile STIR;	// 0x48 to 0x54 - software trigger interrupt register
 } NVIC_t;
 
 extern NVIC_t *nvic;

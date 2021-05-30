@@ -3,8 +3,6 @@
 
 #include <stdint.h>
 
-#define __IO volatile
-
 #define HSI_MHZ 8000000U  // 8 Mhz clock
 #define PCLK1   36000000U // 36 Mhz clock
 #define PCLK2   72000000U // 72 Mhz clock

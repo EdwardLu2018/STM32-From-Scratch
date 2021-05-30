@@ -3,7 +3,7 @@
 
 #include "intrinsic.h"
 
-void delay(uint64_t volatile t);
-void Systick_delay(uint64_t volatile t);
+void delay(uint32_t volatile t);
+void systick_delay(uint32_t volatile t);
 
-#endif
+#endif /* _DELAY_H_ */

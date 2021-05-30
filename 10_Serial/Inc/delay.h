@@ -3,7 +3,7 @@
 
 #include "stm32f103.h"
 
-void delay(uint64_t __IO t);
-void systick_delay(uint64_t __IO t);
+void delay(uint32_t volatile t);
+void systick_delay(uint32_t volatile t);
 
-#endif
+#endif /* _DELAY_H_ */

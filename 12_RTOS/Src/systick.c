@@ -9,7 +9,7 @@ void Systick_Init(uint32_t reload_val) {
     systick->CTRL = (AHB_EN|TICKINT_EN|TICK_EN);
 }
 
-static uint32_t __IO SysTick_TickCtr = 0;
+static uint32_t volatile SysTick_TickCtr = 0;
 void SysTick_Handler(void) {
     SysTick_TickCtr++;
 

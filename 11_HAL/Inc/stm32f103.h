@@ -39,4 +39,4 @@
 #define UART2_BASE	    0x40004400U
 #define UART3_BASE	    0x40004800U
 
-#endif
+#endif /* _STM32F103_H_ */

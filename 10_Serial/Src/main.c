@@ -16,10 +16,10 @@ int main(void) {
     serial_init(USART1, 115200U);
 
     while(1) {
-        // char a = serial_r_c(USART1);
-        // serial_wr_s(USART1, "hello world", 1);
+        // char a = serial_rd_ch(USART1);
+        // serial_wr_str(USART1, "hello world", 1);
         // systick_delay(1000);
-        // serial_wr_c(USART1, a);
+        // serial_wr_ch(USART1, a);
         gpio_toggle(PC13);
         systick_delay(1000);
     }

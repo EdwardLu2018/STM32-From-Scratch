@@ -13,8 +13,8 @@ typedef struct {
 
 typedef void (*RTOS_ThreadFunc)(void);
 
-extern RTOS_TCB * __IO curr_thread;
-extern RTOS_TCB * __IO next_thread;
+extern RTOS_TCB * volatile curr_thread;
+extern RTOS_TCB * volatile next_thread;
 
 void RTOS_Init();
 void RTOS_Run(void);

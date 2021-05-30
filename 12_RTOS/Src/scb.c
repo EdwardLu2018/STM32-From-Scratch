@@ -1,8 +1,6 @@
 #include "scb.h"
 #include "delay.h"
 
-SCB_t *scb = (SCB_t *)(SCB_BASE);
-
 static void __DSB(void) {
     asm("dsb 0xF");
 }

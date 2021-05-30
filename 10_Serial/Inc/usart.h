@@ -1,14 +1,10 @@
-#ifndef __USART__
-#define __USART__
+#ifndef _USART_H_
+#define _USART_H_
 
 #include "stm32f103.h"
 #include "stdbool.h"
 
 #define USART1_IRQ_START_POS 37U
-
-#define USART1  0
-#define USART2  1
-#define USART3  2
 
 #define SBK     (1<<0)  // send break point chars
 #define RE      (1<<2)  // receiver enable
@@ -26,22 +22,25 @@
 #define TC      (1<<6) // transmission complete
 #define RXNE    (1<<5) // read data register is not empty
 
+typedef enum {
+    USART1, USART2, USART3
+} usart_port_t;
+
 // USART registers (pg 817) //
 typedef struct {
-    uint32_t __IO sr;   // 0x0 status register
-    uint32_t __IO data; // 0x4 data register
-    uint32_t __IO baud; // 0x8 baud rate register
-    uint32_t __IO cr1;  // 0xC control register 1
-    uint32_t __IO cr2;  // 0x10 control register 2
-    uint32_t __IO cr3;  // 0x14 control register 3
-    uint32_t __IO gtpr; // 0x18 guard time and prescaler register
+    uint32_t volatile sr;   // 0x0 status register
+    uint32_t volatile data; // 0x4 data register
+    uint32_t volatile baud; // 0x8 baud rate register
+    uint32_t volatile cr1;  // 0xC control register 1
+    uint32_t volatile cr2;  // 0x10 control register 2
+    uint32_t volatile cr3;  // 0x14 control register 3
+    uint32_t volatile gtpr; // 0x18 guard time and prescaler register
 } usart_t;
 
-usart_t *get_usart(uint8_t usart);
-void serial_init(uint8_t usart, uint32_t baud);
-bool serial_wr_c(uint8_t usart, char c);
-bool serial_wr_s(uint8_t usart, char *s, bool new_line);
-char serial_r_c(uint8_t usart);
-char *serial_r_s(uint8_t usart, char *buffer);
+void serial_init(usart_port_t usart_port, uint32_t baud);
+bool serial_wr_ch(usart_port_t usart_port, char c);
+bool serial_wr_str(usart_port_t usart_port, char *s, bool new_line);
+char serial_rd_ch(usart_port_t usart_port);
+char *serial_rd_str(usart_port_t usart_port, char *buffer);
 
-#endif
+#endif /* _USART_H_ */
