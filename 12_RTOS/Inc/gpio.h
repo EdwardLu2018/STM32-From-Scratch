@@ -1,5 +1,5 @@
-#ifndef __GPIO__
-#define __GPIO__
+#ifndef _GPIO_H_
+#define _GPIO_H_
 
 #include "stm32f103.h"
 #include "intrinsic.h"
@@ -54,7 +54,7 @@ typedef enum
 
 void GPIO_PinMode(uint8_t pin, uint8_t mode);
 void gpio_toggle(uint8_t pin);
-void LED_On(uint8_t pin);
-void LED_Off(uint8_t pin);
+void gio_on(uint8_t pin);
+void gio_off(uint8_t pin);
 
 #endif

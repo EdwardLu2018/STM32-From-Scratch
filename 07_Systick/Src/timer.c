@@ -2,22 +2,14 @@
 #include "gpio.h"
 #include "nvic.h"
 
-timer_t *tim2 = (timer_t *)(TIM2_BASE);
-timer_t *tim3 = (timer_t *)(TIM3_BASE);
-timer_t *tim4 = (timer_t *)(TIM4_BASE);
-
-timer_t *get_timer(unsigned char timer) {
-    switch (timer) {
-    case 2:
-        return tim2;
-    case 3:
-        return tim3;
-    case 4:
-        return tim4;
-    default:
-        return tim2;
-    }
-}
+static timer_t *const timers[] = {
+    (timer_t *)0x0,        // timer 0
+    (timer_t *)0x0,        // timer 1
+    (timer_t *)TIM2_BASE,
+    (timer_t *)TIM3_BASE,
+    (timer_t *)TIM4_BASE,
+    (timer_t *)0x0         // timer 5
+};
 
 void tim2_handle(void) {
     tim2->sr = 0U; // reset interrupt
@@ -35,12 +27,12 @@ void tim4_handle(void) {
 }
 
 unsigned long get_timer_cnt(unsigned char timer) {
-    timer_t *tim = get_timer(timer);
+    timer_t *tim = timers[timer];
     return tim->cnt;
 }
 
 void enable_chan(unsigned char timer, unsigned char channel, unsigned char load) {
-    timer_t *tim = get_timer(timer);
+    timer_t *tim = timers[timer];
     tim->ccr[channel] = load;
 
     unsigned char shift_by;
@@ -58,7 +50,7 @@ void enable_chan(unsigned char timer, unsigned char channel, unsigned char load)
 }
 
 void timer_init(unsigned char timer, unsigned long prescaler, unsigned long period) {
-    timer_t *tim = get_timer(timer);
+    timer_t *tim = timers[timer];
 
     // set prescalar (ms) //
     // the counter clock frequency CK_CNT is equal to fCK_PSC / (PSC[15:0] + 1)

@@ -1,5 +1,5 @@
-#ifndef __STM32f103__
-#define __STM32f103__
+#ifndef _STM32F103_H_
+#define _STM32F103_H_
 
 #include <stdint.h>
 

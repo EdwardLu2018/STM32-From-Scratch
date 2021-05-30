@@ -1,8 +1,6 @@
 #include "gpio.h"
 
-GPIO_t *gpio_a = (GPIO_t *)(GPIOA_BASE);
-GPIO_t *gpio_b = (GPIO_t *)(GPIOB_BASE);
-GPIO_t *gpio_c = (GPIO_t *)(GPIOC_BASE);
+static gpio_t *const gpios[] = {(gpio_t *)GPIOA_BASE, (gpio_t *)GPIOB_BASE, (gpio_t *)GPIOC_BASE};
 
 static GPIO_t *GPIO_Get(uint8_t pin) {
     switch(pin >> 4) {
@@ -27,13 +25,13 @@ void gpio_toggle(uint8_t pin) {
     gpio->ODR ^= LED_MASK(pin & PIN_MASK);
 }
 
-void LED_On(uint8_t pin) {
+void gio_on(uint8_t pin) {
     GPIO_t *gpio = GPIO_Get(pin);
     if (pin == PC13) gpio->ODR &= ~LED_MASK(pin & PIN_MASK);
     else gpio->ODR |= LED_MASK(pin & PIN_MASK);
 }
 
-void LED_Off(uint8_t pin) {
+void gio_off(uint8_t pin) {
     GPIO_t *gpio = GPIO_Get(pin);
     if (pin == PC13) gpio->ODR |= LED_MASK(pin & PIN_MASK);
     else gpio->ODR &= ~LED_MASK(pin & PIN_MASK);

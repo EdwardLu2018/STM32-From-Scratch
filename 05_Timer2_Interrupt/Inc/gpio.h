@@ -1,5 +1,5 @@
-#ifndef __GPIO__
-#define __GPIO__
+#ifndef _GPIO_H_
+#define _GPIO_H_
 
 #include "stm32f103.h"
 
@@ -12,6 +12,10 @@
 #define LED_MASK(pin) (1<<(pin))
 #define PIN_MASK 0x0f
 
+typedef enum {
+    GPIO_A=0, GPIO_B=1, GPIO_C=2
+} gpio_port_t;
+
 // general purpose input/output (page 171) //
 typedef struct gpio_t {
     unsigned volatile long cr[2]; // 0x0 to 0x4 - port configuration register (low/high)
@@ -21,10 +25,6 @@ typedef struct gpio_t {
     unsigned volatile long brr; // 0x14 - bit reset register
     unsigned volatile long lckr; // 0x18 - port configuration lock register
 } gpio_t;
-
-gpio_t *gpio_a;
-gpio_t *gpio_b;
-gpio_t *gpio_c;
 
 typedef enum pin_t {
     // GPIO A pins start with 0x0 as MSB //
@@ -41,7 +41,7 @@ typedef enum pin_t {
 gpio_t *get_gpio(unsigned char pin);
 void pinMode_output(unsigned char pin);
 void gpio_toggle(unsigned char pin);
-void led_on(unsigned char pin);
-void led_off(unsigned char pin);
+void gio_on(unsigned char pin);
+void gio_off(unsigned char pin);
 
-#endif
+#endif /* _GPIO_H_ */

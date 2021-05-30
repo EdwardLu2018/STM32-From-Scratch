@@ -1,5 +1,5 @@
-#ifndef __TIMER__
-#define __TIMER__
+#ifndef _TIMER_H_
+#define _TIMER_H_
 
 #include "stm32f103.h"
 
@@ -32,11 +32,6 @@ typedef struct timer_t {
     unsigned volatile long dmar; // 0x4C - DMA address for full transfer
 } timer_t;
 
-timer_t *tim2;
-timer_t *tim3;
-timer_t *tim4;
-
-timer_t *get_timer(unsigned char timer);
 unsigned long get_timer_cnt(unsigned char timer);
 void tim2_handle(void);
 void tim3_handle(void);

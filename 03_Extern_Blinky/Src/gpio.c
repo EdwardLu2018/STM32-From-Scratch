@@ -1,10 +1,9 @@
 #include "gpio.h"
 
-gpio_t *gpio_a = (gpio_t *)(GPIOA_BASE);
-gpio_t *gpio_b = (gpio_t *)(GPIOB_BASE);
-gpio_t *gpio_c = (gpio_t *)(GPIOC_BASE);
+static gpio_t *const gpios[] = {(gpio_t *)GPIOA_BASE, (gpio_t *)GPIOB_BASE, (gpio_t *)GPIOC_BASE};
 
-void pinMode_output(gpio_t *gpio, unsigned int bit) {
+void pinMode_output(gpio_port_t gpio_port, unsigned int bit) {
+    gpio_t *gpio = gpios[gpio_port];
     int shift_by = (bit % 8) * 4;
     int reg_idx = bit / 8;
     int config = gpio->cr[reg_idx] & ~(0xf << shift_by);
@@ -12,20 +11,23 @@ void pinMode_output(gpio_t *gpio, unsigned int bit) {
 }
 
 void gpio_init(void) {
-    pinMode_output(gpio_c, PC13);
-    led_off(gpio_c, PC13);
-    pinMode_output(gpio_a, LED_BIT);
-    led_on(gpio_a, LED_BIT);
+    pinMode_output(GPIO_C, PC13);
+    gio_off(GPIO_C, PC13);
+    pinMode_output(GPIO_A, LED_BIT);
+    gio_on(GPIO_A, LED_BIT);
 }
 
-void gpio_toggle(gpio_t *gpio, unsigned int led) {
+void gpio_toggle(gpio_port_t gpio_port, unsigned int led) {
+    gpio_t *gpio = gpios[gpio_port];
     gpio->odr ^= LED_MASK(led);
 }
 
-void led_on(gpio_t *gpio, unsigned int led) {
+void gio_on(gpio_port_t gpio_port, unsigned int led) {
+    gpio_t *gpio = gpios[gpio_port];
     gpio->odr |= LED_MASK(led);
 }
 
-void led_off(gpio_t *gpio, unsigned int led) {
+void gio_off(gpio_port_t gpio_port, unsigned int led) {
+    gpio_t *gpio = gpios[gpio_port];
     gpio->odr &= ~LED_MASK(led);
 }

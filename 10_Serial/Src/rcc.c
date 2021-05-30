@@ -1,9 +1,8 @@
 #include "rcc.h"
 #include "flash_acr.h"
 
-rcc_t *rcc = (rcc_t *)(RCC_BASE);
-
 void rcc_init(void) {
+    rcc_t *rcc = (rcc_t *)(RCC_BASE);
     // switch to 72Mhz clock //
     flash->acr |= LATENCY_2;
     rcc->cfgr |= APB1_DIV2;

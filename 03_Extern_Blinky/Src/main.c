@@ -7,9 +7,9 @@ int main(void) {
     gpio_init();
 
     while(1) {
-        led_on(gpio_a, LED_BIT);
+        gio_on(GPIO_A, LED_BIT);
         delay(1000000U);
-        led_off(gpio_a, LED_BIT);
+        gio_off(GPIO_A, LED_BIT);
         delay(1000000U);
     }
 }

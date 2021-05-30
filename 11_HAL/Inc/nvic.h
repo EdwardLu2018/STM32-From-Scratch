@@ -1,5 +1,5 @@
-#ifndef __NVIC__
-#define __NVIC__
+#ifndef _NVIC_H_
+#define _NVIC_H_
 
 #include "stm32f103.h"
 #include "intrinsic.h"
@@ -89,8 +89,6 @@ typedef struct {
 	// uint32_t __IO IPR[3];	// 0x3C to 0x48 - interrupt priority registers
 	// uint32_t __IO STIR;	// 0x48 to 0x54 - software trigger interrupt register
 } NVIC_t;
-
-NVIC_t *nvic;
 
 void NVIC_Irq_Enable(uint8_t irq_pos);
 

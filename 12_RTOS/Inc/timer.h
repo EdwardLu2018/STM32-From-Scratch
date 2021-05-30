@@ -1,5 +1,5 @@
-#ifndef __TIMER__
-#define __TIMER__
+#ifndef _TIMER_H_
+#define _TIMER_H_
 
 #include "stm32f103.h"
 #include "intrinsic.h"

@@ -2,14 +2,14 @@
 #include "gpio.h"
 #include "nvic.h"
 
-timer_t *tim2 = (timer_t *)(TIM2_BASE);
-
 void tim2_handle(void) {
+    timer_t *tim2 = (timer_t *)(TIM2_BASE);
     tim2->sr = 0U; // reset interrupt
     gpio_toggle(PA2);
 }
 
 void enable_chan(unsigned char channel, unsigned char load) {
+    timer_t *tim2 = (timer_t *)(TIM2_BASE);
     tim2->ccr[channel] = load;
 
     unsigned char shift_by;
@@ -27,6 +27,7 @@ void enable_chan(unsigned char channel, unsigned char load) {
 }
 
 void tim2_init(void) {
+    timer_t *tim2 = (timer_t *)(TIM2_BASE);
     // enable counter //
     tim2->cr[0] = 1U;
 

@@ -1,5 +1,5 @@
-#ifndef __NVIC__
-#define __NVIC__
+#ifndef _NVIC_H_
+#define _NVIC_H_
 
 #include "stm32f103.h"
 #include "intrinsic.h"

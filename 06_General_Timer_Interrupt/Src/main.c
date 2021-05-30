@@ -10,9 +10,9 @@ int main(void) {
     timer_init(4, 1000U, 1000U);
 
     while(1) {
-        led_on(PC13);
+        gio_on(PC13);
         delay(1000000U);
-        led_off(PC13);
+        gio_off(PC13);
         delay(1000000U);
     }
 }

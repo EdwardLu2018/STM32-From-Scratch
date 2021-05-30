@@ -1,5 +1,5 @@
-#ifndef __GPIO__
-#define __GPIO__
+#ifndef _GPIO_H_
+#define _GPIO_H_
 
 #include "stm32f103.h"
 
@@ -31,10 +31,6 @@ typedef struct gpio_t {
     unsigned volatile long lckr; // 0x18 - port configuration lock register
 } gpio_t;
 
-gpio_t *gpio_a;
-gpio_t *gpio_b;
-gpio_t *gpio_c;
-
 typedef enum pin_t {
     // GPIO A pins start with 0x0 as MSB //
     PA0=0x00, PA1, PA2, PA3, PA4, PA5, PA6, PA7,
@@ -50,7 +46,7 @@ typedef enum pin_t {
 gpio_t *get_gpio(unsigned char pin);
 void pin_mode(unsigned char pin, unsigned char mode);
 void gpio_toggle(unsigned char pin);
-void led_on(unsigned char pin);
-void led_off(unsigned char pin);
+void gio_on(unsigned char pin);
+void gio_off(unsigned char pin);
 
-#endif
+#endif /* _GPIO_H_ */

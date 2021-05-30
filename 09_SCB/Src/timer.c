@@ -2,9 +2,14 @@
 #include "gpio.h"
 #include "nvic.h"
 
-timer_t *tim2 = (timer_t *)(TIM2_BASE);
-timer_t *tim3 = (timer_t *)(TIM3_BASE);
-timer_t *tim4 = (timer_t *)(TIM4_BASE);
+static timer_t *const timers[] = {
+    (timer_t *)0x0,        // timer 0
+    (timer_t *)0x0,        // timer 1
+    (timer_t *)TIM2_BASE,
+    (timer_t *)TIM3_BASE,
+    (timer_t *)TIM4_BASE,
+    (timer_t *)0x0         // timer 5
+};
 timer_t *tim5 = (timer_t *)(TIM5_BASE);
 timer_t *tim6 = (timer_t *)(TIM6_BASE);
 timer_t *tim7 = (timer_t *)(TIM7_BASE);
@@ -54,12 +59,12 @@ void tim7_handle(void) {
 }
 
 uint32_t get_timer_cnt(uint8_t timer) {
-    timer_t *tim = get_timer(timer);
+    timer_t *tim = timers[timer];
     return tim->cnt;
 }
 
 void enable_chan(uint8_t timer, uint8_t mode, uint8_t channel, uint32_t load) {
-    timer_t *tim = get_timer(timer);
+    timer_t *tim = timers[timer];
     tim->ccr[channel] = load;
 
     uint8_t shift_by;
@@ -77,7 +82,7 @@ void enable_chan(uint8_t timer, uint8_t mode, uint8_t channel, uint32_t load) {
 }
 
 void timer_init(uint8_t timer, uint32_t prescaler, uint32_t period) {
-    timer_t *tim = get_timer(timer);
+    timer_t *tim = timers[timer];
 
     // set prescalar (ms) //
     // PWM Frequency = fCK_PSC / (PSC*ARR)

@@ -1,5 +1,5 @@
-#ifndef __GPIO__
-#define __GPIO__
+#ifndef _GPIO_H_
+#define _GPIO_H_
 
 #include "stm32f103.h"
 
@@ -13,6 +13,10 @@
 #define PC13 13U
 #define LED_BIT 0U
 
+typedef enum {
+    GPIO_A=0, GPIO_B=1, GPIO_C=2
+} gpio_port_t;
+
 // general purpose input/output (page 171)
 typedef struct gpio_t {
     unsigned volatile long cr[2]; // 0x0 to 0x4 - port configuration register (low/high)
@@ -23,14 +27,10 @@ typedef struct gpio_t {
     unsigned volatile long lckr; // 0x18 - port configuration lock register
 } gpio_t;
 
-gpio_t *gpio_a;
-gpio_t *gpio_b;
-gpio_t *gpio_c;
-
 void gpio_init(void);
-void pinMode_output(gpio_t *gpio, unsigned int bit);
-void gpio_toggle(gpio_t *gpio, unsigned int led);
-void led_on(gpio_t *gpio, unsigned int led);
-void led_off(gpio_t *gpio, unsigned int led);
+void pinMode_output(gpio_port_t gpio_port, unsigned int bit);
+void gpio_toggle(gpio_port_t gpio_port, unsigned int led);
+void gio_on(gpio_port_t gpio_port, unsigned int led);
+void gio_off(gpio_port_t gpio_port, unsigned int led);
 
-#endif
+#endif /* _GPIO_H_ */

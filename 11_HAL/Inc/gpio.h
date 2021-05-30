@@ -1,5 +1,5 @@
-#ifndef __GPIO__
-#define __GPIO__
+#ifndef _GPIO_H_
+#define _GPIO_H_
 
 #include "stm32f103.h"
 #include "intrinsic.h"
@@ -35,10 +35,6 @@ typedef struct
     uint32_t __IO LCKR;     // 0x18 - port configuration lock register
 } GPIO_t;
 
-GPIO_t *gpio_a;
-GPIO_t *gpio_b;
-GPIO_t *gpio_c;
-
 typedef enum
 {
     // GPIO A pins start with 0x0 as MSB //
@@ -55,7 +51,7 @@ typedef enum
 GPIO_t *GPIO_Get(uint8_t pin);
 void GPIO_PinMode(uint8_t pin, uint8_t mode);
 void gpio_toggle(uint8_t pin);
-void LED_On(uint8_t pin);
-void LED_Off(uint8_t pin);
+void gio_on(uint8_t pin);
+void gio_off(uint8_t pin);
 
 #endif

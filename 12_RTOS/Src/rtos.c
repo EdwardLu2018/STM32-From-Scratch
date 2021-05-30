@@ -161,7 +161,7 @@ void PendSV_Handler(void) {
 
         "ldr    r1,=curr_tcb        \n"
         "ldr    r1,[r1]             \n" // r1 = curr_tcb
-        "cbz    r1,restore_context  \n" // if curr_tcb == NULL, goto restore_context
+        "cbz    r1,restore_context  \n" // if curr_tcb == 0x0, goto restore_context
 
         "push   {r4-r11}            \n"
 

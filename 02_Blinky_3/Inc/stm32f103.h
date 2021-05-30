@@ -1,5 +1,5 @@
-#ifndef _STM32f103_H_
-#define _STM32f103_H_
+#ifndef _STM32F103_H_
+#define _STM32F103_H_
 
 // Base Addresses For Peripherals //
 #define RCC_BASE    0x40021000U
@@ -9,4 +9,4 @@
 #define GPIOD_BASE  0x40011400U
 #define GPIOE_BASE  0x40011800U
 
-#endif /* _STM32f103_H_ */
+#endif /* _STM32F103_H_ */

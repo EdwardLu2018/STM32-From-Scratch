@@ -2,11 +2,16 @@
 #include "gpio.h"
 #include "nvic.h"
 
-timer_t *tim2 = (timer_t *)(TIM2_BASE);
-timer_t *tim3 = (timer_t *)(TIM3_BASE);
-timer_t *tim4 = (timer_t *)(TIM4_BASE);
+static timer_t *const timers[] = {
+    (timer_t *)0x0,        // timer 0
+    (timer_t *)0x0,        // timer 1
+    (timer_t *)TIM2_BASE,
+    (timer_t *)TIM3_BASE,
+    (timer_t *)TIM4_BASE,
+    (timer_t *)0x0         // timer 5
+};
 
-timer_t *get_timer(unsigned char timer) {
+static timer_t *get_timer(unsigned char timer) {
     switch (timer) {
     case TIM2:
         return tim2;
@@ -35,12 +40,12 @@ void tim4_handle(void) {
 }
 
 unsigned long get_timer_cnt(unsigned char timer) {
-    timer_t *tim = get_timer(timer);
+    timer_t *tim = timers[timer];
     return tim->cnt;
 }
 
 void enable_chan(unsigned char timer, unsigned char mode, unsigned char channel, unsigned long load) {
-    timer_t *tim = get_timer(timer);
+    timer_t *tim = timers[timer];
     tim->ccr[channel] = load;
 
     unsigned char shift_by;
@@ -58,7 +63,7 @@ void enable_chan(unsigned char timer, unsigned char mode, unsigned char channel,
 }
 
 void timer_init(unsigned char timer, unsigned long prescaler, unsigned long period) {
-    timer_t *tim = get_timer(timer);
+    timer_t *tim = timers[timer];
 
     // set prescalar (ms) //
     // PWM Frequency = fCK_PSC / (PSC*ARR)

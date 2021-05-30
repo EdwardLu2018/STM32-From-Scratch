@@ -1,5 +1,5 @@
-#ifndef _STM32f103_H_
-#define _STM32f103_H_
+#ifndef _STM32F103_H_
+#define _STM32F103_H_
 
 /* Base Addresses for Peripherals */
 #define RCC_BASE    0x40021000U
@@ -46,4 +46,4 @@
 
 #define REG(X) (*(unsigned int *) X)
 
-#endif /* _STM32f103_H_ */
+#endif /* _STM32F103_H_ */

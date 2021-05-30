@@ -2,45 +2,40 @@
 #include "gpio.h"
 #include "nvic.h"
 
-timer_t *tim2 = (timer_t *)(TIM2_BASE);
-timer_t *tim3 = (timer_t *)(TIM3_BASE);
-timer_t *tim4 = (timer_t *)(TIM4_BASE);
-
-timer_t *get_timer(unsigned char timer) {
-    switch (timer) {
-    case 2:
-        return tim2;
-    case 3:
-        return tim3;
-    case 4:
-        return tim4;
-    default:
-        return tim2;
-    }
-}
+static timer_t *const timers[] = {
+    (timer_t *)0x0,        // timer 0
+    (timer_t *)0x0,        // timer 1
+    (timer_t *)TIM2_BASE,
+    (timer_t *)TIM3_BASE,
+    (timer_t *)TIM4_BASE,
+    (timer_t *)0x0         // timer 5
+};
 
 void tim2_handle(void) {
+    timer_t *tim2 = timers[2];
     tim2->sr = 0U; // reset interrupt
     gpio_toggle(PA2);
 }
 
 void tim3_handle(void) {
+    timer_t *tim3 = timers[3];
     tim3->sr = 0U; // reset interrupt
     gpio_toggle(PA2);
 }
 
 void tim4_handle(void) {
+    timer_t *tim4 = timers[4];
     tim4->sr = 0U; // reset interrupt
     gpio_toggle(PA2);
 }
 
 unsigned long get_cnt(unsigned char timer) {
-    timer_t *tim = get_timer(timer);
+    timer_t *tim = timers[timer];
     return tim->cnt;
 }
 
 void enable_chan(unsigned char timer, unsigned char channel, unsigned char load) {
-    timer_t *tim = get_timer(timer);
+    timer_t *tim = timers[timer];
     tim->ccr[channel] = load;
 
     unsigned char shift_by;
@@ -58,7 +53,7 @@ void enable_chan(unsigned char timer, unsigned char channel, unsigned char load)
 }
 
 void timer_init(unsigned char timer, unsigned long prescaler, unsigned long period) {
-    timer_t *tim = get_timer(timer);
+    timer_t *tim = timers[timer];
 
     // enable counter //
     tim->cr[0] = 1U;

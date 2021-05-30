@@ -1,5 +1,5 @@
-#ifndef __RCC__
-#define __RCC__
+#ifndef _RCC_H_
+#define _RCC_H_
 
 #include "stm32f103.h"
 #include "intrinsic.h"

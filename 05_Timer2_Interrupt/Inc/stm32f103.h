@@ -1,5 +1,5 @@
-#ifndef __STM32f103__
-#define __STM32f103__
+#ifndef _STM32F103_H_
+#define _STM32F103_H_
 
 // Base Addresses For Peripherals (pg 34) //
 #define RCC_BASE 0x40021000U
@@ -17,4 +17,4 @@
 
 #define NVIC_BASE 0xE000E100U
 
-#endif
+#endif /* _STM32F103_H_ */

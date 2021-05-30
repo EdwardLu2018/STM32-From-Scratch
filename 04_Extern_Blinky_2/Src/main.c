@@ -7,9 +7,9 @@ int main(void) {
     pinMode_output(PA0);
 
     while(1) {
-        led_on(PA0);
+        gio_on(PA0);
         delay(1000000U);
-        led_off(PA0);
+        gio_off(PA0);
         delay(1000000U);
     }
 }

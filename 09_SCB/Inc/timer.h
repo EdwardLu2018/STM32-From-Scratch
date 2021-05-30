@@ -1,5 +1,5 @@
-#ifndef __TIMER__
-#define __TIMER__
+#ifndef _TIMER_H_
+#define _TIMER_H_
 
 #include "stm32f103.h"
 
@@ -52,10 +52,6 @@ typedef struct {
     uint32_t __IO dcr;      // 0x48 -  DMA control register
     uint32_t __IO dmar;     // 0x4C - DMA address for full transfer
 } timer_t;
-
-timer_t *tim2;
-timer_t *tim3;
-timer_t *tim4;
 
 timer_t *get_timer(uint8_t timer);
 uint32_t get_timer_cnt(uint8_t timer);

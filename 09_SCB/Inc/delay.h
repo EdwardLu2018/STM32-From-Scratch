@@ -1,5 +1,5 @@
-#ifndef __DELAY__
-#define __DELAY__
+#ifndef _DELAY_H_
+#define _DELAY_H_
 
 #include "stm32f103.h"
 

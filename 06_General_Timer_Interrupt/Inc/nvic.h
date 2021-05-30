@@ -1,5 +1,5 @@
-#ifndef __NVIC__
-#define __NVIC__
+#ifndef _NVIC_H_
+#define _NVIC_H_
 
 #include "stm32f103.h"
 
@@ -12,8 +12,6 @@ typedef struct nvic_t {
     // unsigned volatile long ipr[3];   // 0x3C to 0x48 - interrupt priority registers
     // unsigned volatile long stir; // 0x48 to 0x54 - software trigger interrupt register
 } nvic_t;
-
-nvic_t *nvic;
 
 void nvic_enable(unsigned char irq_pos);
 
