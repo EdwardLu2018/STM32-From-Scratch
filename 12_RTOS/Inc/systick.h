@@ -1,5 +1,5 @@
-#ifndef __SYSTICK__
-#define __SYSTICK__
+#ifndef _SYSTICK_H_
+#define _SYSTICK_H_
 
 #include "stm32f103.h"
 #include "intrinsic.h"

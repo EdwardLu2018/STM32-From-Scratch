@@ -12,16 +12,19 @@ static timer_t *const timers[] = {
 };
 
 void tim2_handle(void) {
+    timer_t *tim2 = timers[2];
     tim2->sr = 0U; // reset interrupt
     gpio_toggle(PA7);
 }
 
 void tim3_handle(void) {
+    timer_t *tim3 = timers[3];
     tim3->sr = 0U; // reset interrupt
     gpio_toggle(PA2);
 }
 
 void tim4_handle(void) {
+    timer_t *tim4 = timers[4];
     tim4->sr = 0U; // reset interrupt
     gpio_toggle(PA0);
 }

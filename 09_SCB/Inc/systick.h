@@ -1,5 +1,5 @@
-#ifndef __SYSTICK__
-#define __SYSTICK__
+#ifndef _SYSTICK_H_
+#define _SYSTICK_H_
 
 #include "stm32f103.h"
 
@@ -14,8 +14,6 @@ typedef struct {
     uint32_t __IO val;      // 0x8 - current value register
     uint32_t __IO calib;    // 0xC - calibration value register
 } systick_t;
-
-systick_t *systick;
 
 void systick_handle(void);
 void systick_init(uint32_t reload_val);

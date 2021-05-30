@@ -4,4 +4,4 @@
 void delay(unsigned volatile int t);
 void systick_delay(unsigned volatile long t);
 
-#endif
+#endif /* _DELAY_H_ */

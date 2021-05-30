@@ -32,6 +32,10 @@ typedef enum gpio_mode_config_t {
 #define LED_MASK(pin)   (1<<(pin))
 #define PIN_MASK        0x0f
 
+typedef enum {
+    GPIO_A=0, GPIO_B=1, GPIO_C=2
+} gpio_port_t;
+
 // general purpose input/output (page 171 Reference Manual) //
 typedef struct gpio_t {
     unsigned volatile long cr[2]; // 0x0 to 0x4 - port configuration register (low/high)

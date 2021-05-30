@@ -34,15 +34,18 @@ timer_t *get_timer(uint8_t timer) {
 }
 
 void tim2_handle(void) {
+    timer_t *tim2 = timers[2];
     tim2->sr = 0U; // reset interrupt
 }
 
 void tim3_handle(void) {
+    timer_t *tim3 = timers[3];
     tim3->sr = 0U; // reset interrupt
     gpio_toggle(PA7);
 }
 
 void tim4_handle(void) {
+    timer_t *tim4 = timers[4];
     tim4->sr = 0U; // reset interrupt
 }
 

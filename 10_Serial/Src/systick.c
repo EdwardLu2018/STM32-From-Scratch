@@ -1,6 +1,6 @@
 #include "systick.h"
 
-systick_t *systick = (systick_t *)(SYSTICK_BASE);
+
 
 uint32_t __IO cnt = 0;
 

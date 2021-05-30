@@ -11,30 +11,20 @@ static timer_t *const timers[] = {
     (timer_t *)0x0         // timer 5
 };
 
-static timer_t *get_timer(unsigned char timer) {
-    switch (timer) {
-    case TIM2:
-        return tim2;
-    case TIM3:
-        return tim3;
-    case TIM4:
-        return tim4;
-    default:
-        return tim2;
-    }
-}
-
 void tim2_handle(void) {
+    timer_t *tim2 = timers[2];
     tim2->sr = 0U; // reset interrupt
     // gpio_toggle(PA8);
 }
 
 void tim3_handle(void) {
+    timer_t *tim3 = timers[3];
     tim3->sr = 0U; // reset interrupt
     gpio_toggle(PA7);
 }
 
 void tim4_handle(void) {
+    timer_t *tim4 = timers[4];
     tim4->sr = 0U; // reset interrupt
     // gpio_toggle(PA0);
 }

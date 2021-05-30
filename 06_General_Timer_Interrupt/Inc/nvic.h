@@ -15,4 +15,4 @@ typedef struct nvic_t {
 
 void nvic_enable(unsigned char irq_pos);
 
-#endif
+#endif /* _NVIC_H_ */

@@ -3,6 +3,7 @@
 #include "nvic.h"
 
 void tim2_handle(void) {
+    timer_t *tim2 = timers[2];
     timer_t *tim2 = (timer_t *)(TIM2_BASE);
     tim2->sr = 0U; // reset interrupt
     gpio_toggle(PA2);

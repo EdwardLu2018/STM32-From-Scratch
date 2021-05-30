@@ -1,6 +1,6 @@
 #include "systick.h"
 
-Systick_t *systick = (Systick_t *)(SYSTICK_BASE);
+
 
 void Systick_Init(uint32_t RELOAD_val) {
     systick->RELOAD = PCLK2 / RELOAD_val - 1U;

@@ -1,5 +1,5 @@
-#ifndef __SYSTICK__
-#define __SYSTICK__
+#ifndef _SYSTICK_H_
+#define _SYSTICK_H_
 
 #include "stm32f103.h"
 
@@ -16,10 +16,8 @@ typedef struct systick_t
     unsigned volatile long calib; // 0xC - calibration value register
 } systick_t;
 
-systick_t *systick;
-
 void systick_handle(void);
 void systick_init(unsigned long reload_val);
 unsigned long millis(void);
 
-#endif
+#endif /* _SYSTICK_H_ */

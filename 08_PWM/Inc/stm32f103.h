@@ -19,4 +19,4 @@
 
 #define SYSTICK_BASE    0xE000E010U
 
-#endif
+#endif /* _STM32F103_H_ */

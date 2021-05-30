@@ -1,5 +1,5 @@
-#ifndef __SYSTICK__
-#define __SYSTICK__
+#ifndef _SYSTICK_H_
+#define _SYSTICK_H_
 
 #include "stm32f103.h"
 #include "intrinsic.h"
@@ -18,8 +18,6 @@ typedef struct
     uint32_t __IO VAL;      // 0x8 - current value register
     uint32_t __IO CALIB;    // 0xC - calibration value register
 } Systick_t;
-
-Systick_t *systick;
 
 void Systick_Init(uint32_t reload_val);
 uint32_t Systick_Millis(void);
